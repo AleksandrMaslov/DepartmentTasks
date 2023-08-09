@@ -1,0 +1,7 @@
+@import 'fonts.css';
+@import 'reset.css';
+
+@import 'body/body.css';
+@import 'header/header.css';
+@import 'main/main.css';
+@import 'footer/footer.css';
