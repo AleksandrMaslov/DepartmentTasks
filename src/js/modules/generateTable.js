@@ -21,6 +21,12 @@ class TaskListAPI {
     this.actionClass = `${blockClass}__action`
     this.taskId = 'taskId'
     this.block = document.querySelector(`.${this.blockClass}`)
+
+    this.actions = {
+      edit: { title: 'Edit', onclick: this.onEditClick },
+      comment: { title: 'Comment', onclick: this.onCommentClick },
+      start: { title: 'Start', onclick: this.onStartClick },
+    }
   }
 
   addTable() {
@@ -83,7 +89,6 @@ class TaskListAPI {
     const row = document.createElement('div')
     row.classList.add(`${this.rowClass}`)
     row.setAttribute(this.taskId, key)
-    row.onclick = row.remove
     return row
   }
 
@@ -119,6 +124,20 @@ class TaskListAPI {
     action.classList.add(`${this.actionClass}`)
     action.setAttribute('src', `img/tasks/tasks-${name}.png`)
     action.setAttribute('alt', `tasks-${name}`)
+    action.onclick = this.actions[name].onclick
+    action.setAttribute('title', this.actions[name].title)
     return action
+  }
+
+  onEditClick() {
+    alert('Editing...')
+  }
+
+  onCommentClick() {
+    alert('Commenting...')
+  }
+
+  onStartClick() {
+    alert('Started...')
   }
 }
