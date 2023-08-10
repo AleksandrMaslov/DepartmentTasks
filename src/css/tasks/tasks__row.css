@@ -1,0 +1,6 @@
+.tasks__row {
+}
+
+.tasks__row:hover {
+  background-color: rgb(129, 129, 237);
+}
