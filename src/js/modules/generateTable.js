@@ -44,6 +44,8 @@ class TaskListAPI {
     const row = document.createElement('div')
     row.classList.add(`${this.rowClass}`)
     row.setAttribute(this.taskId, key)
+    row.onclick = row.remove
+
     Object.values(properties).forEach((cellData) => {
       const data = `${cellData}`
       const cell = document.createElement('div')
