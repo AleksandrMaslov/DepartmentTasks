@@ -12,3 +12,6 @@
 @import 'tasks/tasks__header.css';
 @import 'tasks/tasks__row.css';
 @import 'tasks/tasks__cell.css';
+@import 'tasks/tasks__logo.css';
+@import 'tasks/tasks__actions.css';
+@import 'tasks/tasks__action.css';

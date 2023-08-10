@@ -1,6 +1,6 @@
 .tasks__cell {
   margin: auto;
-  padding: 5px 15px;
+  padding: 0px 10px;
   width: var(--column-width);
   white-space: nowrap;
   overflow: hidden;

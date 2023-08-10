@@ -1,4 +1,5 @@
 .tasks__header-row {
+  padding: 5px;
   display: flex;
   flex-direction: row;
 }

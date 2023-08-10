@@ -1,6 +1,6 @@
 .tasks__header {
   margin: auto;
-  padding: 5px;
+  padding: 0px 5px;
   width: var(--column-width);
   font-weight: 700;
 }
