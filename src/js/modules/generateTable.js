@@ -16,6 +16,7 @@ class TaskListAPI {
     this.headerClass = `${blockClass}__header`
     this.rowClass = `${blockClass}__row`
     this.cellClass = `${blockClass}__cell`
+    this.taskId = 'taskId'
     this.block = document.querySelector(`.${this.blockClass}`)
   }
 
@@ -28,9 +29,8 @@ class TaskListAPI {
   addHeader(data) {
     this.header = document.createElement('div')
     this.header.classList.add(`${this.hearedRowClass}`)
-    const properties = Object.values(data)[0]
-    const headers = ['id', ...Object.keys(properties)]
-    headers.forEach((header) => {
+    const properties = Object.keys(Object.values(data)[0])
+    properties.forEach((header) => {
       const headerCell = document.createElement('div')
       headerCell.classList.add(`${this.headerClass}`)
       headerCell.innerHTML = `${header.toUpperCase()}`
@@ -43,13 +43,25 @@ class TaskListAPI {
     const [key, properties] = keyValue
     const row = document.createElement('div')
     row.classList.add(`${this.rowClass}`)
-    const cellsData = [key, ...Object.values(properties)]
-    cellsData.forEach((cellData) => {
+    row.setAttribute(this.taskId, key)
+    Object.values(properties).forEach((cellData) => {
+      const data = `${cellData}`
       const cell = document.createElement('div')
       cell.classList.add(`${this.cellClass}`)
-      cell.innerHTML = `${cellData}`
+      cell.setAttribute('title', data)
+      cell.innerHTML = data
       row.appendChild(cell)
     })
     this.list.appendChild(row)
+  }
+
+  removeRowById(id) {
+    const elements = this.list.querySelectorAll(`div[${this.taskId}='${id}']`)
+    console.log(elements)
+    elements.forEach((element) => element.remove())
+  }
+
+  insertRow() {
+    // parentElement.insertBefore(newElement, referenceElement);
   }
 }
