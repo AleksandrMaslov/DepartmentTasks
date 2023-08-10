@@ -1,7 +1,8 @@
 import * as functions from './modules/functions.js'
-functions.defineWebpClass()
 
-import getTasks from './modules/getTasks.js'
-import generateRows from './modules/generateTable.js'
-const responseData = await getTasks()
-generateRows({ blockClass: 'tasks', responseData })
+import requestTasks from './modules/requestTasks.js'
+import createTaskList from './modules/createTaskList.js'
+
+functions.defineWebpClass()
+const responseData = await requestTasks()
+createTaskList({ blockClass: 'tasks', responseData })

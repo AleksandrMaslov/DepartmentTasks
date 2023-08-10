@@ -1,4 +1,4 @@
-export default function generateRows({ blockClass, responseData }) {
+export default function createTaskList({ blockClass, responseData }) {
   const { result, data } = responseData
   if (!result === 'success') return
 
