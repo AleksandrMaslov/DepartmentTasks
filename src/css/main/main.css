@@ -1,4 +1,7 @@
 .main {
-  background-color: beige;
+  width: 100%;
   flex: 1 1 auto;
+  display: flex;
+  overflow: auto;
+  background-color: gainsboro;
 }
