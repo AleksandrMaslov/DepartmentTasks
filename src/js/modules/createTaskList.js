@@ -1,5 +1,8 @@
-export default function createTaskList({ blockClass, responseData }) {
-  const { result, data } = responseData
+import requestTasks from './requestTasks.js'
+
+export default async function createTaskList(blockClass) {
+  const response = await requestTasks()
+  const { result, data } = response
   if (!result === 'success') return
 
   const taskListAPI = new TaskListAPI(blockClass)
