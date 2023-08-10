@@ -23,9 +23,24 @@ class TaskListAPI {
     this.block = document.querySelector(`.${this.blockClass}`)
 
     this.actions = {
-      edit: { title: 'Edit', onclick: this.onEditClick },
-      comment: { title: 'Comment', onclick: this.onCommentClick },
-      start: { title: 'Start', onclick: this.onStartClick },
+      edit: {
+        title: 'Edit',
+        alt: 'tasks-edit',
+        src: 'img/tasks/tasks-edit.png',
+        onclick: this.onEditClick,
+      },
+      comment: {
+        title: 'Comment',
+        alt: 'tasks-comment',
+        src: 'img/tasks/tasks-comment.png',
+        onclick: this.onCommentClick,
+      },
+      start: {
+        title: 'Start',
+        alt: 'tasks-start',
+        src: 'img/tasks/tasks-start.png',
+        onclick: this.onStartClick,
+      },
     }
   }
 
@@ -122,10 +137,10 @@ class TaskListAPI {
   createAction(name) {
     const action = document.createElement('img')
     action.classList.add(`${this.actionClass}`)
-    action.setAttribute('src', `img/tasks/tasks-${name}.png`)
-    action.setAttribute('alt', `tasks-${name}`)
-    action.onclick = this.actions[name].onclick
+    action.setAttribute('src', this.actions[name].src)
+    action.setAttribute('alt', this.actions[name].alt)
     action.setAttribute('title', this.actions[name].title)
+    action.onclick = this.actions[name].onclick
     return action
   }
 
