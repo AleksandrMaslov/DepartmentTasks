@@ -1,29 +1,62 @@
-export default function generateRows({ targetClass, responseData }) {
-  const container = document.querySelector(`.${targetClass}`)
+export default function generateRows({ blockClass, responseData }) {
   const { result, data } = responseData
   if (!result === 'success') return
 
-  container.innerHTML = `<table class='${targetClass}__table'></table>`
-  const table = document.querySelector(`.${targetClass}__table`)
+  const taskListAPI = new TaskListAPI(blockClass)
+  taskListAPI.addTable()
+  taskListAPI.addHeader(data)
+  Object.entries(data).forEach((keyValue) => taskListAPI.addRow(keyValue))
+}
 
-  const row = document.createElement('tr')
-  row.classList.add(`${targetClass}__row`)
-  row.innerHTML = `<th class="${targetClass}__header">id</th>`
-  const properties = Object.values(data)[0]
-  Object.keys(properties).forEach((property) => {
-    row.innerHTML += `<th class="${targetClass}__header">${property}</th>`
-  })
-  table.appendChild(row)
+class TaskListAPI {
+  constructor(blockClass) {
+    this.blockClass = blockClass
+    this.listClass = `${this.blockClass}__list`
+    this.hearedRowClass = `${blockClass}__header-row`
+    this.headerClass = `${blockClass}__header`
+    this.rowClass = `${blockClass}__row`
+    this.cellClass = `${blockClass}__cell`
+    this.cellWrapperClass = `${blockClass}__cell-wrapper`
+    this.block = document.querySelector(`.${this.blockClass}`)
+  }
 
-  Object.entries(data).forEach((keyValue) => {
-    const [key, properties] = keyValue
-    const row = document.createElement('tr')
-    row.classList.add(`${targetClass}__row`)
-    row.innerHTML = `<td class="${targetClass}__cell">${key}</td>`
+  addTable() {
+    this.block.innerHTML = `<div class='${this.listClass}'></div>`
+    this.list = document.querySelector(`.${this.listClass}`)
+  }
 
-    Object.values(properties).forEach((property) => {
-      row.innerHTML += `<td class="${targetClass}__cell">${property}</td>`
+  addHeader(data) {
+    this.list.innerHTML = `
+    <div class='${this.hearedRowClass}'>
+      <div class="${this.headerClass}">
+        ID
+      </div>
+    </div>`
+
+    this.header = document.querySelector(`.${this.hearedRowClass}`)
+    const properties = Object.values(data)[0]
+    Object.keys(properties).forEach((property) => {
+      this.header.innerHTML += `
+      <div class="${this.headerClass}">
+        ${property.toUpperCase()}
+      </div>`
     })
-    table.appendChild(row)
-  })
+  }
+
+  addRow(keyValue) {
+    const [key, properties] = keyValue
+    const row = document.createElement('div')
+    row.classList.add(`${this.rowClass}`)
+    row.innerHTML = `
+    <div class="${this.cellClass}">
+      ${key}
+    </div>`
+    Object.values(properties).forEach((property) => {
+      row.innerHTML += `
+      <div class="${this.cellClass}">
+        ${property}
+      </div>`
+    })
+    this.list.appendChild(row)
+  }
 }

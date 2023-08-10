@@ -14,6 +14,5 @@ const url = `https://script.google.com/macros/s/${SCRIPT_ID}/exec?${requestParam
 export default async function getTasks() {
   const response = await fetch(url)
   const data = await response.json()
-  console.log(data)
   return data
 }

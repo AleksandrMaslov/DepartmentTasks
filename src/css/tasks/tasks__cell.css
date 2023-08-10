@@ -1,8 +1,8 @@
 .tasks__cell {
+  margin: auto;
   padding: 5px 15px;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #111;
-  border-radius: 5px;
-  width: 150px;
+  width: var(--column-width);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
