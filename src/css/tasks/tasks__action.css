@@ -1,5 +1,11 @@
 .tasks__action {
-  width: 30px;
+  padding: 2px;
+  width: auto;
   height: 30px;
   cursor: pointer;
+  opacity: 0.5;
+}
+
+.tasks__action:hover {
+  opacity: 1;
 }
