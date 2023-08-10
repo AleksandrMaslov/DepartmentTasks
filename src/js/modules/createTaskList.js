@@ -140,6 +140,7 @@ class TaskListAPI {
   createAction(name) {
     const action = document.createElement('img')
     action.classList.add(`${this.actionClass}`)
+    action.classList.add('modal__open')
     action.setAttribute('src', this.actions[name].src)
     action.setAttribute('alt', this.actions[name].alt)
     action.setAttribute('title', this.actions[name].title)

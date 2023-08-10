@@ -3,3 +3,4 @@ import createTaskList from './modules/createTaskList.js'
 
 functions.defineWebpClass()
 await createTaskList('tasks')
+functions.defineModal()
