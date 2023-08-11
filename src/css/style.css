@@ -6,6 +6,8 @@
 @import 'main/main.css';
 @import 'footer/footer.css';
 
+@import 'loader/loader.css';
+
 @import 'tasks/tasks.css';
 @import 'tasks/tasks__list.css';
 @import 'tasks/tasks__header-row.css';
@@ -15,6 +17,7 @@
 @import 'tasks/tasks__logo.css';
 @import 'tasks/tasks__actions.css';
 @import 'tasks/tasks__action.css';
+@import 'tasks/tasks__loader.css';
 
 @import 'modal/modal.css';
 @import 'modal/modal__window.css';

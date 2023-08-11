@@ -37,7 +37,7 @@ export default class TaskListAPI {
   addTable() {
     this.list = document.createElement('div')
     this.list.classList.add(`${this.listClass}`)
-    this.block.appendChild(this.list)
+    this.block.replaceChildren(this.list)
   }
 
   addHeader(data) {
