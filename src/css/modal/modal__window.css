@@ -2,7 +2,7 @@
   margin: 10% auto;
   padding: 20px;
   width: 50%;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between;
   background-color: #fff;

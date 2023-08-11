@@ -1,5 +1,5 @@
 const SCRIPT_ID =
-  'AKfycbxxGL8EWiPRVsN9br4PKGlBKva5ntdYjXD5xlHox2AA7DjuF2zd3mrKbfVJmS62K0euxg'
+  'AKfycbyy0KOn4EZZwAjtVeztBwgXlz_7dtIEoW_clMNe8HHmS_0NM94ID123osKpbuPruNMHfA'
 
 const PARAMS = {
   sheet: 'TASKS',

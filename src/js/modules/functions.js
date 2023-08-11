@@ -13,19 +13,3 @@ export function defineWebpClass() {
     document.documentElement.classList.add(className)
   })
 }
-
-export function defineModal() {
-  const modal = document.querySelector('.modal')
-  function openModal() {
-    modal.style.display = 'block'
-  }
-  function closeModal() {
-    modal.style.display = 'none'
-  }
-  Array.from(document.getElementsByClassName('modal__open')).forEach(
-    (element) => (element.onclick = openModal)
-  )
-  Array.from(document.getElementsByClassName('modal__close')).forEach(
-    (element) => (element.onclick = closeModal)
-  )
-}

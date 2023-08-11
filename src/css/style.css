@@ -19,3 +19,6 @@
 @import 'modal/modal.css';
 @import 'modal/modal__window.css';
 @import 'modal/modal__close.css';
+@import 'modal/modal__window_comment.css';
+@import 'modal/modal__window_edit.css';
+@import 'modal/modal__window_start.css';

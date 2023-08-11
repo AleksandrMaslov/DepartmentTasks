@@ -1,0 +1,29 @@
+import RowAPI from './rowAPI.js'
+
+export default function defineModal() {
+  const modal = document.querySelector('.modal')
+  const windows = Array.from(modal.children)
+
+  function openModal(e) {
+    const rowAPI = new RowAPI(e)
+    const action = rowAPI.getAction()
+    const window = document.querySelector(`.modal__window_${action}`)
+    window.style.display = 'flex'
+    modal.style.display = 'block'
+  }
+
+  function closeModal() {
+    modal.style.display = 'none'
+    windows.forEach((window) => {
+      window.style.display = 'none'
+    })
+  }
+
+  Array.from(document.getElementsByClassName('modal__open')).forEach(
+    (element) => (element.onclick = openModal)
+  )
+
+  Array.from(document.getElementsByClassName('modal__close')).forEach(
+    (element) => (element.onclick = closeModal)
+  )
+}
