@@ -1,8 +1,9 @@
-import requestTasks from './requestTasks.js'
+import DatabaseAPI from '../db/databaseAPI.js'
 import TaskListAPI from './taskListAPI.js'
 
 export default async function createTaskList(blockClass) {
-  const response = await requestTasks()
+  const dbAPI = new DatabaseAPI()
+  const response = await dbAPI.requestTasks()
   const { result, data } = response
   if (!result === 'success') return
 
