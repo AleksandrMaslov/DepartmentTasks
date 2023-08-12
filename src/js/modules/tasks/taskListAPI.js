@@ -152,5 +152,8 @@ export default class TaskListAPI {
     const dbAPI = new DatabaseAPI()
     const data = await dbAPI.switchState(key, header, currentState)
     console.log(data)
+    const { result, report } = data
+    const { value } = report
+    if (result === 'success') rowAPI.updateCellData(header, value)
   }
 }
