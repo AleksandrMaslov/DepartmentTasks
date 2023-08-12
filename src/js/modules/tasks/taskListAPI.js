@@ -1,3 +1,6 @@
+import DatabaseAPI from '../db/databaseAPI.js'
+import RowAPI from '../row/rowAPI.js'
+
 export default class TaskListAPI {
   constructor(blockClass) {
     this.blockClass = blockClass
@@ -138,6 +141,14 @@ export default class TaskListAPI {
   }
 
   onEditClick = () => alert('Default Edit Action')
+
   onCommentClick = () => alert('Default Comment Action')
-  onStartClick = () => alert('Default Start Action')
+
+  onStartClick = async (event) => {
+    const rowAPI = new RowAPI(event)
+    const key = rowAPI.getKey()
+    const dbAPI = new DatabaseAPI()
+    const data = await dbAPI.setCellData(key, 'isActive', '1')
+    console.log(data)
+  }
 }
