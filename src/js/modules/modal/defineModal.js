@@ -4,9 +4,8 @@ export default function defineModal() {
   const modal = document.querySelector('.modal')
   const windows = Array.from(modal.children)
 
-  function openModal(e) {
-    const rowAPI = new RowAPI(e)
-    const action = rowAPI.getAction()
+  function openModal(event) {
+    const action = new RowAPI(event).getAction()
     const window = document.querySelector(`.modal__window_${action}`)
     window.style.display = 'flex'
     modal.style.display = 'block'
