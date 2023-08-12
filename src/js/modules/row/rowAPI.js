@@ -18,4 +18,9 @@ export default class RowAPI {
     const cell = this.row.querySelector(`.tasks__cell[key=${header}]`)
     return cell.innerHTML
   }
+
+  updateCellData(header, value) {
+    const cell = this.row.querySelector(`.tasks__cell[key=${header}]`)
+    cell.innerHTML = value
+  }
 }
