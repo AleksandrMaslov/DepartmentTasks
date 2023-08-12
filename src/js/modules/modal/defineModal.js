@@ -1,4 +1,4 @@
-import RowAPI from './rowAPI.js'
+import RowAPI from '../row/rowAPI.js'
 
 export default function defineModal() {
   const modal = document.querySelector('.modal')

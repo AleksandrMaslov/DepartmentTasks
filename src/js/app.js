@@ -1,7 +1,7 @@
-import * as functions from './modules/functions.js'
-import createTaskList from './modules/createTaskList.js'
-import defineModal from './modules/defineModal.js'
+import defineWebp from './modules/common/defineWebp.js'
+import createTaskList from './modules/tasks/createTaskList.js'
+import defineModal from './modules/modal/defineModal.js'
 
-functions.defineWebpClass()
+defineWebp()
 await createTaskList('tasks')
 defineModal()

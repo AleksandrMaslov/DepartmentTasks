@@ -1,4 +1,4 @@
-export function defineWebpClass() {
+export default function defineWebpClass() {
   function testWebp(callback) {
     var webp = new Image()
     webp.onload = webp.onerror = function () {
