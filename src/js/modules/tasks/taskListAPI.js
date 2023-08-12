@@ -9,9 +9,11 @@ export default class TaskListAPI {
     this.headerClass = `${blockClass}__header`
     this.rowClass = `${blockClass}__row`
     this.cellClass = `${blockClass}__cell`
+    this.cellContentClass = `${blockClass}__cell-content`
     this.logoClass = `${blockClass}__logo`
     this.actionsClass = `${blockClass}__actions`
     this.actionClass = `${blockClass}__action`
+    this.actionContentClass = `${blockClass}__action-content`
     this.key = 'key'
     this.block = document.querySelector(`.${this.blockClass}`)
 
@@ -115,7 +117,10 @@ export default class TaskListAPI {
     cell.classList.add(`${this.cellClass}`)
     cell.setAttribute('title', value)
     cell.setAttribute('key', header)
-    cell.innerHTML = value
+    const content = document.createElement('div')
+    content.classList.add(`${this.cellContentClass}`)
+    content.innerHTML = value
+    cell.appendChild(content)
     return cell
   }
 
@@ -129,13 +134,18 @@ export default class TaskListAPI {
   }
 
   createAction(name) {
-    const action = document.createElement('img')
+    const action = document.createElement('div')
     action.classList.add(`${this.actionClass}`)
-    if (name !== 'start') action.classList.add('modal__open')
     action.setAttribute('key', name)
-    action.setAttribute('src', this.actions[name].src)
-    action.setAttribute('alt', this.actions[name].alt)
-    action.setAttribute('title', this.actions[name].title)
+    if (name !== 'start') action.classList.add('modal__open')
+
+    const actionContent = document.createElement('img')
+    actionContent.classList.add(`${this.actionContentClass}`)
+    actionContent.setAttribute('src', this.actions[name].src)
+    actionContent.setAttribute('alt', this.actions[name].alt)
+    actionContent.setAttribute('title', this.actions[name].title)
+
+    action.appendChild(actionContent)
     action.onclick = this.actions[name].onclick
     return action
   }
@@ -149,11 +159,15 @@ export default class TaskListAPI {
     const rowAPI = new RowAPI(event)
     const key = rowAPI.getKey()
     const currentState = rowAPI.getCellData(header)
+    rowAPI.setInProgress()
+
     const dbAPI = new DatabaseAPI()
     const data = await dbAPI.switchState(key, header, currentState)
+
     console.log(data)
     const { result, report } = data
     const { value } = report
     if (result === 'success') rowAPI.updateCellData(header, value)
+    rowAPI.removeInProgress()
   }
 }
