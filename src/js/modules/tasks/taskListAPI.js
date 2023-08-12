@@ -145,10 +145,12 @@ export default class TaskListAPI {
   onCommentClick = () => alert('Default Comment Action')
 
   onStartClick = async (event) => {
+    const header = 'isActive'
     const rowAPI = new RowAPI(event)
     const key = rowAPI.getKey()
+    const currentState = rowAPI.getCellData(header)
     const dbAPI = new DatabaseAPI()
-    const data = await dbAPI.setCellData(key, 'isActive', '1')
+    const data = await dbAPI.switchState(key, header, currentState)
     console.log(data)
   }
 }
