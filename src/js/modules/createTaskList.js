@@ -8,6 +8,6 @@ export default async function createTaskList(blockClass) {
 
   const taskListAPI = new TaskListAPI(blockClass)
   taskListAPI.addTable()
-  taskListAPI.addHeader(data)
+  // taskListAPI.addHeader(data)
   Object.entries(data).forEach((keyValue) => taskListAPI.addRow(keyValue))
 }

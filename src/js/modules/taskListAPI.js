@@ -128,7 +128,7 @@ export default class TaskListAPI {
   createAction(name) {
     const action = document.createElement('img')
     action.classList.add(`${this.actionClass}`)
-    action.classList.add('modal__open')
+    if (name !== 'start') action.classList.add('modal__open')
     action.setAttribute('key', name)
     action.setAttribute('src', this.actions[name].src)
     action.setAttribute('alt', this.actions[name].alt)
@@ -137,15 +137,7 @@ export default class TaskListAPI {
     return action
   }
 
-  onEditClick() {
-    alert('Editing...')
-  }
-
-  onCommentClick() {
-    alert('Commenting...')
-  }
-
-  onStartClick() {
-    alert('Started...')
-  }
+  onEditClick = () => alert('Default Edit Action')
+  onCommentClick = () => alert('Default Comment Action')
+  onStartClick = () => alert('Default Start Action')
 }
