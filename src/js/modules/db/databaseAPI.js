@@ -15,15 +15,17 @@ export default class DatabaseAPI {
   async setCellData(key, header, value) {
     const property = Object.fromEntries([[header, value]])
     const row = Object.fromEntries([[key, property]])
-    const body = {
-      action: 'update',
-      data: row,
-    }
+    const body = { action: 'update', data: row }
 
     const url = this.getUrl({ sheet: 'TASKS' })
     const options = this.getPostOptions(body)
     const response = await fetch(url, options)
     return await response.json()
+  }
+
+  async switchState(key, header, currentState) {
+    const newState = currentState === '0' ? '1' : '0'
+    return await this.setCellData(key, header, newState)
   }
 
   getUrl(params) {
