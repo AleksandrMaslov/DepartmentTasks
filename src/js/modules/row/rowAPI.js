@@ -3,15 +3,15 @@ export default class RowAPI {
     this.actionElement = event.srcElement
     this.action = this.actionElement.getAttribute('key')
     this.row = this.actionElement.closest('.tasks__row')
-    this.id = this.row.getAttribute('key')
+    this.key = this.row.getAttribute('key')
   }
 
   getAction() {
     return this.action
   }
 
-  getId() {
-    return this.id
+  getKey() {
+    return this.key
   }
 
   getCellData(header) {
