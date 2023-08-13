@@ -15,6 +15,7 @@
 @import 'tasks/tasks__loader.css';
 
 @import 'row/row.css';
+@import 'row/row__logo.css';
 @import 'row/row__cell.css';
 @import 'row/row__cell-content.css';
 @import 'row/row__cell_isAccepted.css';
@@ -26,7 +27,11 @@
 @import 'row/row__cell_responsible.css';
 @import 'row/row__cell_edited.css';
 @import 'row/row__cell_time.css';
-@import 'row/row__logo.css';
+@import 'row/row__indicators.css';
+@import 'row/row__indicator.css';
+@import 'row/row__indicator_comments.css';
+@import 'row/row__indicator_notes.css';
+@import 'row/row__indicator_questions.css';
 @import 'row/row__actions.css';
 @import 'row/row__action.css';
 @import 'row/row__action-content.css';

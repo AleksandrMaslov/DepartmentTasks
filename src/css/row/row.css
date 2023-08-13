@@ -1,8 +1,9 @@
 .row {
+  height: 60px;
   padding: 10px;
   display: flex;
   flex-direction: row;
-  border: 1px solid #111;
+  border: 1px solid #343a40;
   border-radius: 5px;
   box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
   transition: all 0.1s cubic-bezier(0.77, 0, 0.175, 1);

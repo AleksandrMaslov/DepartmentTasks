@@ -1,10 +1,9 @@
 .row__action {
+  width: 30px;
+  height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* padding: 2px; */
-  width: 30px;
-  height: 30px;
   cursor: pointer;
   opacity: 0.5;
   -webkit-tap-highlight-color: transparent;

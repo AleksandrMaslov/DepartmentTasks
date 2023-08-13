@@ -5,16 +5,23 @@ export default class TaskListAPI {
   constructor(blockClass) {
     this.blockClass = blockClass
     this.listClass = `${this.blockClass}__list`
-    this.hearedRowClass = `${blockClass}__header-row`
     this.headerClass = `${blockClass}__header`
+    this.hearedRowClass = `${this.headerClass}-row`
 
     this.rowClass = `row`
     this.logoClass = `${this.rowClass}__logo`
     this.cellClass = `${this.rowClass}__cell`
-    this.cellContentClass = `${this.rowClass}__cell-content`
+    this.cellContentClass = `${this.cellClass}-content`
+
+    this.indicatorsClass = `${this.rowClass}__indicators`
+    this.indicatorClass = `${this.rowClass}__indicator`
+    this.indicatorNotesClass = `${this.indicatorClass}_notes`
+    this.indicatorCommentsClass = `${this.indicatorClass}_comments`
+    this.indicatorQuestionClass = `${this.indicatorClass}_questions`
+
     this.actionsClass = `${this.rowClass}__actions`
     this.actionClass = `${this.rowClass}__action`
-    this.actionContentClass = `${this.rowClass}__action-content`
+    this.actionContentClass = `${this.actionClass}-content`
     this.key = 'key'
     this.block = document.querySelector(`.${this.blockClass}`)
 
@@ -80,6 +87,9 @@ export default class TaskListAPI {
       row.appendChild(cell)
     })
 
+    const rowIndicators = this.createIndicators()
+    row.appendChild(rowIndicators)
+
     const rowActions = this.createRowActions()
     row.appendChild(rowActions)
     this.list.appendChild(row)
@@ -124,6 +134,25 @@ export default class TaskListAPI {
     content.innerHTML = value
     cell.appendChild(content)
     return cell
+  }
+
+  createIndicators() {
+    const indicators = document.createElement('div')
+    indicators.classList.add(this.indicatorsClass)
+    const notesIndicator = document.createElement('div')
+    notesIndicator.classList.add(this.indicatorClass)
+    notesIndicator.classList.add(this.indicatorNotesClass)
+    const commentsIndicator = document.createElement('div')
+    commentsIndicator.classList.add(this.indicatorCommentsClass)
+    commentsIndicator.classList.add(this.indicatorClass)
+    const questionsIndicator = document.createElement('div')
+    questionsIndicator.classList.add(this.indicatorQuestionClass)
+    questionsIndicator.classList.add(this.indicatorClass)
+
+    indicators.appendChild(notesIndicator)
+    indicators.appendChild(commentsIndicator)
+    indicators.appendChild(questionsIndicator)
+    return indicators
   }
 
   createRowActions() {
