@@ -8,7 +8,7 @@ export default function defineModal() {
     const action = new RowAPI(event).getActionName()
     const window = document.querySelector(`.modal__window_${action}`)
     window.style.display = 'flex'
-    modal.style.display = 'block'
+    modal.style.display = 'flex'
   }
 
   function closeModal() {
