@@ -1,0 +1,4 @@
+.row__cell_isActive {
+  display: var(--debug-dispaly);
+  width: 100px;
+}

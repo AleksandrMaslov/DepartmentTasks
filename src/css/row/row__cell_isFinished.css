@@ -1,0 +1,4 @@
+.row__cell_isFinished {
+  display: var(--debug-dispaly);
+  width: 100px;
+}

@@ -116,6 +116,7 @@ export default class TaskListAPI {
     const [header, value] = property
     const cell = document.createElement('div')
     cell.classList.add(this.cellClass)
+    cell.classList.add(`${this.cellClass}_${header}`)
     cell.setAttribute('title', value)
     cell.setAttribute('key', header)
     const content = document.createElement('div')

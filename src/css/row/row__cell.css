@@ -1,7 +1,5 @@
 .row__cell {
-  margin: auto;
-  padding: 0px 10px;
+  margin: auto 0px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }

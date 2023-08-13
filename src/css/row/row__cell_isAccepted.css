@@ -1,0 +1,4 @@
+.row__cell_isAccepted {
+  display: var(--debug-dispaly);
+  width: 100px;
+}

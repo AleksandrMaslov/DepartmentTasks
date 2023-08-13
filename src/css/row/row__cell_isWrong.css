@@ -1,0 +1,4 @@
+.row__cell_isWrong {
+  display: var(--debug-dispaly);
+  width: 100px;
+}

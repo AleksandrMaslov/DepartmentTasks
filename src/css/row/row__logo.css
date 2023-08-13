@@ -1,6 +1,7 @@
 .row__logo {
-  width: 50px;
-  padding: 0px 10px;
+  margin-right: 15px;
+  width: 30px;
+  height: auto;
   display: flex;
   align-items: center;
 }

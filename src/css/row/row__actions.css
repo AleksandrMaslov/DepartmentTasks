@@ -1,6 +1,5 @@
 .row__actions {
-  width: 120px;
-  padding: 0px 5px;
+  width: 110px;
   display: flex;
   align-items: center;
   justify-content: space-between;
