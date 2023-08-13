@@ -1,3 +1,7 @@
 .row__indicator_questions {
   background-color: yellow;
 }
+
+.row:has(.row__cell_isAsked[title='1']) .row__indicator_questions {
+  display: initial;
+}

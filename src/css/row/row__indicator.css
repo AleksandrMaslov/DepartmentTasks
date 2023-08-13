@@ -1,4 +1,5 @@
 .row__indicator {
+  display: none;
   height: 10px;
   border: 0.5px solid #343a40;
   border-radius: 50%;

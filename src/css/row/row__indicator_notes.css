@@ -1,3 +1,7 @@
 .row__indicator_notes {
   background-color: red;
 }
+
+.row:has(.row__cell_isNoted[title='1']) .row__indicator_notes {
+  display: initial;
+}

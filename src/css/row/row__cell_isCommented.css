@@ -1,3 +1,3 @@
-.row__cell_isWrong {
+.row__cell_isCommented {
   display: var(--state-dispaly);
 }

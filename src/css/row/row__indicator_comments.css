@@ -1,3 +1,7 @@
 .row__indicator_comments {
   background-color: blue;
 }
+
+.row:has(.row__cell_isCommented[title='1']) .row__indicator_comments {
+  display: initial;
+}
