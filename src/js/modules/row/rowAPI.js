@@ -32,6 +32,7 @@ export default class RowAPI {
   updateCellData(header, value) {
     const cell = this.row.querySelector(`.${this.cellClass}[key=${header}]`)
     const content = cell.querySelector(`.${this.cellContentClass}`)
+    cell.setAttribute('title', value)
     content.innerHTML = value
   }
 

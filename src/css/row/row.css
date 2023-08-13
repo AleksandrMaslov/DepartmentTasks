@@ -10,7 +10,20 @@
   --debug-dispaly: none;
 }
 
+.row:has(.row__cell_isActive[title='1']) {
+  background-color: moccasin;
+}
+.row:has(.row__cell_isFinished[title='1']) {
+  background-color: cadetblue;
+}
+.row:has(.row__cell_isWrong[title='1']) {
+  background-color: darksalmon;
+}
+.row:has(.row__cell_isAccepted[title='1']) {
+  background-color: darkgrey;
+}
+
 .row:hover {
-  background-color: rgb(205, 205, 240);
+  background-color: rgb(205, 205, 240) !important;
   box-shadow: 8px 8px 16px 0px rgba(34, 60, 80, 0.2);
 }
