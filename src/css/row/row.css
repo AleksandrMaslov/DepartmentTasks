@@ -1,4 +1,4 @@
-.tasks__row {
+.row {
   padding: 10px;
   display: flex;
   flex-direction: row;
@@ -8,7 +8,7 @@
   transition: all 0.1s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.tasks__row:hover {
+.row:hover {
   background-color: rgb(205, 205, 240);
   box-shadow: 8px 8px 16px 0px rgba(34, 60, 80, 0.2);
 }

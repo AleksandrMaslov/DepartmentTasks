@@ -7,20 +7,21 @@
 @import 'footer/footer.css';
 
 @import 'loader/loader.css';
-@import 'progress/progress.css';
 
 @import 'tasks/tasks.css';
 @import 'tasks/tasks__list.css';
 @import 'tasks/tasks__header-row.css';
 @import 'tasks/tasks__header.css';
-@import 'tasks/tasks__row.css';
-@import 'tasks/tasks__cell.css';
-@import 'tasks/tasks__cell-content.css';
-@import 'tasks/tasks__logo.css';
-@import 'tasks/tasks__actions.css';
-@import 'tasks/tasks__action.css';
-@import 'tasks/tasks__action-content.css';
 @import 'tasks/tasks__loader.css';
+
+@import 'row/row.css';
+@import 'row/row__cell.css';
+@import 'row/row__cell-content.css';
+@import 'row/row__logo.css';
+@import 'row/row__actions.css';
+@import 'row/row__action.css';
+@import 'row/row__action-content.css';
+@import 'row/row__loader.css';
 
 @import 'modal/modal.css';
 @import 'modal/modal__window.css';

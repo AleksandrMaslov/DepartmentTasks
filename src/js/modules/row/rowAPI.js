@@ -1,20 +1,22 @@
 export default class RowAPI {
   constructor(event) {
-    this.actionElement = event.srcElement
-    this.action = this.actionElement.getAttribute('key')
-    this.row = this.actionElement.closest('.tasks__row')
-    this.key = this.row.getAttribute('key')
+    this.rowClass = 'row'
+    this.cellClass = `${this.rowClass}__cell`
+    this.cellContentClass = `${this.rowClass}__cell-content`
+    this.actionClass = `${this.rowClass}__action`
+    this.actionContentClass = `${this.rowClass}__action-content`
+    this.loaderClass = `${this.rowClass}__loader`
 
-    this.blockClass = 'tasks'
-    this.progressClass = 'progress'
-    this.cellClass = `${this.blockClass}__cell`
-    this.cellContentClass = `${this.blockClass}__cell-content`
-    this.actionClass = `${this.blockClass}__action`
-    this.actionContentClass = `${this.blockClass}__action-content`
+    this.actionContent = event.srcElement
+    this.action = this.actionContent.closest(`.${this.actionClass}`)
+    this.actionName = this.action.getAttribute('key')
+
+    this.row = this.actionContent.closest(`.${this.rowClass}`)
+    this.key = this.row.getAttribute('key')
   }
 
-  getAction() {
-    return this.action
+  getActionName() {
+    return this.actionName
   }
 
   getKey() {
@@ -33,23 +35,22 @@ export default class RowAPI {
     content.innerHTML = value
   }
 
-  setInProgress() {
-    this.actionElement.style.display = 'none'
-    const action = this.actionElement.closest(`.${this.actionClass}`)
-    const progress = this.createProgress()
-    action.appendChild(progress)
+  setIsLoading() {
+    this.actionContent.style.display = 'none'
+    const loader = this.createLoader()
+    this.action.appendChild(loader)
   }
 
-  removeInProgress() {
-    const action = this.actionElement.closest(`.${this.actionClass}`)
-    const progress = action.querySelector(`.${this.progressClass}`)
-    progress.remove()
-    this.actionElement.style.display = 'initial'
+  removeIsLoading() {
+    const action = this.actionContent.closest(`.${this.actionClass}`)
+    const loader = action.querySelector(`.${this.loaderClass}`)
+    loader.remove()
+    this.actionContent.style.display = 'initial'
   }
 
-  createProgress() {
-    const element = document.createElement('span')
-    element.classList.add('progress')
-    return element
+  createLoader() {
+    const loader = document.createElement('span')
+    loader.classList.add(this.loaderClass)
+    return loader
   }
 }

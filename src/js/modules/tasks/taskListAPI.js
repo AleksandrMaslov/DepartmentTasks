@@ -7,13 +7,14 @@ export default class TaskListAPI {
     this.listClass = `${this.blockClass}__list`
     this.hearedRowClass = `${blockClass}__header-row`
     this.headerClass = `${blockClass}__header`
-    this.rowClass = `${blockClass}__row`
-    this.cellClass = `${blockClass}__cell`
-    this.cellContentClass = `${blockClass}__cell-content`
-    this.logoClass = `${blockClass}__logo`
-    this.actionsClass = `${blockClass}__actions`
-    this.actionClass = `${blockClass}__action`
-    this.actionContentClass = `${blockClass}__action-content`
+
+    this.rowClass = `row`
+    this.logoClass = `${this.rowClass}__logo`
+    this.cellClass = `${this.rowClass}__cell`
+    this.cellContentClass = `${this.rowClass}__cell-content`
+    this.actionsClass = `${this.rowClass}__actions`
+    this.actionClass = `${this.rowClass}__action`
+    this.actionContentClass = `${this.rowClass}__action-content`
     this.key = 'key'
     this.block = document.querySelector(`.${this.blockClass}`)
 
@@ -41,28 +42,28 @@ export default class TaskListAPI {
 
   addTable() {
     this.list = document.createElement('div')
-    this.list.classList.add(`${this.listClass}`)
+    this.list.classList.add(this.listClass)
     this.block.replaceChildren(this.list)
   }
 
   addHeader(data) {
     this.header = document.createElement('div')
-    this.header.classList.add(`${this.hearedRowClass}`)
+    this.header.classList.add(this.hearedRowClass)
     const properties = Object.keys(Object.values(data)[0])
 
     const headerLogo = document.createElement('div')
-    headerLogo.classList.add(`${this.logoClass}`)
+    headerLogo.classList.add(this.logoClass)
     this.header.appendChild(headerLogo)
 
     properties.forEach((header) => {
       const headerCell = document.createElement('div')
-      headerCell.classList.add(`${this.headerClass}`)
+      headerCell.classList.add(this.headerClass)
       headerCell.innerHTML = `${header.toUpperCase()}`
       this.header.appendChild(headerCell)
     })
 
     const headerActions = document.createElement('div')
-    headerActions.classList.add(`${this.actionsClass}`)
+    headerActions.classList.add(this.actionsClass)
     this.header.appendChild(headerActions)
 
     this.list.appendChild(this.header)
@@ -96,14 +97,14 @@ export default class TaskListAPI {
 
   createRow(key) {
     const row = document.createElement('div')
-    row.classList.add(`${this.rowClass}`)
+    row.classList.add(this.rowClass)
     row.setAttribute(this.key, key)
     return row
   }
 
   createRowLogo() {
     const rowLogo = document.createElement('div')
-    rowLogo.classList.add(`${this.logoClass}`)
+    rowLogo.classList.add(this.logoClass)
     const logo = document.createElement('img')
     logo.setAttribute('src', 'img/tasks/tasks-marker.png')
     logo.setAttribute('alt', 'tasks-marker')
@@ -114,11 +115,11 @@ export default class TaskListAPI {
   createCell(property) {
     const [header, value] = property
     const cell = document.createElement('div')
-    cell.classList.add(`${this.cellClass}`)
+    cell.classList.add(this.cellClass)
     cell.setAttribute('title', value)
     cell.setAttribute('key', header)
     const content = document.createElement('div')
-    content.classList.add(`${this.cellContentClass}`)
+    content.classList.add(this.cellContentClass)
     content.innerHTML = value
     cell.appendChild(content)
     return cell
@@ -126,7 +127,7 @@ export default class TaskListAPI {
 
   createRowActions() {
     const rowActions = document.createElement('div')
-    rowActions.classList.add(`${this.actionsClass}`)
+    rowActions.classList.add(this.actionsClass)
     rowActions.appendChild(this.createAction('edit'))
     rowActions.appendChild(this.createAction('comment'))
     rowActions.appendChild(this.createAction('start'))
@@ -135,12 +136,12 @@ export default class TaskListAPI {
 
   createAction(name) {
     const action = document.createElement('div')
-    action.classList.add(`${this.actionClass}`)
+    action.classList.add(this.actionClass)
     action.setAttribute('key', name)
     if (name !== 'start') action.classList.add('modal__open')
 
     const actionContent = document.createElement('img')
-    actionContent.classList.add(`${this.actionContentClass}`)
+    actionContent.classList.add(this.actionContentClass)
     actionContent.setAttribute('src', this.actions[name].src)
     actionContent.setAttribute('alt', this.actions[name].alt)
     actionContent.setAttribute('title', this.actions[name].title)
@@ -159,7 +160,7 @@ export default class TaskListAPI {
     const rowAPI = new RowAPI(event)
     const key = rowAPI.getKey()
     const currentState = rowAPI.getCellData(header)
-    rowAPI.setInProgress()
+    rowAPI.setIsLoading()
 
     const dbAPI = new DatabaseAPI()
     const data = await dbAPI.switchState(key, header, currentState)
@@ -168,6 +169,6 @@ export default class TaskListAPI {
     const { result, report } = data
     const { value } = report
     if (result === 'success') rowAPI.updateCellData(header, value)
-    rowAPI.removeInProgress()
+    rowAPI.removeIsLoading()
   }
 }

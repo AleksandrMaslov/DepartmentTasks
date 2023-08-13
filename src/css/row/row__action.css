@@ -1,5 +1,8 @@
-.tasks__action {
-  padding: 2px;
+.row__action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 2px; */
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -8,6 +11,6 @@
   transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.tasks__action:hover {
+.row__action:hover {
   opacity: 1;
 }

@@ -1,11 +1,10 @@
-.progress {
-  width: 100%;
-  height: 100%;
-  border: 5px solid #fff;
+.row__loader {
+  width: 24px;
+  height: 24px;
+  border: 4px solid #111;
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
-  box-sizing: border-box;
   animation: rotation 1s linear infinite;
 }
 
