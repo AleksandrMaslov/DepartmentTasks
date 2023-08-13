@@ -1,6 +1,12 @@
 # build folder
 /dist
 
+# gulp
+/gulp
+gulpfile.js
+package.json
+package-lock.json
+
 # dependencies
 /node_modules
 
