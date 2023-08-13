@@ -21,6 +21,7 @@
 }
 .row:has(.row__cell_isAccepted[title='1']) {
   background-color: darkgrey;
+  text-decoration: line-through;
 }
 
 .row:hover {
