@@ -2,3 +2,11 @@
   border: 1px solid black;
   border-radius: 2px;
 }
+
+.comment-form__select:valid {
+  border: 1px solid black;
+}
+
+.comment-form__select:invalid {
+  border: 1px solid pink;
+}

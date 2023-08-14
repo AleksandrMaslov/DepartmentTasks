@@ -1,6 +1,6 @@
 .modal__window {
   margin: auto;
-  display: none;
+  display: flex;
   background-color: #fff;
   border-radius: 10px;
 }

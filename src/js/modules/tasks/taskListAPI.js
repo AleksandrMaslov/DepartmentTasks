@@ -1,5 +1,6 @@
-import DatabaseAPI from '../db/databaseAPI.js'
-import RowAPI from '../row/rowAPI.js'
+import onStart from './startAction.js'
+import onEdit from './editAction.js'
+import onComment from './commentAction.js'
 
 export default class TaskListAPI {
   constructor(blockClass) {
@@ -167,8 +168,6 @@ export default class TaskListAPI {
   createAction(name) {
     const action = document.createElement('div')
     action.classList.add(this.actionClass)
-    action.setAttribute('key', name)
-    if (name !== 'start') action.classList.add('modal__open')
 
     const actionContent = document.createElement('img')
     actionContent.classList.add(this.actionContentClass)
@@ -181,24 +180,7 @@ export default class TaskListAPI {
     return action
   }
 
-  onEditClick = () => alert('Default Edit Action')
-
-  onCommentClick = () => alert('Default Comment Action')
-
-  onStartClick = async (event) => {
-    const header = 'isActive'
-    const rowAPI = new RowAPI(event)
-    const key = rowAPI.getKey()
-    const currentState = rowAPI.getCellData(header)
-    rowAPI.setIsLoading()
-
-    const dbAPI = new DatabaseAPI()
-    const data = await dbAPI.switchState(key, header, currentState)
-
-    console.log(data)
-    const { result, report } = data
-    const { value } = report
-    if (result === 'success') rowAPI.updateCellData(header, value)
-    rowAPI.removeIsLoading()
-  }
+  onEditClick = onEdit
+  onCommentClick = onComment
+  onStartClick = onStart
 }

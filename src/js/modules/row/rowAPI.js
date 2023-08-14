@@ -9,14 +9,9 @@ export default class RowAPI {
 
     this.actionContent = event.srcElement
     this.action = this.actionContent.closest(`.${this.actionClass}`)
-    this.actionName = this.action.getAttribute('key')
 
     this.row = this.actionContent.closest(`.${this.rowClass}`)
     this.key = this.row.getAttribute('key')
-  }
-
-  getActionName() {
-    return this.actionName
   }
 
   getKey() {

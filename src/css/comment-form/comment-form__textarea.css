@@ -7,7 +7,10 @@
   resize: none;
 }
 
-.comment-form__textarea:invalid,
 .comment-form__textarea:valid {
   border: 1px solid black;
+}
+
+.comment-form__textarea:invalid {
+  border: 1px solid pink;
 }

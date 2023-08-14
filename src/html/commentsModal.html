@@ -1,0 +1,29 @@
+<div class="modal modal_comment">
+  <div class="modal__window modal__window_comment">
+    <div class="modal__container">
+      <div class="modal__header">
+        <h3 class="modal__title">Enter Single Comment:</h3>
+        <span class="modal__close">&times</span>
+      </div>
+      <form method="dialog" class="comment-form">
+        <textarea
+          class="comment-form__textarea"
+          placeholder="Text..."
+          required
+        ></textarea>
+        <div class="comment-form__controls">
+          <button class="comment-form__button" type="reset">Clear</button>
+          <select class="comment-form__select" required>
+            <option value="" disabled selected>
+              --Please choose an option--
+            </option>
+            <option value="question">Question</option>
+            <option value="comment">Comment</option>
+            <option value="note">Note</option>
+          </select>
+          <button class="comment-form__button">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
