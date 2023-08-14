@@ -1,19 +1,6 @@
 .modal__window {
-  margin: 10% 30px;
-  flex: 1 1 auto;
-  padding: 20px;
+  margin: auto;
   display: none;
-  flex-direction: column;
   background-color: #fff;
   border-radius: 10px;
-}
-@media (min-width: 768px) {
-  .modal__window {
-    margin: 10% 150px;
-  }
-}
-@media (min-width: 1440px) {
-  .modal__window {
-    margin: 10% 250px;
-  }
 }

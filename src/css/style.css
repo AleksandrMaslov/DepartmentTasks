@@ -42,7 +42,14 @@
 
 @import 'modal/modal.css';
 @import 'modal/modal__window.css';
+@import 'modal/modal__container.css';
 @import 'modal/modal__close.css';
 @import 'modal/modal__window_comment.css';
 @import 'modal/modal__window_edit.css';
-@import 'modal/modal__window_start.css';
+@import 'modal/modal__header.css';
+
+@import 'comment-form/comment-form.css';
+@import 'comment-form/comment-form__textarea.css';
+@import 'comment-form/comment-form__controls.css';
+@import 'comment-form/comment-form__button.css';
+@import 'comment-form/comment-form__select.css';

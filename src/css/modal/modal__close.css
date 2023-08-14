@@ -1,7 +1,6 @@
 .modal__close {
-  margin-left: auto;
-  margin-right: 0;
   width: fit-content;
+  line-height: 0.5;
   font-size: 40px;
   font-weight: 700;
   cursor: pointer;
