@@ -1,4 +1,4 @@
-export default class EditModalAPI {
+export default class EditModalController {
   constructor() {
     this.modalClass = 'modal'
     this.modalCommentClass = `${this.modalClass}_edit`

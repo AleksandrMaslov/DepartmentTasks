@@ -1,4 +1,4 @@
-export default class DatabaseAPI {
+export default class DatabaseController {
   SCRIPT_ID =
     'AKfycbwW1Dx_lkpFncP-7h5O6cG_jpYUJAszOl8TZGyCCZZqh7y1DPm_9jR5ndmyiaKOX3iAxA'
 

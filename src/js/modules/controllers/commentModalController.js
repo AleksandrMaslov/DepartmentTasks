@@ -1,4 +1,4 @@
-export default class CommentModalAPI {
+export default class CommentModalController {
   constructor() {
     this.modalClass = 'modal'
     this.modalCommentClass = `${this.modalClass}_comment`

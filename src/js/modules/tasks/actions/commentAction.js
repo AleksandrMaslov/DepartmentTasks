@@ -1,7 +1,7 @@
-import TasksRowAPI from '../../api/taskRowAPI.js'
-import CommentModalAPI from '../../api/commentModalAPI.js'
+import TasksRowController from '../../controllers/taskRowController.js'
+import CommentModalController from '../../controllers/commentModalController.js'
 
 export default function onComment(event) {
-  const key = new TasksRowAPI(event).getKey()
-  new CommentModalAPI().onCommentClick(key)
+  const key = new TasksRowController(event).getKey()
+  new CommentModalController().onCommentClick(key)
 }

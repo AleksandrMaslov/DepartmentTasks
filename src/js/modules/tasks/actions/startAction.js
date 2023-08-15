@@ -1,19 +1,24 @@
-import TasksRowAPI from '../../api/taskRowAPI.js'
-import DatabaseAPI from '../../api/databaseAPI.js'
+import TaskRowController from '../../controllers/taskRowController.js'
+import DatabaseController from '../../controllers/databaseController.js'
 
 export default async function onStart(event) {
   const header = 'isActive'
-  const rowAPI = new TasksRowAPI(event)
-  const key = rowAPI.getKey()
+  const rowController = new TaskRowController(event)
+  const key = rowController.getKey()
 
-  const currentState = rowAPI.getCellData(header)
-  rowAPI.updateCellData(header, '.')
+  const currentState = rowController.getCellData(header)
+  rowController.updateCellData(header, '.')
 
-  const data = await new DatabaseAPI().switchState(key, header, currentState)
+  const data = await new DatabaseController().switchState(
+    key,
+    header,
+    currentState
+  )
 
   const { result, report } = data
   const { value: newState } = report
 
-  if (result === 'success') return rowAPI.updateCellData(header, newState)
-  rowAPI.updateCellData(header, currentState)
+  if (result === 'success')
+    return rowController.updateCellData(header, newState)
+  rowController.updateCellData(header, currentState)
 }

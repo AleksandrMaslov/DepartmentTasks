@@ -1,10 +1,10 @@
-import CommentModalAPI from '../api/commentModalAPI.js'
-import EditModalAPI from '../api/editModalAPI.js'
+import CommentModalController from '../controllers/commentModalController.js'
+import EditModalController from '../controllers/editModalController.js'
 
 export default function defineModals() {
-  const commentModalAPI = new CommentModalAPI()
-  const editModalAPI = new EditModalAPI()
+  const commentModalController = new CommentModalController()
+  const editModalController = new EditModalController()
 
-  commentModalAPI.define()
-  editModalAPI.define()
+  commentModalController.define()
+  editModalController.define()
 }

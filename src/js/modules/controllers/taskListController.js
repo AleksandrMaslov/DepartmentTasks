@@ -2,7 +2,7 @@ import onStart from '../tasks/actions/startAction.js'
 import onEdit from '../tasks/actions/editAction.js'
 import onComment from '../tasks/actions/commentAction.js'
 
-export default class TaskListAPI {
+export default class TaskListController {
   constructor(blockClass) {
     this.blockClass = blockClass
     this.listClass = `${this.blockClass}__list`
