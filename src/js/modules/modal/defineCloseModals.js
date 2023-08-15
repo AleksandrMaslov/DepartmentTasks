@@ -1,4 +1,4 @@
-export default function defineCLose() {
+export default function defineCloseModals() {
   const modals = document.getElementsByClassName('modal')
   const windows = Array.from(modals)
 

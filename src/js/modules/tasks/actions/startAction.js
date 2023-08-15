@@ -1,5 +1,5 @@
 import RowAPI from '../row/rowAPI.js'
-import DatabaseAPI from '../db/databaseAPI.js'
+import DatabaseAPI from '../../db/databaseAPI.js'
 
 export default async function onStart(event) {
   const header = 'isActive'
