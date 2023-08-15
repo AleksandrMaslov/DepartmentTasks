@@ -1,0 +1,7 @@
+.row__action-content_pause {
+  display: none;
+}
+
+.row:has(.row__cell_isActive[title='1']) .row__action-content_pause {
+  display: initial;
+}

@@ -30,23 +30,4 @@ export default class RowAPI {
     cell.setAttribute('title', value)
     content.innerHTML = value
   }
-
-  setIsLoading() {
-    this.actionContent.style.display = 'none'
-    const loader = this.createLoader()
-    this.action.appendChild(loader)
-  }
-
-  removeIsLoading() {
-    const action = this.actionContent.closest(`.${this.actionClass}`)
-    const loader = action.querySelector(`.${this.loaderClass}`)
-    loader.remove()
-    this.actionContent.style.display = 'initial'
-  }
-
-  createLoader() {
-    const loader = document.createElement('span')
-    loader.classList.add(this.loaderClass)
-    return loader
-  }
 }

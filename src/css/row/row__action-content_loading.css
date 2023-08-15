@@ -1,0 +1,7 @@
+.row__action-content_loading {
+  display: none;
+}
+
+.row:has(.row__cell_isActive[title='.']) .row__action-content_loading {
+  display: initial;
+}

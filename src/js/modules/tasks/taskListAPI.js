@@ -22,7 +22,11 @@ export default class TaskListAPI {
 
     this.actionsClass = `${this.rowClass}__actions`
     this.actionClass = `${this.rowClass}__action`
+    this.loaderClass = `${this.rowClass}__loader`
     this.actionContentClass = `${this.actionClass}-content`
+    this.actionContentStartClass = `${this.actionContentClass}_start`
+    this.actionContentPauseClass = `${this.actionContentClass}_pause`
+    this.actionContentLoadingClass = `${this.actionContentClass}_loading`
     this.key = 'key'
     this.block = document.querySelector(`.${this.blockClass}`)
 
@@ -43,6 +47,12 @@ export default class TaskListAPI {
         title: 'Start',
         alt: 'tasks-start',
         src: 'img/tasks/tasks-start.png',
+        onclick: this.onStartClick,
+      },
+      pause: {
+        title: 'Pause',
+        alt: 'tasks-pause',
+        src: 'img/tasks/tasks-pause.png',
         onclick: this.onStartClick,
       },
     }
@@ -175,9 +185,32 @@ export default class TaskListAPI {
     actionContent.setAttribute('alt', this.actions[name].alt)
     actionContent.setAttribute('title', this.actions[name].title)
 
+    if (name === 'start') {
+      actionContent.classList.add(this.actionContentStartClass)
+      action.appendChild(this.createPauseActionContent())
+      action.appendChild(this.createLoadingContent())
+    }
+
     action.appendChild(actionContent)
     action.onclick = this.actions[name].onclick
     return action
+  }
+
+  createPauseActionContent() {
+    const actionPauseContent = document.createElement('img')
+    actionPauseContent.classList.add(this.actionContentClass)
+    actionPauseContent.classList.add(this.actionContentPauseClass)
+    actionPauseContent.setAttribute('src', this.actions.pause.src)
+    actionPauseContent.setAttribute('alt', this.actions.pause.alt)
+    actionPauseContent.setAttribute('title', this.actions.pause.title)
+    return actionPauseContent
+  }
+
+  createLoadingContent() {
+    const actionLoadingContent = document.createElement('span')
+    actionLoadingContent.classList.add(this.loaderClass)
+    actionLoadingContent.classList.add(this.actionContentLoadingClass)
+    return actionLoadingContent
   }
 
   onEditClick = onEdit

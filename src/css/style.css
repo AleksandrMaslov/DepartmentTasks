@@ -38,6 +38,9 @@
 @import 'row/row__actions.css';
 @import 'row/row__action.css';
 @import 'row/row__action-content.css';
+@import 'row/row__action-content_start.css';
+@import 'row/row__action-content_pause.css';
+@import 'row/row__action-content_loading.css';
 @import 'row/row__loader.css';
 
 @import 'modal/modal.css';

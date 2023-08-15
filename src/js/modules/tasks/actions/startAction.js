@@ -6,14 +6,14 @@ export default async function onStart(event) {
   const rowAPI = new RowAPI(event)
   const key = rowAPI.getKey()
   const currentState = rowAPI.getCellData(header)
-  rowAPI.setIsLoading()
+  rowAPI.updateCellData(header, '.')
 
   const dbAPI = new DatabaseAPI()
   const data = await dbAPI.switchState(key, header, currentState)
 
   console.log(data)
   const { result, report } = data
-  const { value } = report
-  if (result === 'success') rowAPI.updateCellData(header, value)
-  rowAPI.removeIsLoading()
+  const { value: newState } = report
+  if (result === 'success') rowAPI.updateCellData(header, newState)
+  else rowAPI.updateCellData(header, currentState)
 }
