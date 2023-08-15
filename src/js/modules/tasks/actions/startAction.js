@@ -5,6 +5,7 @@ export default async function onStart(event) {
   const header = 'isActive'
   const rowAPI = new RowAPI(event)
   const key = rowAPI.getKey()
+
   const currentState = rowAPI.getCellData(header)
   rowAPI.updateCellData(header, '.')
 
@@ -14,6 +15,7 @@ export default async function onStart(event) {
   console.log(data)
   const { result, report } = data
   const { value: newState } = report
-  if (result === 'success') rowAPI.updateCellData(header, newState)
-  else rowAPI.updateCellData(header, currentState)
+
+  if (result === 'success') return rowAPI.updateCellData(header, newState)
+  rowAPI.updateCellData(header, currentState)
 }
