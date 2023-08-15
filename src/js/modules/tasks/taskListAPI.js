@@ -90,6 +90,7 @@ export default class TaskListAPI {
   addRow(keyValue) {
     const [key, properties] = keyValue
     const row = this.createRow(key)
+
     const rowLogo = this.createRowLogo()
     row.appendChild(rowLogo)
 
@@ -106,15 +107,15 @@ export default class TaskListAPI {
     this.list.appendChild(row)
   }
 
-  removeRowById(id) {
-    const elements = this.list.querySelectorAll(`div[${this.key}='${id}']`)
-    console.log(elements)
-    elements.forEach((element) => element.remove())
-  }
+  // removeRowById(id) {
+  //   const elements = this.list.querySelectorAll(`div[${this.key}='${id}']`)
+  //   console.log(elements)
+  //   elements.forEach((element) => element.remove())
+  // }
 
-  insertRow() {
-    // parentElement.insertBefore(newElement, referenceElement);
-  }
+  // insertRow() {
+  //   // parentElement.insertBefore(newElement, referenceElement);
+  // }
 
   createRow(key) {
     const row = document.createElement('div')
