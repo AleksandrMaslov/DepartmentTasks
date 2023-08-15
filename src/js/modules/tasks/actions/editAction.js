@@ -1,3 +1,4 @@
 export default function onEdit() {
-  alert('Default Edit Action')
+  const modal = document.querySelector('.modal_edit')
+  modal.style.display = 'flex'
 }
