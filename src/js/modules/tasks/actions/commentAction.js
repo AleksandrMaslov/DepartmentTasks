@@ -1,7 +1,7 @@
-export default function onComment() {
-  const commentForm = document.querySelector('.comment-form')
-  commentForm.reset()
+import TasksRowAPI from '../../api/taskRowAPI.js'
+import CommentModalAPI from '../../api/commentModalAPI.js'
 
-  const modal = document.querySelector('.modal_comment')
-  modal.style.display = 'flex'
+export default function onComment(event) {
+  const key = new TasksRowAPI(event).getKey()
+  new CommentModalAPI().onCommentClick(key)
 }

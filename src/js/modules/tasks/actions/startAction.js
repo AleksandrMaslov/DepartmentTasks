@@ -1,18 +1,16 @@
-import RowAPI from '../row/rowAPI.js'
-import DatabaseAPI from '../../db/databaseAPI.js'
+import TasksRowAPI from '../../api/taskRowAPI.js'
+import DatabaseAPI from '../../api/databaseAPI.js'
 
 export default async function onStart(event) {
   const header = 'isActive'
-  const rowAPI = new RowAPI(event)
+  const rowAPI = new TasksRowAPI(event)
   const key = rowAPI.getKey()
 
   const currentState = rowAPI.getCellData(header)
   rowAPI.updateCellData(header, '.')
 
-  const dbAPI = new DatabaseAPI()
-  const data = await dbAPI.switchState(key, header, currentState)
+  const data = await new DatabaseAPI().switchState(key, header, currentState)
 
-  console.log(data)
   const { result, report } = data
   const { value: newState } = report
 

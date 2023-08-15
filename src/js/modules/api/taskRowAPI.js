@@ -1,4 +1,4 @@
-export default class RowAPI {
+export default class TaskRowAPI {
   constructor(event) {
     this.rowClass = 'row'
     this.cellClass = `${this.rowClass}__cell`
