@@ -1,13 +1,13 @@
-.loader,
-.loader:before,
-.loader:after {
+.flat-loader,
+.flat-loader:before,
+.flat-loader:after {
   border-radius: 50%;
   width: 2.5em;
   height: 2.5em;
   animation-fill-mode: both;
   animation: dots 1.8s infinite ease-in-out;
 }
-.loader {
+.flat-loader {
   color: #fff;
   font-size: 7px;
   position: relative;
@@ -15,17 +15,17 @@
   transform: translateZ(0);
   animation-delay: -0.16s;
 }
-.loader:before,
-.loader:after {
+.flat-loader:before,
+.flat-loader:after {
   content: '';
   position: absolute;
   top: 0;
 }
-.loader:before {
+.flat-loader:before {
   left: -3.5em;
   animation-delay: -0.32s;
 }
-.loader:after {
+.flat-loader:after {
   left: 3.5em;
 }
 
