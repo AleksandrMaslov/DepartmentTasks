@@ -1,6 +1,6 @@
-import onStart from '../tasks/actions/startAction.js'
-import onEdit from '../tasks/actions/editAction.js'
-import onComment from '../tasks/actions/commentAction.js'
+import onStart from '../tasks/actions/onStart.js'
+import onComment from '../tasks/actions/onComment.js'
+import onEdit from '../tasks/actions/onEdit.js'
 
 export default class TaskListController {
   constructor(blockClass) {
