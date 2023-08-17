@@ -2,12 +2,25 @@
   <div class="modal__window modal__window_login">
     <div class="modal__container">
       <div class="modal__header">
-        <h3 class="modal__title">Login Window</h3>
+        <h3 class="modal__title">Welcome, Stranger!</h3>
         <span class="modal__close">&times</span>
       </div>
 
-      <form method="dialog" class="login-form">
+      <form method="dialog" class="form login-form">
+        <input
+          type="email"
+          class="input login-form__email"
+          autocomplete="on"
+          required
+        />
+        <input
+          type="password"
+          class="input login-form__password"
+          autocomplete="on"
+          required
+        />
         <button class="button login-form__button">Login</button>
+        <p>* You should authorize to unlock task tracking tools.</p>
       </form>
     </div>
   </div>
