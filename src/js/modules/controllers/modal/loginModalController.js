@@ -12,6 +12,7 @@ export default class LoginModalController {
 
     this.emailValidationMessage = 'Wrong Email format'
     this.passwordValidationMessage = "Password can't be blank"
+    this.deniedMessage = 'Access Deined'
 
     this.modal = document.querySelector(`.${this.modalLoginClass}`)
     this.form = this.modal.querySelector(`.${this.formClass}`)
@@ -48,10 +49,14 @@ export default class LoginModalController {
     this.button.onclick = async () => {
       if (!this.email.validity.valid) return
       if (!this.password.validity.valid) return
+
+      this.form.setAttribute('isLoading', '1')
       const data = await new DatabaseController().login({
         login: this.email.value,
         password: this.password.value,
       })
+      this.form.removeAttribute('isLoading')
+
       console.log(data)
     }
   }
