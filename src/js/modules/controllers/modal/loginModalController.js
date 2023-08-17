@@ -1,4 +1,5 @@
 import DatabaseController from '../databaseController.js'
+import PopupController from './popupController.js'
 
 export default class LoginModalController {
   constructor() {
@@ -10,9 +11,11 @@ export default class LoginModalController {
     this.formPasswordClass = `${this.formClass}__password`
     this.buttonClass = `${this.formClass}__button`
 
-    this.emailValidationMessage = 'Wrong Email format'
-    this.passwordValidationMessage = "Password can't be blank"
-    this.deniedMessage = 'Access Deined'
+    this.emailValidationMessage = 'Wrong Email format.'
+    this.passwordValidationMessage = "Password can't be blank."
+    this.deniedMessage =
+      'Access Deined. Please try to check your login and password.'
+    this.welcomeMessage = 'We are glad to see you again.'
 
     this.modal = document.querySelector(`.${this.modalLoginClass}`)
     this.form = this.modal.querySelector(`.${this.formClass}`)
@@ -49,15 +52,24 @@ export default class LoginModalController {
     this.button.onclick = async () => {
       if (!this.email.validity.valid) return
       if (!this.password.validity.valid) return
-
       this.form.setAttribute('isLoading', '1')
+
       const data = await new DatabaseController().login({
         login: this.email.value,
         password: this.password.value,
       })
-      this.form.removeAttribute('isLoading')
 
-      console.log(data)
+      this.form.reset()
+      this.form.removeAttribute('isLoading')
+      const { result, report } = data
+      const { status, hash } = report
+
+      const popup = new PopupController()
+      if (status === 'denied')
+        return popup.show('Warning ⚠', this.deniedMessage)
+
+      this.modal.style.display = 'none'
+      popup.show('Welcome!', this.welcomeMessage)
     }
   }
 }

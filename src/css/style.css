@@ -59,3 +59,9 @@
 
 @import 'comment-form/comment-form__textarea.css';
 @import 'comment-form/comment-form__controls.css';
+
+@import 'popup/popup.css';
+@import 'popup/popup__container.css';
+@import 'popup/popup__header.css';
+@import 'popup/popup__close.css';
+@import 'popup/popup__content.css';
