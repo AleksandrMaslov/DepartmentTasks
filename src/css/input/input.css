@@ -1,12 +1,12 @@
-.comment-form__select {
+.input {
   border: 1px solid black;
   border-radius: 2px;
 }
 
-.comment-form__select:valid {
+.input:valid {
   border: 1px solid black;
 }
 
-.comment-form__select:invalid {
+.input:invalid {
   border: 1px solid pink;
 }

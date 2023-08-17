@@ -8,6 +8,7 @@
 
 @import 'loader/loader.css';
 @import 'button/button.css';
+@import 'input/input.css';
 
 @import 'tasks/tasks.css';
 @import 'tasks/tasks__list.css';
@@ -56,4 +57,3 @@
 @import 'comment-form/comment-form.css';
 @import 'comment-form/comment-form__textarea.css';
 @import 'comment-form/comment-form__controls.css';
-@import 'comment-form/comment-form__select.css';

@@ -2,15 +2,5 @@
   margin-bottom: 10px;
   padding: 5px;
   flex: 1 1 auto;
-  border: 1px solid black;
-  border-radius: 2px;
   resize: none;
-}
-
-.comment-form__textarea:valid {
-  border: 1px solid black;
-}
-
-.comment-form__textarea:invalid {
-  border: 1px solid pink;
 }
