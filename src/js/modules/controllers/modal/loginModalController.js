@@ -1,3 +1,5 @@
+import DatabaseController from '../databaseController.js'
+
 export default class LoginModalController {
   constructor() {
     this.modalClass = 'modal'
@@ -43,6 +45,14 @@ export default class LoginModalController {
   }
 
   defineLoginAction() {
-    this.button.onclick = () => console.log('LOGIN')
+    this.button.onclick = async () => {
+      if (!this.email.validity.valid) return
+      if (!this.password.validity.valid) return
+      const data = await new DatabaseController().login({
+        login: this.email.value,
+        password: this.password.value,
+      })
+      console.log(data)
+    }
   }
 }
