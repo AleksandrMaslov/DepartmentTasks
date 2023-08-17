@@ -46,12 +46,6 @@ export default class CommentModalController {
     this.saveButton.onclick = this.onSaveClick
   }
 
-  onCommentClick(key) {
-    this.form.setAttribute('key', key)
-    this.form.reset()
-    this.modal.style.display = 'flex'
-  }
-
   onSaveClick() {
     const key = this.form.getAttribute('key')
     const text = this.form.querySelector('.comment-form__textarea')
@@ -62,5 +56,11 @@ export default class CommentModalController {
     console.log(key)
     console.log(text.value)
     console.log(select.value)
+  }
+
+  onCommentClick(key) {
+    this.form.setAttribute('key', key)
+    this.form.reset()
+    this.modal.style.display = 'flex'
   }
 }
