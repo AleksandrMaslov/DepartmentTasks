@@ -47,6 +47,7 @@
 @import 'modal/modal__window.css';
 @import 'modal/modal__container.css';
 @import 'modal/modal__close.css';
+@import 'modal/modal__window_login.css';
 @import 'modal/modal__window_comment.css';
 @import 'modal/modal__window_edit.css';
 @import 'modal/modal__header.css';
