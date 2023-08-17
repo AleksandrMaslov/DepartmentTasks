@@ -1,0 +1,108 @@
+.square-loader {
+  --color: #343a40;
+  height: 10px;
+  width: 10px;
+
+  margin: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  border-radius: 100%;
+  background-color: var(--color);
+  box-shadow: 0px 40px 0px 0px var(--color), 0px -40px 0px 0px var(--color),
+    40px 0px 0px 0px var(--color), -40px 0px 0px 0px var(--color),
+    40px 40px 0px 0px var(--color), -40px -40px 0px 0px var(--color),
+    40px -40px 0px 0px var(--color), -40px 40px 0px 0px var(--color);
+  animation: square-dots 3s infinite linear;
+}
+
+@keyframes square-dots {
+  0% {
+    transform: translate(0px, 0px), rotate(0deg);
+    box-shadow: 0px 40px 0px 0px var(--color), 0px -40px 0px 0px var(--color),
+      40px 0px 0px 0px var(--color), -40px 0px 0px 0px var(--color),
+      40px 40px 0px 0px var(--color), -40px -40px 0px 0px var(--color),
+      40px -40px 0px 0px var(--color), -40px 40px 0px 0px var(--color);
+  }
+
+  25% {
+    box-shadow: 0px 40px 0px 0px var(--color), 0px -40px 0px 0px var(--color),
+      40px 0px 0px 0px var(--color), -40px 0px 0px 0px var(--color),
+      -40px -40px 0px 0px var(--color), 40px 40px 0px 0px var(--color),
+      -40px 40px 0px 0px var(--color), 40px -40px 0px 0px var(--color);
+  }
+
+  50% {
+    box-shadow: 0px -40px 0px 0px var(--color), 0px 40px 0px 0px var(--color),
+      -40px 0px 0px 0px var(--color), 40px 0px 0px 0px var(--color),
+      -40px -40px 0px 0px var(--color), 40px 40px 0px 0px var(--color),
+      -40px 40px 0px 0px var(--color), 40px -40px 0px 0px var(--color);
+  }
+
+  70% {
+    box-shadow: 0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color);
+  }
+
+  75% {
+    box-shadow: 0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color);
+    height: 10px;
+    width: 10px;
+  }
+
+  80% {
+    transform: translate(0px, 0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color);
+    background-color: var(--color);
+    height: 40px;
+    width: 40px;
+  }
+
+  85% {
+    transform: translate(0px, 0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color);
+    background-color: var(--color);
+    height: 40px;
+    width: 40px;
+  }
+
+  90% {
+    transform: translate(0px, 0px) rotate(360deg);
+    box-shadow: 0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color),
+      0px 0px 0px 0px var(--color), 0px 0px 0px 0px var(--color);
+    background-color: var(--color);
+    height: 10px;
+    width: 10px;
+  }
+
+  95% {
+    box-shadow: 0px 40px 0px 0px var(--color), 0px -40px 0px 0px var(--color),
+      40px 0px 0px 0px var(--color), -40px 0px 0px 0px var(--color),
+      40px 40px 0px 0px var(--color), -40px -40px 0px 0px var(--color),
+      40px -40px 0px 0px var(--color), -40px 40px 0px 0px var(--color);
+  }
+
+  100% {
+    transform: rotate(360deg);
+    box-shadow: 0px 40px 0px 0px var(--color), 0px -40px 0px 0px var(--color),
+      40px 0px 0px 0px var(--color), -40px 0px 0px 0px var(--color),
+      40px 40px 0px 0px var(--color), -40px -40px 0px 0px var(--color),
+      40px -40px 0px 0px var(--color), -40px 40px 0px 0px var(--color);
+  }
+}
