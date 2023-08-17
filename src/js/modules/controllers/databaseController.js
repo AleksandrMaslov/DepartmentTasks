@@ -10,20 +10,20 @@ export default class DatabaseController {
   }
 
   async requestTasks() {
-    const url = this.getUrl({ sheet: TASKS_SHEET })
+    const url = this.getUrl({ sheet: this.TASKS_SHEET })
     const response = await fetch(url)
     return await response.json()
   }
 
   async login({ login, password }) {
     const body = { action: 'login', data: { login, password } }
-    const url = this.getUrl({ sheet: USERS_SHEET })
+    const url = this.getUrl({ sheet: this.USERS_SHEET })
     return await this.post(url, body)
   }
 
   async authorize(hash) {
     const body = { action: 'authorize', data: { hash } }
-    const url = this.getUrl({ sheet: USERS_SHEET })
+    const url = this.getUrl({ sheet: this.USERS_SHEET })
     return await this.post(url, body)
   }
 
@@ -36,7 +36,7 @@ export default class DatabaseController {
     const property = Object.fromEntries([[header, value]])
     const row = Object.fromEntries([[key, property]])
     const body = { action: 'update', data: row }
-    const url = this.getUrl({ sheet: TASKS_SHEET })
+    const url = this.getUrl({ sheet: this.TASKS_SHEET })
     return await this.post(url, body)
   }
 
