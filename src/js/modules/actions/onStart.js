@@ -1,5 +1,6 @@
 import TaskRowController from '../controllers/taskRowController.js'
 import DatabaseController from '../controllers/databaseController.js'
+import PopupController from '../controllers/modal/popupController.js'
 
 export default async function onStart(event) {
   const HEADER = 'isActive'
@@ -20,7 +21,15 @@ async function getNewState(key, header, currentState) {
     header,
     currentState
   )
-  const { result, report } = response
-  const { value: newState } = report
-  return result === 'success' ? newState : currentState
+
+  if (isNotSuccessRequest(response)) {
+    new PopupController().showServerError()
+    return currentState
+  }
+  return response.report.value
+}
+
+function isNotSuccessRequest(response) {
+  const { result } = response
+  return result !== 'success'
 }
