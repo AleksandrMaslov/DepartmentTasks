@@ -1,4 +1,5 @@
 import LoginModalController from '../modal/loginModalController.js'
+import onLogout from '../../actions/onLogout.js'
 
 export default class AuthorizationController {
   constructor() {
@@ -32,6 +33,6 @@ export default class AuthorizationController {
   }
 
   defineLogout() {
-    this.logout.onclick = () => console.log('LOGOUT')
+    this.logout.onclick = onLogout
   }
 }
