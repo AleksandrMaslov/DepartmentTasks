@@ -1,6 +1,6 @@
-import defineWebp from './modules/webp/defineWebp.js'
-import defineModals from './modules/modal/defineModals.js'
-import createTaskList from './modules/tasks/createTaskList.js'
+import defineWebp from './modules/defineWebp.js'
+import defineModals from './modules/defineModals.js'
+import createTaskList from './modules/createTaskList.js'
 
 defineWebp()
 defineModals()

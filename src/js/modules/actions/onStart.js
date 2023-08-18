@@ -1,5 +1,5 @@
-import TaskRowController from '../../controllers/taskRowController.js'
-import DatabaseController from '../../controllers/databaseController.js'
+import TaskRowController from '../controllers/taskRowController.js'
+import DatabaseController from '../controllers/databaseController.js'
 
 export default async function onStart(event) {
   const header = 'isActive'

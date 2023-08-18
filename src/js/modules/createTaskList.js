@@ -1,5 +1,5 @@
-import DatabaseController from '../controllers/databaseController.js'
-import TaskListController from '../controllers/taskListController.js'
+import DatabaseController from './controllers/databaseController.js'
+import TaskListController from './controllers/taskListController.js'
 
 export default async function createTaskList(blockClass) {
   const response = await new DatabaseController().requestTasks()

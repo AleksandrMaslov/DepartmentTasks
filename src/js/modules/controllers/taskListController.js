@@ -1,6 +1,7 @@
-import onStart from '../tasks/actions/onStart.js'
-import onComment from '../tasks/actions/onComment.js'
-import onEdit from '../tasks/actions/onEdit.js'
+import onStart from '../actions/onStart.js'
+import TaskRowController from './taskRowController.js'
+import EditModalController from './modal/editModalController.js'
+import CommentModalController from './modal/commentModalController.js'
 
 export default class TaskListController {
   constructor(blockClass) {
@@ -214,7 +215,12 @@ export default class TaskListController {
     return actionLoadingContent
   }
 
-  onEditClick = onEdit
-  onCommentClick = onComment
+  onEditClick = () => new EditModalController().show()
+
+  onCommentClick = (event) => {
+    const key = new TaskRowController(event).getKey()
+    new CommentModalController().showWithKey(key)
+  }
+
   onStartClick = onStart
 }
