@@ -1,6 +1,7 @@
 export default class PopupController {
   POPUP_TIMEOUT = 2500
   WARNING_TITLE = 'Warning ⚠'
+  SERVER_ERROR_MESSAGE = 'Houston, we have a problem.'
   DENIED_MESSAGE = 'Access Deined. Please try to check your login and password.'
   WELCOME_MESSAGE = 'We are glad to see you again.'
 
@@ -19,6 +20,10 @@ export default class PopupController {
 
   define() {
     this.defineClose()
+  }
+
+  showServerError() {
+    this.showWarning(this.SERVER_ERROR_MESSAGE)
   }
 
   showAccessDenied() {
