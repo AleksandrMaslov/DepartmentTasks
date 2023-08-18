@@ -218,7 +218,7 @@ export default class TaskListController {
   onEditClick = () => new EditModalController().show()
 
   onCommentClick = (event) => {
-    const key = new TaskRowController(event).getKey()
+    const key = new TaskRowController(event.srcElement).getKey()
     new CommentModalController().showWithKey(key)
   }
 

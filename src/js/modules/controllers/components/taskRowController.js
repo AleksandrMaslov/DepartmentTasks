@@ -2,13 +2,12 @@ export default class TaskRowController {
   HEADER_IS_ACTIVE = 'isActive'
   IS_LOADING_STATE = '.'
 
-  constructor(event) {
+  constructor(rowChild) {
     this.rowClass = 'row'
     this.cellClass = `${this.rowClass}__cell`
     this.cellContentClass = `${this.rowClass}__cell-content`
 
-    this.actionContent = event.srcElement
-    this.row = this.actionContent.closest(`.${this.rowClass}`)
+    this.row = rowChild.closest(`.${this.rowClass}`)
     this.key = this.row.getAttribute('key')
   }
 
