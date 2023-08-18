@@ -1,17 +1,29 @@
 @import 'fonts.css';
 @import 'reset.css';
 
-@import 'body/body.css';
-@import 'header/header.css';
-@import 'main/main.css';
-@import 'footer/footer.css';
-
 @import 'flat-loader/flat-loader.css';
 @import 'square-loader/square-loader.css';
+@import 'title/title_h3.css';
 @import 'button/button.css';
 @import 'input/input.css';
 @import 'form/form.css';
-@import 'title/title_h3.css';
+
+@import 'navigation/navigation.css';
+@import 'navigation/navigation__container.css';
+@import 'navigation/navigation__item.css';
+
+@import 'login/login.css';
+@import 'login/login__container.css';
+@import 'login/login__item.css';
+
+@import 'body/body.css';
+@import 'main/main.css';
+@import 'footer/footer.css';
+
+@import 'header/header.css';
+@import 'header/header__logo.css';
+@import 'header/header__navigation.css';
+@import 'header/header__login.css';
 
 @import 'tasks/tasks.css';
 @import 'tasks/tasks__list.css';
