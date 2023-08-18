@@ -26,6 +26,12 @@ export default class CommentModalController {
     this.defineSaveAction()
   }
 
+  showWithKey(key) {
+    this.form.setAttribute('key', key)
+    this.form.reset()
+    this.modal.style.display = 'flex'
+  }
+
   defineClose() {
     this.close.onclick = () => (this.modal.style.display = 'none')
   }
@@ -52,11 +58,5 @@ export default class CommentModalController {
       console.log(this.text.value)
       console.log(this.select.value)
     }
-  }
-
-  showWithKey(key) {
-    this.form.setAttribute('key', key)
-    this.form.reset()
-    this.modal.style.display = 'flex'
   }
 }

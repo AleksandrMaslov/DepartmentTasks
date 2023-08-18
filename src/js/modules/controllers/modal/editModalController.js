@@ -12,11 +12,11 @@ export default class EditModalController {
     this.defineClose()
   }
 
-  defineClose() {
-    this.close.onclick = () => (this.modal.style.display = 'none')
-  }
-
   show() {
     this.modal.style.display = 'flex'
+  }
+
+  defineClose() {
+    this.close.onclick = () => (this.modal.style.display = 'none')
   }
 }

@@ -29,6 +29,11 @@ export default class LoginModalController {
     this.defineLoginAction()
   }
 
+  show() {
+    this.form.reset()
+    this.modal.style.display = 'flex'
+  }
+
   defineClose() {
     this.close.onclick = () => (this.modal.style.display = 'none')
   }
@@ -67,10 +72,5 @@ export default class LoginModalController {
       this.modal.style.display = 'none'
       popup.showWelcome()
     }
-  }
-
-  show() {
-    this.form.reset()
-    this.modal.style.display = 'flex'
   }
 }

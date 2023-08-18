@@ -21,10 +21,6 @@ export default class PopupController {
     this.defineClose()
   }
 
-  defineClose() {
-    this.close.onclick = () => (this.popup.style.right = '-320px')
-  }
-
   showAccessDenied() {
     this.showWarning(this.DENIED_MESSAGE)
   }
@@ -44,5 +40,9 @@ export default class PopupController {
     setTimeout(() => {
       this.popup.style.right = '-320px'
     }, this.POPUP_TIMEOUT)
+  }
+
+  defineClose() {
+    this.close.onclick = () => (this.popup.style.right = '-320px')
   }
 }
