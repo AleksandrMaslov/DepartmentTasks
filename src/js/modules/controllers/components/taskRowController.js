@@ -1,4 +1,7 @@
 export default class TaskRowController {
+  HEADER_IS_ACTIVE = 'isActive'
+  IS_LOADING_STATE = '.'
+
   constructor(event) {
     this.rowClass = 'row'
     this.cellClass = `${this.rowClass}__cell`
@@ -29,5 +32,17 @@ export default class TaskRowController {
     const content = cell.querySelector(`.${this.cellContentClass}`)
     cell.setAttribute('title', value)
     content.innerHTML = value
+  }
+
+  getActivityState() {
+    return this.getCellData(this.HEADER_IS_ACTIVE)
+  }
+
+  setActivityState(value) {
+    return this.updateCellData(this.HEADER_IS_ACTIVE, value)
+  }
+
+  setLoadingState() {
+    return this.updateCellData(this.HEADER_IS_ACTIVE, this.IS_LOADING_STATE)
   }
 }

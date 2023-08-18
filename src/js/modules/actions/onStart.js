@@ -3,22 +3,19 @@ import TaskRowController from '../controllers/components/taskRowController.js'
 import PopupController from '../controllers/components/popupController.js'
 
 export default async function onStart(event) {
-  const HEADER = 'isActive'
-  const IS_LOADING_STATE = '.'
-
   const rowController = new TaskRowController(event)
   const key = rowController.getKey()
-  const currentState = rowController.getCellData(HEADER)
+  const currentState = rowController.getActivityState()
 
-  rowController.updateCellData(HEADER, IS_LOADING_STATE)
+  rowController.setLoadingState()
   const state = await getNewState(key, HEADER, currentState)
-  rowController.updateCellData(HEADER, state)
+  rowController.setActivityState(state)
 }
 
-async function getNewState(key, header, currentState) {
+async function getNewState(key, currentState) {
   const response = await new DatabaseController().switchState(
     key,
-    header,
+    'isActive',
     currentState
   )
 
