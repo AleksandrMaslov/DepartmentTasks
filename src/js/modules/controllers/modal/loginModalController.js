@@ -1,9 +1,10 @@
-import DatabaseController from '../databaseController.js'
-import PopupController from './popupController.js'
+import onLogin from '../../actions/onLogin.js'
 
 export default class LoginModalController {
   EMAIL_VALID_MESSAGE = 'Wrong Email format.'
   PASSWORD_VALID_MESAGE = "Password can't be blank."
+  LOADING_ATTRIBUTE = 'isLoading'
+  LOADING_STATE = '1'
 
   constructor() {
     this.modalClass = 'modal'
@@ -34,6 +35,30 @@ export default class LoginModalController {
     this.modal.style.display = 'flex'
   }
 
+  hide() {
+    this.modal.style.display = 'none'
+  }
+
+  areInputsNotValid() {
+    if (this.email.validity.valid) return false
+    if (this.password.validity.valid) return false
+    return true
+  }
+
+  setLoading(isLoading) {
+    if (isLoading)
+      return this.form.setAttribute(this.LOADING_ATTRIBUTE, this.LOADING_STATE)
+    this.form.reset()
+    this.form.removeAttribute(this.LOADING_ATTRIBUTE)
+  }
+
+  getUserData() {
+    return {
+      login: this.email.value,
+      password: this.password.value,
+    }
+  }
+
   defineClose() {
     this.close.onclick = () => (this.modal.style.display = 'none')
   }
@@ -51,26 +76,6 @@ export default class LoginModalController {
   }
 
   defineLoginAction() {
-    this.button.onclick = async () => {
-      if (!this.email.validity.valid) return
-      if (!this.password.validity.valid) return
-      this.form.setAttribute('isLoading', '1')
-
-      const data = await new DatabaseController().login({
-        login: this.email.value,
-        password: this.password.value,
-      })
-
-      this.form.reset()
-      this.form.removeAttribute('isLoading')
-      const { result, report } = data
-      const { status, hash } = report
-
-      const popup = new PopupController()
-      if (status === 'denied') return popup.showAccessDenied()
-
-      this.modal.style.display = 'none'
-      popup.showWelcome()
-    }
+    this.button.onclick = onLogin
   }
 }
