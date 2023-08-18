@@ -1,4 +1,5 @@
+import EditModalController from '../../controllers/modal/editModalController.js'
+
 export default function onEdit() {
-  const modal = document.querySelector('.modal_edit')
-  modal.style.display = 'flex'
+  new EditModalController().show()
 }

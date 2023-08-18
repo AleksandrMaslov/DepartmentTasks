@@ -5,6 +5,7 @@ export default class EditModalController {
     this.modalCloseClass = `${this.modalClass}__close`
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
+    this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
   }
 
   define() {
@@ -12,7 +13,10 @@ export default class EditModalController {
   }
 
   defineClose() {
-    const close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    close.onclick = () => (this.modal.style.display = 'none')
+    this.close.onclick = () => (this.modal.style.display = 'none')
+  }
+
+  show() {
+    this.modal.style.display = 'flex'
   }
 }
