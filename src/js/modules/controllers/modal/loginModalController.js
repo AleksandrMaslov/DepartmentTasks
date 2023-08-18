@@ -16,6 +16,7 @@ export default class LoginModalController {
 
     this.modal = document.querySelector(`.${this.modalLoginClass}`)
     this.form = this.modal.querySelector(`.${this.formClass}`)
+    this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
     this.email = this.form.querySelector(`.${this.formEmailClass}`)
     this.password = this.form.querySelector(`.${this.formPasswordClass}`)
     this.button = this.form.querySelector(`.${this.buttonClass}`)
@@ -29,8 +30,7 @@ export default class LoginModalController {
   }
 
   defineClose() {
-    const close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    close.onclick = () => (this.modal.style.display = 'none')
+    this.close.onclick = () => (this.modal.style.display = 'none')
   }
 
   defineEmailValidation() {

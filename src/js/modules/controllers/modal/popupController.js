@@ -12,6 +12,7 @@ export default class PopupController {
     this.popupContentClass = `${this.popupClass}__content`
 
     this.popup = document.querySelector(`.${this.popupClass}`)
+    this.close = this.popup.querySelector(`.${this.popupCloseClass}`)
     this.title = this.popup.querySelector(`.${this.popupTitleClass}`)
     this.content = this.popup.querySelector(`.${this.popupContentClass}`)
   }
@@ -21,8 +22,7 @@ export default class PopupController {
   }
 
   defineClose() {
-    const close = this.popup.querySelector(`.${this.popupCloseClass}`)
-    close.onclick = () => (this.popup.style.right = '-320px')
+    this.close.onclick = () => (this.popup.style.right = '-320px')
   }
 
   showAccessDenied() {

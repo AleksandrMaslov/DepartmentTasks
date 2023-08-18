@@ -13,6 +13,7 @@ export default class CommentModalController {
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
     this.form = this.modal.querySelector(`.${this.formClass}`)
+    this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
     this.text = this.form.querySelector(`.${this.formTextClass}`)
     this.select = this.form.querySelector(`.${this.formSelectClass}`)
     this.saveButton = this.form.querySelector(`.${this.saveButtonClass}`)
@@ -26,8 +27,7 @@ export default class CommentModalController {
   }
 
   defineClose() {
-    const close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    close.onclick = () => (this.modal.style.display = 'none')
+    this.close.onclick = () => (this.modal.style.display = 'none')
   }
 
   defineTextValidation() {
