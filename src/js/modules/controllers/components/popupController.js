@@ -4,6 +4,7 @@ export default class PopupController {
   SERVER_ERROR_MESSAGE = 'Houston, we have a problem.'
   DENIED_MESSAGE = 'Access Deined. Please try to check your login and password.'
   WELCOME_MESSAGE = 'We are glad to see you again.'
+  GOODBYE_MESSAGE = 'See you next time, my friend.'
 
   constructor() {
     this.popupClass = 'popup'
@@ -32,6 +33,10 @@ export default class PopupController {
 
   showWelcome() {
     this.show('Welcome!', this.WELCOME_MESSAGE)
+  }
+
+  showGoodbye() {
+    this.show('Goodbye!', this.GOODBYE_MESSAGE)
   }
 
   showWarning(message) {
