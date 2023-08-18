@@ -12,9 +12,10 @@
 @import 'navigation/navigation__container.css';
 @import 'navigation/navigation__item.css';
 
-@import 'login/login.css';
-@import 'login/login__container.css';
-@import 'login/login__item.css';
+@import 'authorization/authorization.css';
+@import 'authorization/authorization__container.css';
+@import 'authorization/authorization__login.css';
+@import 'authorization/authorization__logout.css';
 
 @import 'body/body.css';
 @import 'main/main.css';
@@ -23,7 +24,7 @@
 @import 'header/header.css';
 @import 'header/header__logo.css';
 @import 'header/header__navigation.css';
-@import 'header/header__login.css';
+@import 'header/header__authorization.css';
 
 @import 'tasks/tasks.css';
 @import 'tasks/tasks__list.css';
