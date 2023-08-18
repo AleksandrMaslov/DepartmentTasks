@@ -2,6 +2,9 @@ import DatabaseController from '../databaseController.js'
 import PopupController from './popupController.js'
 
 export default class LoginModalController {
+  EMAIL_VALID_MESSAGE = 'Wrong Email format.'
+  PASSWORD_VALID_MESAGE = "Password can't be blank."
+
   constructor() {
     this.modalClass = 'modal'
     this.modalLoginClass = `${this.modalClass}_login`
@@ -10,12 +13,6 @@ export default class LoginModalController {
     this.formEmailClass = `${this.formClass}__email`
     this.formPasswordClass = `${this.formClass}__password`
     this.buttonClass = `${this.formClass}__button`
-
-    this.emailValidationMessage = 'Wrong Email format.'
-    this.passwordValidationMessage = "Password can't be blank."
-    this.deniedMessage =
-      'Access Deined. Please try to check your login and password.'
-    this.welcomeMessage = 'We are glad to see you again.'
 
     this.modal = document.querySelector(`.${this.modalLoginClass}`)
     this.form = this.modal.querySelector(`.${this.formClass}`)
@@ -38,13 +35,13 @@ export default class LoginModalController {
 
   defineEmailValidation() {
     this.email.oninvalid = (e) =>
-      e.target.setCustomValidity(this.emailValidationMessage)
+      e.target.setCustomValidity(this.EMAIL_VALID_MESSAGE)
     this.email.oninput = (e) => e.target.setCustomValidity('')
   }
 
   definePasswordValidation() {
     this.password.oninvalid = (e) =>
-      e.target.setCustomValidity(this.passwordValidationMessage)
+      e.target.setCustomValidity(this.PASSWORD_VALID_MESAGE)
     this.password.oninput = (e) => e.target.setCustomValidity('')
   }
 
@@ -65,11 +62,10 @@ export default class LoginModalController {
       const { status, hash } = report
 
       const popup = new PopupController()
-      if (status === 'denied')
-        return popup.show('Warning ⚠', this.deniedMessage)
+      if (status === 'denied') return popup.showAccessDenied()
 
       this.modal.style.display = 'none'
-      popup.show('Welcome!', this.welcomeMessage)
+      popup.showWelcome()
     }
   }
 }

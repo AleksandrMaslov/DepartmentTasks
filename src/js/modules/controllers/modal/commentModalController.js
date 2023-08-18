@@ -1,4 +1,7 @@
 export default class CommentModalController {
+  TEXT_VALID_MESSAGE = "Remark can't be blank"
+  SELECT_VALID_MESSAGE = 'Select Remark type'
+
   constructor() {
     this.modalClass = 'modal'
     this.modalCommentClass = `${this.modalClass}_comment`
@@ -7,9 +10,6 @@ export default class CommentModalController {
     this.formTextClass = `${this.formClass}__textarea`
     this.formSelectClass = `${this.formClass}__select`
     this.saveButtonClass = `${this.formClass}__button_save`
-
-    this.textValidationMessage = "Remark can't be blank"
-    this.selectValidationMessage = 'Select Remark type'
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
     this.form = this.modal.querySelector(`.${this.formClass}`)
@@ -32,13 +32,13 @@ export default class CommentModalController {
 
   defineTextValidation() {
     this.text.oninvalid = (e) =>
-      e.target.setCustomValidity(this.textValidationMessage)
+      e.target.setCustomValidity(this.TEXT_VALID_MESSAGE)
     this.text.oninput = (e) => e.target.setCustomValidity('')
   }
 
   defineSelectValidation() {
     this.select.oninvalid = (e) =>
-      e.target.setCustomValidity(this.selectValidationMessage)
+      e.target.setCustomValidity(this.SELECT_VALID_MESSAGE)
     this.select.oninput = (e) => e.target.setCustomValidity('')
   }
 
