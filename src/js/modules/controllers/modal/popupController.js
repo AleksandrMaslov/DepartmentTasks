@@ -33,7 +33,9 @@ export default class PopupController {
     this.show('Welcome!', this.WELCOME_MESSAGE)
   }
 
-  showWarning(message) {}
+  showWarning(message) {
+    this.show(this.WARNING_TITLE, message)
+  }
 
   show(title, message) {
     this.title.innerHTML = title
