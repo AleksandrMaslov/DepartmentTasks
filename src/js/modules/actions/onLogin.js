@@ -1,6 +1,6 @@
 import LoginModalController from '../controllers/modal/loginModalController.js'
-import DatabaseController from '../controllers/databaseController.js'
-import PopupController from '../controllers/modal/popupController.js'
+import DatabaseController from '../controllers/database/databaseController.js'
+import PopupController from '../controllers/components/popupController.js'
 
 export default async function onLogin() {
   const login = new LoginModalController()
@@ -11,18 +11,16 @@ export default async function onLogin() {
   const response = await new DatabaseController().login(userData)
   login.setLoading(false)
 
-  showPopupByResponse(response)
-  if (isNotUserValid(response)) return
-  login.hide()
-  const { hash } = report
-  // loacalStorage
-}
-
-function showPopupByResponse(response) {
   const popup = new PopupController()
   if (isNotSuccessRequest(response)) return popup.showServerError()
   if (isNotUserValid(response)) return popup.showAccessDenied()
   popup.showWelcome()
+
+  login.hide()
+  const { report } = response
+  const { hash } = report
+  console.log(hash)
+  // loacalStorage
 }
 
 function isNotSuccessRequest(response) {

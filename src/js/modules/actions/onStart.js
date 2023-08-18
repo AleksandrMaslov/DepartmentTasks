@@ -1,6 +1,6 @@
-import TaskRowController from '../controllers/taskRowController.js'
-import DatabaseController from '../controllers/databaseController.js'
-import PopupController from '../controllers/modal/popupController.js'
+import DatabaseController from '../controllers/database/databaseController.js'
+import TaskRowController from '../controllers/components/taskRowController.js'
+import PopupController from '../controllers/components/popupController.js'
 
 export default async function onStart(event) {
   const HEADER = 'isActive'

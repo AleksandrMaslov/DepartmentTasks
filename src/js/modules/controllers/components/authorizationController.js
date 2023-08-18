@@ -1,4 +1,4 @@
-import LoginModalController from './modal/loginModalController.js'
+import LoginModalController from '../modal/loginModalController.js'
 
 export default class AuthorizationController {
   constructor() {

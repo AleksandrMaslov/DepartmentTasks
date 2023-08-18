@@ -1,7 +1,7 @@
 import LoginModalController from './controllers/modal/loginModalController.js'
 import CommentModalController from './controllers/modal/commentModalController.js'
 import EditModalController from './controllers/modal/editModalController.js'
-import PopupController from './controllers/modal/popupController.js'
+import PopupController from './controllers/components/popupController.js'
 
 export default function defineModals() {
   const loginModalController = new LoginModalController()

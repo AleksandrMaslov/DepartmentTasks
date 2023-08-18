@@ -1,7 +1,7 @@
-import onStart from '../actions/onStart.js'
+import onStart from '../../actions/onStart.js'
 import TaskRowController from './taskRowController.js'
-import EditModalController from './modal/editModalController.js'
-import CommentModalController from './modal/commentModalController.js'
+import EditModalController from '../modal/editModalController.js'
+import CommentModalController from '../modal/commentModalController.js'
 
 export default class TaskListController {
   constructor(blockClass) {
