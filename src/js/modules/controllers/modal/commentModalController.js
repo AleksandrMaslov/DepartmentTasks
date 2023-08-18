@@ -43,22 +43,18 @@ export default class CommentModalController {
   }
 
   defineSaveAction() {
-    this.saveButton.onclick = this.onSaveClick
+    this.saveButton.onclick = () => {
+      const key = this.form.getAttribute('key')
+      if (!this.text.validity.valid) return
+      if (!this.select.validity.valid) return
+
+      console.log(key)
+      console.log(this.text.value)
+      console.log(this.select.value)
+    }
   }
 
-  onSaveClick() {
-    const key = this.form.getAttribute('key')
-    const text = this.form.querySelector('.comment-form__textarea')
-    const select = this.form.querySelector('.comment-form__select')
-    if (!text.validity.valid) return
-    if (!select.validity.valid) return
-
-    console.log(key)
-    console.log(text.value)
-    console.log(select.value)
-  }
-
-  onCommentClick(key) {
+  showCommentModalWithKey(key) {
     this.form.setAttribute('key', key)
     this.form.reset()
     this.modal.style.display = 'flex'
