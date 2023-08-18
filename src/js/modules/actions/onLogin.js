@@ -1,7 +1,8 @@
 import LoginModalController from '../controllers/modal/loginModalController.js'
 import DatabaseController from '../controllers/database/databaseController.js'
-import PopupController from '../controllers/components/popupController.js'
 import AuthorizationController from '../controllers/components/authorizationController.js'
+import TaskListController from '../controllers/components/taskListController.js'
+import PopupController from '../controllers/components/popupController.js'
 
 export default async function onLogin() {
   const login = new LoginModalController()
@@ -15,14 +16,16 @@ export default async function onLogin() {
   const popup = new PopupController()
   if (isNotSuccessRequest(response)) return popup.showServerError()
   if (isNotUserValid(response)) return popup.showAccessDenied()
-  popup.showWelcome()
-  login.hide()
 
   new AuthorizationController().setAuthorized(true)
-  const { report } = response
-  const { hash } = report
-  console.log(hash)
-  // loacalStorage
+  new TaskListController().setAuthorized(true)
+  saveHash(response.report.hash)
+  popup.showWelcome()
+  login.hide()
+}
+
+function saveHash(hash) {
+  localStorage.setItem('hash', hash)
 }
 
 function isNotSuccessRequest(response) {

@@ -4,10 +4,10 @@ import EditModalController from '../modal/editModalController.js'
 import CommentModalController from '../modal/commentModalController.js'
 
 export default class TaskListController {
-  constructor(blockClass) {
-    this.blockClass = blockClass
+  constructor() {
+    this.blockClass = 'tasks'
     this.listClass = `${this.blockClass}__list`
-    this.headerClass = `${blockClass}__header`
+    this.headerClass = `${this.blockClass}__header`
     this.hearedRowClass = `${this.headerClass}-row`
 
     this.rowClass = `row`
@@ -117,6 +117,13 @@ export default class TaskListController {
   // insertRow() {
   //   // parentElement.insertBefore(newElement, referenceElement);
   // }
+
+  setAuthorized(isAuthorized) {
+    const list = document.querySelector(`.${this.listClass}`)
+    Array.from(list.children).forEach((row) => {
+      new TaskRowController(row).setAuthorized(isAuthorized)
+    })
+  }
 
   createRow(key) {
     const row = document.createElement('div')

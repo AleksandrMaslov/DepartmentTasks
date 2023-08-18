@@ -6,6 +6,7 @@ export default class TaskRowController {
     this.rowClass = 'row'
     this.cellClass = `${this.rowClass}__cell`
     this.cellContentClass = `${this.rowClass}__cell-content`
+    this.actionsClass = `${this.rowClass}__actions`
 
     this.row = rowChild.closest(`.${this.rowClass}`)
     this.key = this.row.getAttribute('key')
@@ -26,6 +27,12 @@ export default class TaskRowController {
     const content = cell.querySelector(`.${this.cellContentClass}`)
     cell.setAttribute('title', value)
     content.innerHTML = value
+  }
+
+  setAuthorized(isAuthorized) {
+    const actions = this.row.querySelector(`.${this.actionsClass}`)
+    if (isAuthorized) return (actions.style.display = 'flex')
+    actions.style.display = 'none'
   }
 
   getActivityState() {
