@@ -16,6 +16,17 @@ export default class AuthorizationController {
     this.defineLogout()
   }
 
+  setAuthorized(isAuthoized) {
+    if (isAuthoized) {
+      this.logout.style.display = 'inline'
+      this.login.style.display = 'none'
+      return
+    }
+
+    this.logout.style.display = 'none'
+    this.login.style.display = 'initial'
+  }
+
   defineLogin() {
     this.login.onclick = () => new LoginModalController().show()
   }
