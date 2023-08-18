@@ -15,12 +15,12 @@ export default async function onStart(event) {
 }
 
 async function getNewState(key, header, currentState) {
-  const data = await new DatabaseController().switchState(
+  const response = await new DatabaseController().switchState(
     key,
     header,
     currentState
   )
-  const { result, report } = data
+  const { result, report } = response
   const { value: newState } = report
   return result === 'success' ? newState : currentState
 }
