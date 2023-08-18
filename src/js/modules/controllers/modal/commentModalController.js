@@ -1,3 +1,5 @@
+import onSave from '../../actions/onSave.js'
+
 export default class CommentModalController {
   TEXT_VALID_MESSAGE = "Remark can't be blank"
   SELECT_VALID_MESSAGE = 'Select Remark type'
@@ -32,6 +34,16 @@ export default class CommentModalController {
     this.modal.style.display = 'flex'
   }
 
+  areInputsNotValid() {
+    if (this.text.validity.valid) return false
+    if (this.select.validity.valid) return false
+    return true
+  }
+
+  getTaskKey() {
+    return this.form.getAttribute('key')
+  }
+
   defineClose() {
     this.close.onclick = () => (this.modal.style.display = 'none')
   }
@@ -49,14 +61,6 @@ export default class CommentModalController {
   }
 
   defineSaveAction() {
-    this.saveButton.onclick = () => {
-      const key = this.form.getAttribute('key')
-      if (!this.text.validity.valid) return
-      if (!this.select.validity.valid) return
-
-      console.log(key)
-      console.log(this.text.value)
-      console.log(this.select.value)
-    }
+    this.saveButton.onclick = onSave
   }
 }
