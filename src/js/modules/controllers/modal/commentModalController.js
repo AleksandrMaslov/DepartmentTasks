@@ -54,7 +54,7 @@ export default class CommentModalController {
     }
   }
 
-  showCommentModalWithKey(key) {
+  showWithKey(key) {
     this.form.setAttribute('key', key)
     this.form.reset()
     this.modal.style.display = 'flex'

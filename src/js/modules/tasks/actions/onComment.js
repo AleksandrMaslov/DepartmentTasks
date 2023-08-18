@@ -3,5 +3,5 @@ import CommentModalController from '../../controllers/modal/commentModalControll
 
 export default function onComment(event) {
   const key = new TasksRowController(event).getKey()
-  new CommentModalController().showCommentModalWithKey(key)
+  new CommentModalController().showWithKey(key)
 }
