@@ -17,8 +17,6 @@ export default async function onStart(event) {
 
   const { result, report } = data
   const { value: newState } = report
-
-  if (result === 'success')
-    return rowController.updateCellData(header, newState)
-  rowController.updateCellData(header, currentState)
+  const state = result === 'success' ? newState : currentState
+  rowController.updateCellData(header, state)
 }
