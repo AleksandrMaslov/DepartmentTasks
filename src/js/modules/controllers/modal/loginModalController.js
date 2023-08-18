@@ -68,4 +68,9 @@ export default class LoginModalController {
       popup.showWelcome()
     }
   }
+
+  show() {
+    this.form.reset()
+    this.modal.style.display = 'flex'
+  }
 }
