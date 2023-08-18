@@ -3,11 +3,12 @@ import DatabaseController from '../controllers/databaseController.js'
 
 export default async function onStart(event) {
   const header = 'isActive'
+  const isLoadingState = '.'
   const rowController = new TaskRowController(event)
   const key = rowController.getKey()
   const currentState = rowController.getCellData(header)
 
-  rowController.updateCellData(header, '.')
+  rowController.updateCellData(header, isLoadingState)
   const state = await getNewState(key, header, currentState)
   rowController.updateCellData(header, state)
 }
