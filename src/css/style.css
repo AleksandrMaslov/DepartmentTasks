@@ -17,12 +17,14 @@
 @import 'authorization/authorization__item.css';
 @import 'authorization/authorization__login.css';
 @import 'authorization/authorization__logout.css';
+@import 'authorization/authorization__icon.css';
 
 @import 'body/body.css';
 @import 'main/main.css';
 @import 'footer/footer.css';
 
 @import 'header/header.css';
+@import 'header/header__container.css';
 @import 'header/header__logo.css';
 @import 'header/header__navigation.css';
 @import 'header/header__authorization.css';

@@ -1,4 +1,6 @@
 .header__logo {
   margin-left: 0;
   margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
 }
