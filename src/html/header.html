@@ -11,9 +11,16 @@
     <div class="authorization header__authorization">
       <div class="authorization__container">
         <span class="authorization__item authorization__login">LOGIN</span>
-        <div class="authorization__item authorization__logout">
+        <div class="authorization__item authorization__loggedin">
+          <span class="authorization__name">Username</span>
           <img
-            class="authorization__icon"
+            class="authorization__avatar"
+            src=""
+            onerror='this.onerror = null; this.src="../img/authorization/authorization-avatar.png"'
+            alt="avatar"
+          />
+          <img
+            class="authorization__logout"
             src="../img/authorization/authorization-logout.png"
             alt="authorization-logout"
           />

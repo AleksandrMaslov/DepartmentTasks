@@ -14,10 +14,11 @@
 
 @import 'authorization/authorization.css';
 @import 'authorization/authorization__container.css';
-@import 'authorization/authorization__item.css';
 @import 'authorization/authorization__login.css';
+@import 'authorization/authorization__loggedin.css';
+@import 'authorization/authorization__name.css';
+@import 'authorization/authorization__avatar.css';
 @import 'authorization/authorization__logout.css';
-@import 'authorization/authorization__icon.css';
 
 @import 'body/body.css';
 @import 'main/main.css';

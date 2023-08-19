@@ -5,10 +5,12 @@ export default class AuthorizationController {
   constructor() {
     this.authorizationClass = 'authorization'
     this.loginClass = `${this.authorizationClass}__login`
+    this.loggedinClass = `${this.authorizationClass}__loggedin`
     this.logoutClass = `${this.authorizationClass}__logout`
 
     this.authorization = document.querySelector(`.${this.authorizationClass}`)
     this.login = this.authorization.querySelector(`.${this.loginClass}`)
+    this.loggedin = this.authorization.querySelector(`.${this.loggedinClass}`)
     this.logout = this.authorization.querySelector(`.${this.logoutClass}`)
   }
 
@@ -19,12 +21,12 @@ export default class AuthorizationController {
 
   setAuthorized(isAuthorized) {
     if (isAuthorized) {
-      this.logout.style.display = 'inline'
+      this.loggedin.style.display = 'flex'
       this.login.style.display = 'none'
       return
     }
 
-    this.logout.style.display = 'none'
+    this.loggedin.style.display = 'none'
     this.login.style.display = 'initial'
   }
 
