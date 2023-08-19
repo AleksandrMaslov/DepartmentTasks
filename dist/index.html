@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.min.css?_v=20230819212044" />
+  <title>Department Tasks</title>
+  <meta name="description" content="NO DESCRIPTION" />
+  <meta name="author" content="Maslov Aleksandr" />
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+  <!-- FAVICON -->
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="favicon/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="favicon/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="favicon/favicon-16x16.png"
+  />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <!-- FAVICON -->
+</head>
+
+  <body class="body">
+    <header class="header">
+  <div class="header__container">
+    <div class="header__logo">HEADER</div>
+
+    <nav class="navigation header__navigation">
+      <div class="navigation__container">
+        <a class="navigation__item">DASHBOARD</a>
+      </div>
+    </nav>
+
+    <div class="authorization header__authorization">
+      <div class="authorization__container">
+        <span class="authorization__login">LOGIN</span>
+        <div class="authorization__loggedin">
+          <span class="authorization__name"></span>
+          <img
+            class="authorization__avatar"
+            src=""
+            onerror='this.onerror = null; this.src="../img/authorization/authorization-avatar.png"'
+            alt="avatar"
+          />
+          <img
+            class="authorization__logout"
+            src="../img/authorization/authorization-logout.png"
+            alt="authorization-logout"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+    <main class="main">
+      <div class="tasks">
+        <span class="flat-loader tasks__loader"></span>
+      </div>
+    </main>
+
+    <div class="modal modal_login">
+  <div class="modal__window modal__window_login">
+    <div class="modal__container">
+      <div class="modal__header">
+        <h3 class="title_h3 modal__title">Welcome, Stranger!</h3>
+        <span class="modal__close">&times</span>
+      </div>
+
+      <form method="dialog" class="form login-form">
+        <input
+          class="input login-form__email"
+          placeholder="Email"
+          autocomplete="email"
+          type="email"
+          name="email"
+          required
+        />
+
+        <input
+          class="input login-form__password"
+          placeholder="Password"
+          autocomplete="on"
+          type="password"
+          name="password"
+          required
+        />
+        <button class="button login-form__button">Login</button>
+        <p>* You should authorize to unlock task tracking tools.</p>
+      </form>
+
+      <div class="square-loader"></div>
+    </div>
+  </div>
+</div>
+ <div class="modal modal_comment">
+  <div class="modal__window modal__window_comment">
+    <div class="modal__container">
+      <div class="modal__header">
+        <h3 class="title_h3 modal__title">Enter Single Comment:</h3>
+        <span class="modal__close">&times</span>
+      </div>
+      <form method="dialog" class="form comment-form">
+        <textarea
+          class="input comment-form__textarea"
+          placeholder="Text..."
+          required
+        ></textarea>
+        <div class="comment-form__controls">
+          <button class="button" type="reset">Clear</button>
+          <select class="input comment-form__select" required>
+            <option value="" disabled selected>-- Please select type --</option>
+            <option value="question">Question</option>
+            <option value="comment">Comment</option>
+            <option value="note">Note</option>
+          </select>
+          <button class="button comment-form__button_save">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+    <div class="modal modal_edit">
+  <div class="modal__window modal__window_edit">
+    <div class="modal__container">
+      <div class="modal__header">
+        <h3 class="title_h3 modal__title">Edit Window</h3>
+        <span class="modal__close">&times</span>
+      </div>
+    </div>
+  </div>
+</div>
+ <div class="popup">
+  <div class="popup__container">
+    <div class="popup__header">
+      <h3 class="title_h3 popup__title">Popup Title</h3>
+      <span class="popup__close">↠</span>
+    </div>
+    <p class="popup__content">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste possimus
+      dolorum, incidunt fuga maxime optio magnam esse suscipit ad, aperiam nisi?
+      Ratione fugit tenetur facilis maxime officiis, quia libero exercitationem
+      beatae ea rerum voluptates maiores nam veritatis non laboriosam
+      voluptatibus repellendus debitis, illo delectus architecto quam vero
+      cumque! Mollitia, molestiae.
+    </p>
+  </div>
+</div>
+
+    <footer class="footer">FOOTER</footer>
+
+
+    <script src="js/app.min.js?_v=20230819212044"></script>
+  </body>
+</html>
