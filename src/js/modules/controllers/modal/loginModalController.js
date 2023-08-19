@@ -40,15 +40,19 @@ export default class LoginModalController {
   }
 
   areInputsNotValid() {
-    if (this.email.validity.valid) return false
-    if (this.password.validity.valid) return false
-    return true
+    if (!this.email.validity.valid) return true
+    if (!this.password.validity.valid) return true
+    return false
   }
 
   setLoading(isLoading) {
-    if (isLoading)
-      return this.form.setAttribute(this.LOADING_ATTRIBUTE, this.LOADING_STATE)
+    if (isLoading) {
+      this.button.style.pointerEvents = 'none'
+      this.form.setAttribute(this.LOADING_ATTRIBUTE, this.LOADING_STATE)
+      return
+    }
     this.form.reset()
+    this.button.style.pointerEvents = 'auto'
     this.form.removeAttribute(this.LOADING_ATTRIBUTE)
   }
 
