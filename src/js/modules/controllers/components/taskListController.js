@@ -2,6 +2,7 @@ import onStart from '../../actions/onStart.js'
 import TaskRowController from './taskRowController.js'
 import EditModalController from '../modal/editModalController.js'
 import CommentModalController from '../modal/commentModalController.js'
+import AuthorizationController from './authorizationController.js'
 
 export default class TaskListController {
   constructor() {
@@ -30,6 +31,8 @@ export default class TaskListController {
     this.actionContentLoadingClass = `${this.actionContentClass}_loading`
     this.key = 'key'
     this.block = document.querySelector(`.${this.blockClass}`)
+
+    this.isAuthorized = new AuthorizationController().getKey()
 
     this.actions = {
       edit: {
@@ -120,6 +123,7 @@ export default class TaskListController {
 
   setAuthorized(isAuthorized) {
     const list = document.querySelector(`.${this.listClass}`)
+    if (!list) return
     Array.from(list.children).forEach((row) => {
       new TaskRowController(row).setAuthorized(isAuthorized)
     })
@@ -178,6 +182,7 @@ export default class TaskListController {
   createRowActions() {
     const rowActions = document.createElement('div')
     rowActions.classList.add(this.actionsClass)
+    if (this.isAuthorized) rowActions.style.display = 'flex'
     rowActions.appendChild(this.createAction('edit'))
     rowActions.appendChild(this.createAction('comment'))
     rowActions.appendChild(this.createAction('start'))
