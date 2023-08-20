@@ -3,28 +3,24 @@ import TaskRowController from '../controllers/components/taskRowController.js'
 import PopupController from '../controllers/components/popupController.js'
 
 export default async function onStart(event) {
+  const hash = localStorage.getItem('hash')
+  if (!hash) return popupController.showUnauthorized()
+
+  const HEADER = 'isActive'
+  const popupController = new PopupController()
   const rowController = new TaskRowController(event.srcElement)
   const key = rowController.getKey()
   const currentState = rowController.getActivityState()
 
+  const dbController = new DatabaseController()
   rowController.setLoadingState()
-  const state = await getNewState(key, currentState)
+  const response = await dbController.switchState(key, HEADER, currentState)
+  const isNotSuccessful = isNotSuccessRequest(response)
+  const state = isNotSuccessful ? currentState : response.report.value
   rowController.setActivityState(state)
-}
+  if (isNotSuccessful) return popupController.showServerError()
 
-async function getNewState(key, currentState) {
-  const HEADER = 'isActive'
-  const response = await new DatabaseController().switchState(
-    key,
-    HEADER,
-    currentState
-  )
-
-  if (isNotSuccessRequest(response)) {
-    new PopupController().showServerError()
-    return currentState
-  }
-  return response.report.value
+  // dbController log time
 }
 
 function isNotSuccessRequest(response) {
