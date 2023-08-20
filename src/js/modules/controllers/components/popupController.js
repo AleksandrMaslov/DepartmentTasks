@@ -5,6 +5,7 @@ export default class PopupController {
   DENIED_MESSAGE = 'Access Deined. Please try to check your login and password.'
   WELCOME_MESSAGE = 'We are glad to see you again.'
   GOODBYE_MESSAGE = 'See you next time, my friend.'
+  UNAUTHORIZED_MESSAGE = 'User is not authorized.'
 
   constructor() {
     this.popupClass = 'popup'
@@ -37,6 +38,10 @@ export default class PopupController {
 
   showGoodbye() {
     this.show('Goodbye!', this.GOODBYE_MESSAGE)
+  }
+
+  showUnauthorized() {
+    this.showWarning(this.UNAUTHORIZED_MESSAGE)
   }
 
   showWarning(message) {
