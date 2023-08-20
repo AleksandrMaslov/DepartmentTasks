@@ -4,6 +4,7 @@ export default class DatabaseController {
 
   TASKS_SHEET = 'TASKS'
   USERS_SHEET = 'USERS'
+  TIME_SHEET = 'TIME'
 
   constructor() {
     this.baseUrl = `https://script.google.com/macros/s/${this.SCRIPT_ID}/exec`
@@ -30,6 +31,13 @@ export default class DatabaseController {
   async switchState(key, header, currentState) {
     const newState = currentState === '0' ? '1' : '0'
     return await this.setCellData(key, header, newState)
+  }
+
+  async startTask(key, hash) {
+    const data = { key, hash }
+    const body = { action: 'start', data }
+    const url = this.getUrl({ sheet: this.TIME_SHEET })
+    return await this.post(url, body)
   }
 
   async setCellData(key, header, value) {

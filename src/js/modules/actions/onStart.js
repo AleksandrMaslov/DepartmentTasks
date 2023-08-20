@@ -20,7 +20,10 @@ export default async function onStart(event) {
   rowController.setActivityState(state)
   if (isNotSuccessful) return popupController.showServerError()
 
-  // dbController log time
+  //check if currentState doesnt match with DB
+  //DB state should not be changed separately
+  const report = await dbController.startTask(key, hash)
+  console.log(report)
 }
 
 function isNotSuccessRequest(response) {
