@@ -33,9 +33,9 @@ export default class DatabaseController {
     return await this.setCellData(key, header, newState)
   }
 
-  async startTask(key, hash) {
+  async taskActivityClick(key, hash) {
     const data = { key, hash }
-    const body = { action: 'start', data }
+    const body = { action: 'task', data }
     const url = this.getUrl({ sheet: this.TIME_SHEET })
     return await this.post(url, body)
   }

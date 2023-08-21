@@ -14,15 +14,17 @@ export default async function onStart(event) {
 
   const dbController = new DatabaseController()
   rowController.setLoadingState()
+
   const response = await dbController.switchState(key, HEADER, currentState)
   const isNotSuccessful = isNotSuccessRequest(response)
   const state = isNotSuccessful ? currentState : response.report.value
+
   rowController.setActivityState(state)
   if (isNotSuccessful) return popupController.showServerError()
 
   //check if currentState doesnt match with DB
   //DB state should not be changed separately
-  const report = await dbController.startTask(key, hash)
+  const report = await dbController.taskActivityClick(key, hash)
   console.log(report)
 }
 
