@@ -9,7 +9,8 @@
   transition: all 0.1s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.row:has(.row__state_isActive[title='1']) {
+.row:has(.row__state_isActive[title='1']),
+.row:has(.row__state_isActive[title='x']) {
   background-color: moccasin;
 }
 .row:has(.row__state_isFinished[title='1']) {

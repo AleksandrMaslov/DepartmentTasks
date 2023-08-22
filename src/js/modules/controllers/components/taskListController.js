@@ -167,6 +167,14 @@ export default class TaskListController {
     })
   }
 
+  checkBusy(activeKey) {
+    const list = document.querySelector(`.${this.listClass}`)
+    if (!list) return
+    Array.from(list.children).forEach((row) => {
+      new TaskRowController(row).checkBusy(activeKey)
+    })
+  }
+
   createRow(key) {
     const row = document.createElement('div')
     row.classList.add(this.rowClass)

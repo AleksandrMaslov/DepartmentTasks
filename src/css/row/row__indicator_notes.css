@@ -2,6 +2,6 @@
   background-color: red;
 }
 
-.row:has(.row__cell_isNoted[title='1']) .row__indicator_notes {
+.row:has(.row__state_isNoted[title='1']) .row__indicator_notes {
   display: initial;
 }

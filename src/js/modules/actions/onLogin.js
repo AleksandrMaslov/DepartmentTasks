@@ -17,7 +17,10 @@ export default async function onLogin() {
   if (isNotSuccessRequest(response)) return popup.showServerError()
   if (isNotUserValid(response)) return popup.showAccessDenied()
 
-  new TaskListController().setAuthorized(true)
+  const taskListController = new TaskListController()
+  taskListController.setAuthorized(true)
+  taskListController.checkBusy(response.report.active)
+
   const authController = new AuthorizationController()
   authController.setUserData(response.report)
   authController.setAuthorized(true)

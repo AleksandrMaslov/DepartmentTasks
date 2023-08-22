@@ -9,13 +9,19 @@ export default async function onAuthorize(hash) {
   login.setLoading(true)
   const response = await new DatabaseController().authorize(hash)
   login.setLoading(false)
+
   const popup = new PopupController()
   if (isNotSuccessRequest(response)) return popup.showServerError()
   if (isNotUserValid(response)) return localStorage.removeItem('hash')
-  new TaskListController().setAuthorized(true)
+
+  const taskListController = new TaskListController()
+  taskListController.setAuthorized(true)
+  taskListController.checkBusy(response.report.active)
+
   const authController = new AuthorizationController()
   authController.setUserData(response.report)
   authController.setAuthorized(true)
+
   popup.showWelcome()
   login.hide()
 }

@@ -8,5 +8,5 @@ defineWebp()
 defineModals()
 defineAuthorization()
 
+await createTaskList()
 tryToAuthorize()
-createTaskList()

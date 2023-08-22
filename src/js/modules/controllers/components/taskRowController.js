@@ -1,6 +1,10 @@
 export default class TaskRowController {
   HEADER_IS_ACTIVE = 'isActive'
-  IS_LOADING_STATE = '.'
+  STATE = {
+    ACTIVE: '1',
+    LOADING: '.',
+    BUSY: 'x',
+  }
 
   constructor(rowChild) {
     this.rowClass = 'row'
@@ -35,6 +39,14 @@ export default class TaskRowController {
     actions.style.display = 'none'
   }
 
+  checkBusy(activeKey) {
+    const key = this.getKey()
+    const state = this.getActivityState()
+    if (state !== this.STATE.ACTIVE) return
+    if (key === activeKey) return
+    this.setActivityState(this.STATE.BUSY)
+  }
+
   getActivityState() {
     return this.getState(this.HEADER_IS_ACTIVE)
   }
@@ -44,7 +56,7 @@ export default class TaskRowController {
   }
 
   setLoadingState() {
-    return this.updateState(this.HEADER_IS_ACTIVE, this.IS_LOADING_STATE)
+    return this.updateState(this.HEADER_IS_ACTIVE, this.STATE.LOADING)
   }
 
   getState(header) {
