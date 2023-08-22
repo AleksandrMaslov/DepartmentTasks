@@ -1,5 +1,6 @@
 .row__action-content_loading {
   display: none;
+  cursor: progress;
 }
 
 .row:has(.row__state_isActive[title='.']) .row__action-content_loading {
