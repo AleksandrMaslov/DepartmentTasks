@@ -40,13 +40,7 @@
 @import 'row/row__logo.css';
 @import 'row/row__cell.css';
 @import 'row/row__cell-content.css';
-@import 'row/row__cell_isAccepted.css';
-@import 'row/row__cell_isActive.css';
-@import 'row/row__cell_isFinished.css';
-@import 'row/row__cell_isWrong.css';
-@import 'row/row__cell_isNoted.css';
-@import 'row/row__cell_isCommented.css';
-@import 'row/row__cell_isAsked.css';
+@import 'row/row__state.css';
 @import 'row/row__cell_number.css';
 @import 'row/row__cell_name.css';
 @import 'row/row__cell_responsible.css';

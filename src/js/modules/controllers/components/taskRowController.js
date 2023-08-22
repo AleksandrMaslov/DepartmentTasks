@@ -5,6 +5,7 @@ export default class TaskRowController {
   constructor(rowChild) {
     this.rowClass = 'row'
     this.cellClass = `${this.rowClass}__cell`
+    this.stateClass = `${this.rowClass}__state`
     this.cellContentClass = `${this.rowClass}__cell-content`
     this.actionsClass = `${this.rowClass}__actions`
 
@@ -18,8 +19,7 @@ export default class TaskRowController {
 
   getCellData(header) {
     const cell = this.row.querySelector(`.${this.cellClass}[key=${header}]`)
-    const content = cell.querySelector(`.${this.cellContentClass}`)
-    return content.innerHTML
+    return cell.getAttribute('title')
   }
 
   updateCellData(header, value) {
@@ -36,14 +36,24 @@ export default class TaskRowController {
   }
 
   getActivityState() {
-    return this.getCellData(this.HEADER_IS_ACTIVE)
+    return this.getState(this.HEADER_IS_ACTIVE)
   }
 
   setActivityState(value) {
-    return this.updateCellData(this.HEADER_IS_ACTIVE, value)
+    return this.updateState(this.HEADER_IS_ACTIVE, value)
   }
 
   setLoadingState() {
-    return this.updateCellData(this.HEADER_IS_ACTIVE, this.IS_LOADING_STATE)
+    return this.updateState(this.HEADER_IS_ACTIVE, this.IS_LOADING_STATE)
+  }
+
+  getState(header) {
+    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
+    return cell.getAttribute('title')
+  }
+
+  updateState(header, value) {
+    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
+    cell.setAttribute('title', value)
   }
 }

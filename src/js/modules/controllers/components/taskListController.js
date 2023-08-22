@@ -14,6 +14,7 @@ export default class TaskListController {
     this.rowClass = `row`
     this.logoClass = `${this.rowClass}__logo`
     this.cellClass = `${this.rowClass}__cell`
+    this.stateClass = `${this.rowClass}__state`
     this.cellContentClass = `${this.cellClass}-content`
 
     this.indicatorsClass = `${this.rowClass}__indicators`
@@ -60,6 +61,21 @@ export default class TaskListController {
         onclick: this.onStartClick,
       },
     }
+
+    this.propertiesDefinition = {
+      number: this.createCell,
+      name: this.createCell,
+      responsible: this.createCell,
+      edited: this.createCell,
+      time: this.createCell,
+      isActive: this.createState,
+      isFinished: this.createState,
+      isWrong: this.createState,
+      isAccepted: this.createState,
+      isNoted: this.createState,
+      isAsked: this.createState,
+      isCommented: this.createState,
+    }
   }
 
   addTable() {
@@ -99,7 +115,8 @@ export default class TaskListController {
     row.appendChild(rowLogo)
 
     Object.entries(properties).forEach((property) => {
-      const cell = this.createCell(property)
+      const header = property[0]
+      const cell = this.propertiesDefinition[header].call(this, property)
       row.appendChild(cell)
     })
 
@@ -158,6 +175,16 @@ export default class TaskListController {
     content.innerHTML = value
     cell.appendChild(content)
     return cell
+  }
+
+  createState(property) {
+    const [header, value] = property
+    const state = document.createElement('div')
+    state.classList.add(this.stateClass)
+    state.classList.add(`${this.stateClass}_${header}`)
+    state.setAttribute('title', value)
+    state.setAttribute('key', header)
+    return state
   }
 
   createIndicators() {
@@ -226,6 +253,8 @@ export default class TaskListController {
     actionLoadingContent.classList.add(this.actionContentLoadingClass)
     return actionLoadingContent
   }
+
+  isState() {}
 
   onEditClick = () => new EditModalController().show()
 
