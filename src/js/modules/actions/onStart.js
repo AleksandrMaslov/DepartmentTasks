@@ -6,26 +6,18 @@ export default async function onStart(event) {
   const hash = localStorage.getItem('hash')
   if (!hash) return popupController.showUnauthorized()
 
-  const HEADER = 'isActive'
   const popupController = new PopupController()
   const rowController = new TaskRowController(event.srcElement)
   const key = rowController.getKey()
   const currentState = rowController.getActivityState()
 
-  const dbController = new DatabaseController()
   rowController.setLoadingState()
-
-  const response = await dbController.switchState(key, HEADER, currentState)
+  const response = await new DatabaseController().taskActivityClick(key, hash)
   const isNotSuccessful = isNotSuccessRequest(response)
-  const state = isNotSuccessful ? currentState : response.report.value
-
+  const state = isNotSuccessful ? currentState : response.report.state
   rowController.setActivityState(state)
   if (isNotSuccessful) return popupController.showServerError()
-
-  //check if currentState doesnt match with DB
-  //DB state should not be changed separately
-  const report = await dbController.taskActivityClick(key, hash)
-  console.log(report)
+  if (state === 'x') popupController.showBusy()
 }
 
 function isNotSuccessRequest(response) {

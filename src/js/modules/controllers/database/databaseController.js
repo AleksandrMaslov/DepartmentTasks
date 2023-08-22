@@ -28,11 +28,6 @@ export default class DatabaseController {
     return await this.post(url, body)
   }
 
-  async switchState(key, header, currentState) {
-    const newState = currentState === '0' ? '1' : '0'
-    return await this.setCellData(key, header, newState)
-  }
-
   async taskActivityClick(key, hash) {
     const data = { key, hash }
     const body = { action: 'task', data }
@@ -40,11 +35,11 @@ export default class DatabaseController {
     return await this.post(url, body)
   }
 
-  async setCellData(key, header, value) {
+  async setCellData(sheet, key, header, value) {
     const property = Object.fromEntries([[header, value]])
     const row = Object.fromEntries([[key, property]])
     const body = { action: 'update', data: row }
-    const url = this.getUrl({ sheet: this.TASKS_SHEET })
+    const url = this.getUrl({ sheet })
     return await this.post(url, body)
   }
 
