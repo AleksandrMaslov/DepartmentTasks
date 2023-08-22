@@ -30,6 +30,7 @@ export default class TaskListController {
     this.actionContentStartClass = `${this.actionContentClass}_start`
     this.actionContentPauseClass = `${this.actionContentClass}_pause`
     this.actionContentLoadingClass = `${this.actionContentClass}_loading`
+    this.actionContentBusyClass = `${this.actionContentClass}_busy`
     this.key = 'key'
     this.block = document.querySelector(`.${this.blockClass}`)
 
@@ -37,28 +38,48 @@ export default class TaskListController {
 
     this.actions = {
       edit: {
+        class: this.actionContentClass,
+        modifier: undefined,
         title: 'Edit',
         alt: 'tasks-edit',
         src: 'img/tasks/tasks-edit.png',
         onclick: this.onEditClick,
       },
       comment: {
+        class: this.actionContentClass,
+        modifier: undefined,
         title: 'Comment',
         alt: 'tasks-comment',
         src: 'img/tasks/tasks-comment.png',
         onclick: this.onCommentClick,
       },
       start: {
+        class: this.actionContentClass,
+        modifier: this.actionContentStartClass,
         title: 'Start',
         alt: 'tasks-start',
         src: 'img/tasks/tasks-start.png',
         onclick: this.onStartClick,
       },
       pause: {
+        class: this.actionContentClass,
+        modifier: this.actionContentPauseClass,
         title: 'Pause',
         alt: 'tasks-pause',
         src: 'img/tasks/tasks-pause.png',
         onclick: this.onStartClick,
+      },
+      busy: {
+        class: this.actionContentClass,
+        modifier: this.actionContentBusyClass,
+        title: 'Busy',
+        alt: 'tasks-busy',
+        src: 'img/tasks/tasks-busy.png',
+      },
+      loader: {
+        class: this.loaderClass,
+        modifier: this.actionContentLoadingClass,
+        title: 'Loading',
       },
     }
 
@@ -219,42 +240,27 @@ export default class TaskListController {
   createAction(name) {
     const action = document.createElement('div')
     action.classList.add(this.actionClass)
-
-    const actionContent = document.createElement('img')
-    actionContent.classList.add(this.actionContentClass)
-    actionContent.setAttribute('src', this.actions[name].src)
-    actionContent.setAttribute('alt', this.actions[name].alt)
-    actionContent.setAttribute('title', this.actions[name].title)
-
-    if (name === 'start') {
-      actionContent.classList.add(this.actionContentStartClass)
-      action.appendChild(this.createPauseActionContent())
-      action.appendChild(this.createLoadingContent())
-    }
-
-    action.appendChild(actionContent)
-    action.onclick = this.actions[name].onclick
+    action.appendChild(this.createActionContent(name))
+    if (name !== 'start') return action
+    action.appendChild(this.createActionContent('pause'))
+    action.appendChild(this.createActionContent('busy'))
+    action.appendChild(this.createActionContent('loader'))
     return action
   }
 
-  createPauseActionContent() {
-    const actionPauseContent = document.createElement('img')
-    actionPauseContent.classList.add(this.actionContentClass)
-    actionPauseContent.classList.add(this.actionContentPauseClass)
-    actionPauseContent.setAttribute('src', this.actions.pause.src)
-    actionPauseContent.setAttribute('alt', this.actions.pause.alt)
-    actionPauseContent.setAttribute('title', this.actions.pause.title)
-    return actionPauseContent
+  createActionContent(name) {
+    const content = document.createElement('img')
+    content.classList.add(this.actions[name].class)
+    if (this.actions[name].modifier)
+      content.classList.add(this.actions[name].modifier)
+    if (name === 'loader') return content
+    content.setAttribute('src', this.actions[name].src)
+    content.setAttribute('alt', this.actions[name].alt)
+    content.setAttribute('title', this.actions[name].title)
+    if (name === 'busy') return content
+    content.onclick = this.actions[name].onclick
+    return content
   }
-
-  createLoadingContent() {
-    const actionLoadingContent = document.createElement('span')
-    actionLoadingContent.classList.add(this.loaderClass)
-    actionLoadingContent.classList.add(this.actionContentLoadingClass)
-    return actionLoadingContent
-  }
-
-  isState() {}
 
   onEditClick = () => new EditModalController().show()
 

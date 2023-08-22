@@ -1,0 +1,7 @@
+.row__action-content_busy {
+  display: none;
+}
+
+.row:has(.row__state_isActive[title='x']) .row__action-content_busy {
+  display: initial;
+}
