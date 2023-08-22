@@ -8,12 +8,13 @@
       <form method="dialog" class="form comment-form">
         <textarea
           class="input comment-form__textarea"
+          name="text"
           placeholder="Text..."
           required
         ></textarea>
         <div class="comment-form__controls">
           <button class="button" type="reset">Clear</button>
-          <select class="input comment-form__select" required>
+          <select class="input comment-form__select" name="type" required>
             <option value="" disabled selected>-- Please select type --</option>
             <option value="question">Question</option>
             <option value="comment">Comment</option>
