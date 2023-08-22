@@ -6,6 +6,7 @@ export default class PopupController {
   WELCOME_MESSAGE = 'We are glad to see you again.'
   GOODBYE_MESSAGE = 'See you next time, my friend.'
   UNAUTHORIZED_MESSAGE = 'User is not authorized.'
+  BUSY_MESSAGE = 'Selected task is Busy with another user.'
 
   constructor() {
     this.popupClass = 'popup'
@@ -42,6 +43,10 @@ export default class PopupController {
 
   showUnauthorized() {
     this.showWarning(this.UNAUTHORIZED_MESSAGE)
+  }
+
+  showBusy() {
+    this.showWarning(this.BUSY_MESSAGE)
   }
 
   showWarning(message) {
