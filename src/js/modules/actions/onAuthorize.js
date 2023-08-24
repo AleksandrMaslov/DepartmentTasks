@@ -14,25 +14,22 @@ export default async function onAuthorize(hash) {
   if (isNotSuccessRequest(response)) return popup.showServerError()
   if (isNotUserValid(response)) return localStorage.removeItem('hash')
 
-  const taskListController = new TaskListController()
-  taskListController.setAuthorized(true)
-  taskListController.checkBusy(response.report.active)
+  const taskList = new TaskListController()
+  taskList.setAuthorized(true)
+  taskList.checkBusy(response.report.active)
 
-  const authController = new AuthorizationController()
-  authController.setUserData(response.report)
-  authController.setAuthorized(true)
+  const auth = new AuthorizationController()
+  auth.setUserData(response.report)
+  auth.setAuthorized(true)
 
   popup.showWelcome()
   login.hide()
 }
 
 function isNotSuccessRequest(response) {
-  const { result } = response
-  return result !== 'success'
+  return response.result !== 'success'
 }
 
 function isNotUserValid(response) {
-  const { report } = response
-  const { status } = report
-  return status !== 'accepted'
+  return response.report.status !== 'accepted'
 }
