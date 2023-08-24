@@ -17,8 +17,10 @@ export default async function onStart(event) {
     row.setPreviousActivityState()
     return popup.showServerError()
   }
-  row.setActivityState(response.report.state)
-  if (row.isActive()) return new TaskListController().uncheckPreviuos(key)
+
+  row.setActivityState(response.report.isActive)
+  if (row.isActive())
+    return new TaskListController().switchParallels(key, 'NOT_ACTIVE')
   if (row.isBusy()) return popup.showBusy()
 }
 

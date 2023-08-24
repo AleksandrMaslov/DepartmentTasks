@@ -19,7 +19,7 @@ export default async function onLogin() {
 
   const taskList = new TaskListController()
   taskList.setAuthorized(true)
-  taskList.checkBusy(response.report.active)
+  taskList.switchParallels(response.report.active, 'BUSY')
 
   const auth = new AuthorizationController()
   auth.setUserData(response.report)
