@@ -2,6 +2,7 @@ export default class TaskRowController {
   HEADER_IS_ACTIVE = 'isActive'
   STATE = {
     ACTIVE: '1',
+    NOT_ACTIVE: '0',
     LOADING: '.',
     BUSY: 'x',
   }
@@ -37,14 +38,6 @@ export default class TaskRowController {
     const actions = this.row.querySelector(`.${this.actionsClass}`)
     if (isAuthorized) return (actions.style.display = 'flex')
     actions.style.display = 'none'
-  }
-
-  checkBusy(activeKey) {
-    const key = this.getKey()
-    const state = this.getActivityState()
-    if (state !== this.STATE.ACTIVE) return
-    if (key === activeKey) return
-    this.setActivityState(this.STATE.BUSY)
   }
 
   getActivityState() {
