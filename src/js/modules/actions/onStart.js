@@ -5,24 +5,23 @@ import TaskListController from '../controllers/components/taskListController.js'
 
 export default async function onStart(event) {
   const hash = localStorage.getItem('hash')
-  if (!hash) return popupController.showUnauthorized()
+  if (!hash) return popup.showUnauthorized()
 
-  const popupController = new PopupController()
-  const rowController = new TaskRowController(event.srcElement)
-  const key = rowController.getKey()
-  const currentState = rowController.getActivityState()
+  const popup = new PopupController()
+  const row = new TaskRowController(event.srcElement)
+  const key = row.getKey()
 
-  rowController.setLoadingState()
+  row.setLoadingActivityState()
   const response = await new DatabaseController().taskActivityClick(key, hash)
-  const isNotSuccessful = isNotSuccessRequest(response)
-  const state = isNotSuccessful ? currentState : response.report.state
-  rowController.setActivityState(state)
-  if (isNotSuccessful) return popupController.showServerError()
-  if (state === '1') new TaskListController().uncheckPreviuos(key)
-  if (state === 'x') popupController.showBusy()
+  if (isNotSuccessRequest(response)) {
+    row.setPreviousActivityState()
+    return popup.showServerError()
+  }
+  row.setActivityState(response.report.state)
+  if (row.isActive()) return new TaskListController().uncheckPreviuos(key)
+  if (row.isBusy()) return popup.showBusy()
 }
 
 function isNotSuccessRequest(response) {
-  const { result } = response
-  return result !== 'success'
+  return response.result !== 'success'
 }

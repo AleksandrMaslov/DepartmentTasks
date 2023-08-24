@@ -44,12 +44,25 @@ export default class TaskRowController {
     return this.getState(this.HEADER_IS_ACTIVE)
   }
 
-  setActivityState(value) {
-    return this.updateState(this.HEADER_IS_ACTIVE, value)
+  setLoadingActivityState() {
+    this.previousActivityState = this.getActivityState()
+    this.setActivityState(this.STATE.LOADING)
   }
 
-  setLoadingState() {
-    return this.updateState(this.HEADER_IS_ACTIVE, this.STATE.LOADING)
+  setPreviousActivityState() {
+    this.setActivityState(this.previousActivityState)
+  }
+
+  setActivityState(value) {
+    this.updateState(this.HEADER_IS_ACTIVE, value)
+  }
+
+  isBusy() {
+    return this.getActivityState() === this.STATE.BUSY
+  }
+
+  isActive() {
+    return this.getActivityState() === this.STATE.ACTIVE
   }
 
   getState(header) {
