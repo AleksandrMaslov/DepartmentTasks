@@ -18,7 +18,7 @@ export default async function onStart(event) {
     return popup.showServerError()
   }
 
-  row.setActivityState(response.report.isActive)
+  row.updateRowData(response.report)
   if (row.isActive())
     return new TaskListController().switchParallels(key, 'NOT_ACTIVE')
   if (row.isBusy()) return popup.showBusy()

@@ -29,9 +29,23 @@ export default class TaskRowController {
 
   updateCellData(header, value) {
     const cell = this.row.querySelector(`.${this.cellClass}[key=${header}]`)
-    const content = cell.querySelector(`.${this.cellContentClass}`)
     cell.setAttribute('title', value)
+    const content = cell.querySelector(`.${this.cellContentClass}`)
     content.innerHTML = value
+  }
+
+  updateRowData(rowData) {
+    const { number, name, responsible, edited, time, ...states } = rowData
+    Object.entries({ number, name, responsible, edited, time }).forEach(
+      (data) => {
+        const [header, value] = data
+        this.updateCellData(header, value)
+      }
+    )
+    Object.entries(states).forEach((data) => {
+      const [header, value] = data
+      this.updateState(header, value)
+    })
   }
 
   setAuthorized(isAuthorized) {
