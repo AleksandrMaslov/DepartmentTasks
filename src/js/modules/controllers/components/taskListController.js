@@ -170,8 +170,28 @@ export default class TaskListController {
   checkBusy(activeKey) {
     const list = document.querySelector(`.${this.listClass}`)
     if (!list) return
+
     Array.from(list.children).forEach((row) => {
-      new TaskRowController(row).checkBusy(activeKey)
+      const controller = new TaskRowController(row)
+      const key = controller.getKey()
+      const state = controller.getActivityState()
+      if (state !== controller.STATE.ACTIVE) return
+      if (key === activeKey) return
+      controller.setActivityState(controller.STATE.BUSY)
+    })
+  }
+
+  uncheckPreviuos(activeKey) {
+    const list = document.querySelector(`.${this.listClass}`)
+    if (!list) return
+
+    Array.from(list.children).forEach((row) => {
+      const controller = new TaskRowController(row)
+      const key = controller.getKey()
+      const state = controller.getActivityState()
+      if (state !== controller.STATE.ACTIVE) return
+      if (key === activeKey) return
+      controller.setActivityState(controller.STATE.NOT_ACTIVE)
     })
   }
 

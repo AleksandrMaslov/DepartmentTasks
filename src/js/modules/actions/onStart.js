@@ -1,6 +1,7 @@
 import DatabaseController from '../controllers/database/databaseController.js'
 import TaskRowController from '../controllers/components/taskRowController.js'
 import PopupController from '../controllers/components/popupController.js'
+import TaskListController from '../controllers/components/taskListController.js'
 
 export default async function onStart(event) {
   const hash = localStorage.getItem('hash')
@@ -17,6 +18,7 @@ export default async function onStart(event) {
   const state = isNotSuccessful ? currentState : response.report.state
   rowController.setActivityState(state)
   if (isNotSuccessful) return popupController.showServerError()
+  if (state === '1') new TaskListController().uncheckPreviuos(key)
   if (state === 'x') popupController.showBusy()
 }
 
