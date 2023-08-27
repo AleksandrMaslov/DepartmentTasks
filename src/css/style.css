@@ -44,8 +44,8 @@
 @import 'row/row__cell_number.css';
 @import 'row/row__cell_name.css';
 @import 'row/row__cell_responsible.css';
+@import 'row/row__cell_editor.css';
 @import 'row/row__cell_edited.css';
-@import 'row/row__cell_time.css';
 @import 'row/row__indicators.css';
 @import 'row/row__indicator.css';
 @import 'row/row__indicator_comments.css';

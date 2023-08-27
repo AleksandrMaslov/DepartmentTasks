@@ -87,8 +87,8 @@ export default class TaskListController {
       number: this.createCell,
       name: this.createCell,
       responsible: this.createCell,
+      editor: this.createCell,
       edited: this.createCell,
-      time: this.createCell,
       isActive: this.createState,
       isFinished: this.createState,
       isWrong: this.createState,
@@ -137,7 +137,10 @@ export default class TaskListController {
 
     Object.entries(properties).forEach((property) => {
       const header = property[0]
-      const cell = this.propertiesDefinition[header].call(this, property)
+      const definition = this.propertiesDefinition[header]
+      let cell
+      if (definition) cell = definition.call(this, property)
+      else cell = this.createCell(property)
       row.appendChild(cell)
     })
 
