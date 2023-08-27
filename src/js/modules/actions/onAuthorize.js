@@ -11,7 +11,8 @@ export default async function onAuthorize(hash) {
   login.setLoading(false)
 
   const popup = new PopupController()
-  if (isNotSuccessRequest(response)) return popup.showServerError()
+  if (isNotSuccessRequest(response))
+    return popup.showServerError(response.error)
   if (isNotUserValid(response)) return localStorage.removeItem('hash')
 
   const taskList = new TaskListController()

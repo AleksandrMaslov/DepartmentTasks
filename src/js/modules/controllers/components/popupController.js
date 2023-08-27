@@ -25,8 +25,10 @@ export default class PopupController {
     this.defineClose()
   }
 
-  showServerError() {
-    this.showWarning(this.SERVER_ERROR_MESSAGE)
+  showServerError(message = undefined) {
+    if (!message) return this.showWarning(this.SERVER_ERROR_MESSAGE)
+    this.showWarning(`${this.SERVER_ERROR_MESSAGE} ${message}`)
+    console.log(message)
   }
 
   showAccessDenied() {

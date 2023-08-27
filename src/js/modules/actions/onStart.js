@@ -15,7 +15,7 @@ export default async function onStart(event) {
   const response = await new DatabaseController().taskActivityClick(key, hash)
   if (isNotSuccessRequest(response)) {
     row.setPreviousActivityState()
-    return popup.showServerError()
+    return popup.showServerError(response.error)
   }
 
   row.updateRowData(response.report)
