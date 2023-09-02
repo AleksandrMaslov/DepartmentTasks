@@ -3,7 +3,7 @@ import DatabaseController from '../controllers/database/databaseController.js'
 import AuthorizationController from '../controllers/components/authorizationController.js'
 import TaskListController from '../controllers/components/taskListController.js'
 import PopupController from '../controllers/components/popupController.js'
-import { isNotSuccess, isNotValidUser } from '../dbResponseValidation.js'
+import { isNotSuccess, isNotValidUser } from '../responseValidation.js'
 
 export default async function onLogin() {
   const login = new LoginModalController()
