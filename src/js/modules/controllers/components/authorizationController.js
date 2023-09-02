@@ -34,8 +34,7 @@ export default class AuthorizationController {
     this.login.style.display = 'initial'
   }
 
-  setUserData(report) {
-    const { username, name, avatar } = report
+  setUserData({ username, name, avatar }) {
     this.avatar.src = this.convertDriveImgUrl(avatar)
     this.name.innerHTML = name
     this.authorization.setAttribute('key', username)
@@ -43,6 +42,7 @@ export default class AuthorizationController {
 
   convertDriveImgUrl(url) {
     if (!url.includes('drive.google.com')) return
+
     const id = url.split('/d/')[1].split('/view?')[0]
     return `https://drive.google.com/uc?id=${id}`
   }

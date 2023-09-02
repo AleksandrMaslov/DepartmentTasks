@@ -1,4 +1,6 @@
 .row__cell_edited {
+  font-size: 12px;
   margin-right: 20px;
   width: 70px;
+  white-space: normal;
 }

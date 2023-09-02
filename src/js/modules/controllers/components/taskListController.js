@@ -3,6 +3,7 @@ import TaskRowController from './taskRowController.js'
 import EditModalController from '../modal/editModalController.js'
 import CommentModalController from '../modal/commentModalController.js'
 import AuthorizationController from './authorizationController.js'
+import dateTime from '../../dateTime.js'
 
 export default class TaskListController {
   constructor() {
@@ -202,7 +203,8 @@ export default class TaskListController {
   }
 
   createCell(property) {
-    const [header, value] = property
+    let [header, value] = property
+    if (header === 'edited') value = dateTime(value)
     const cell = document.createElement('div')
     cell.classList.add(this.cellClass)
     cell.classList.add(`${this.cellClass}_${header}`)

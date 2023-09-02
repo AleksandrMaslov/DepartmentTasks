@@ -1,6 +1,6 @@
 export default class DatabaseController {
   SCRIPT_ID =
-    'AKfycbwW1Dx_lkpFncP-7h5O6cG_jpYUJAszOl8TZGyCCZZqh7y1DPm_9jR5ndmyiaKOX3iAxA'
+    'AKfycbxOnoR3KrFWInXrAukFyw8beYsUanTtR8gCd6r8xv7-927TQKxbR4C9LuaqjjNa6YXpXA'
 
   TASKS_SHEET = 'TASKS'
   USERS_SHEET = 'USERS'
@@ -10,51 +10,26 @@ export default class DatabaseController {
     this.baseUrl = `https://script.google.com/macros/s/${this.SCRIPT_ID}/exec`
   }
 
-  async requestTasks() {
-    const url = this.getUrl({ sheet: this.TASKS_SHEET })
-    const response = await fetch(url)
-    return await response.json()
+  async requestTasks(hash) {
+    const body = { action: 'tasksAuth', data: { hash } }
+    return this.post(this.baseUrl, body)
   }
 
   async login({ login, password }) {
     const body = { action: 'login', data: { login, password } }
-    const url = this.getUrl({ sheet: this.USERS_SHEET })
-    return await this.post(url, body)
-  }
-
-  async authorize(hash) {
-    const body = { action: 'authorize', data: { hash } }
-    const url = this.getUrl({ sheet: this.USERS_SHEET })
-    return await this.post(url, body)
+    return await this.post(this.baseUrl, body)
   }
 
   async taskActivityClick(key, hash) {
     const data = { key, hash }
     const body = { action: 'task', data }
-    const url = this.getUrl({ sheet: this.TIME_SHEET })
-    return await this.post(url, body)
-  }
-
-  async setCellData(sheet, key, header, value) {
-    const property = Object.fromEntries([[header, value]])
-    const row = Object.fromEntries([[key, property]])
-    const body = { action: 'update', data: row }
-    const url = this.getUrl({ sheet })
-    return await this.post(url, body)
+    return await this.post(this.baseUrl, body)
   }
 
   async post(url, body) {
     const options = this.getPostOptions(body)
     const response = await fetch(url, options)
     return await response.json()
-  }
-
-  getUrl(params) {
-    const requestParams = Object.entries(params)
-      .filter((parameter) => !parameter.includes(undefined))
-      .map((parameter) => parameter.join('='))
-      .join('&')
-    return `${this.baseUrl}?${requestParams}`
   }
 
   getPostOptions(body) {

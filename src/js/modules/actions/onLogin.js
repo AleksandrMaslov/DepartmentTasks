@@ -3,6 +3,7 @@ import DatabaseController from '../controllers/database/databaseController.js'
 import AuthorizationController from '../controllers/components/authorizationController.js'
 import TaskListController from '../controllers/components/taskListController.js'
 import PopupController from '../controllers/components/popupController.js'
+import { isNotSuccess, isNotValidUser } from '../dbResponseValidation.js'
 
 export default async function onLogin() {
   const login = new LoginModalController()
@@ -14,26 +15,20 @@ export default async function onLogin() {
   login.setLoading(false)
 
   const popup = new PopupController()
-  if (isNotSuccessRequest(response))
-    return popup.showServerError(response.error)
-  if (isNotUserValid(response)) return popup.showAccessDenied()
+  if (isNotSuccess(response)) return popup.showServerError(response.error)
+  if (isNotValidUser(response)) return popup.showAccessDenied()
+
+  const { user } = response.data
+  const { active, hash } = user
 
   const taskList = new TaskListController()
   taskList.setAuthorized(true)
-  taskList.switchParallels(response.report.active, 'BUSY')
+  taskList.switchParallels(active, 'BUSY')
 
   const auth = new AuthorizationController()
-  auth.setUserData(response.report)
+  auth.setUserData(user)
   auth.setAuthorized(true)
-  localStorage.setItem('hash', response.report.hash)
+  localStorage.setItem('hash', hash)
   popup.showWelcome()
   login.hide()
-}
-
-function isNotSuccessRequest(response) {
-  return response.result !== 'success'
-}
-
-function isNotUserValid(response) {
-  return response.report.status !== 'accepted'
 }

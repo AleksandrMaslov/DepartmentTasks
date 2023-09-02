@@ -1,3 +1,5 @@
+import dateTime from '../../dateTime.js'
+
 export default class TaskRowController {
   HEADER_IS_ACTIVE = 'isActive'
   STATE = {
@@ -35,11 +37,12 @@ export default class TaskRowController {
   }
 
   updateRowData(rowData) {
-    const { number, name, responsible, edited, time, ...states } = rowData
-    Object.entries({ number, name, responsible, edited, time }).forEach(
+    const { number, name, responsible, editor, edited, ...states } = rowData
+    Object.entries({ number, name, responsible, editor, edited }).forEach(
       (data) => {
         const [header, value] = data
-        this.updateCellData(header, value)
+        if (header !== 'edited') this.updateCellData(header, value)
+        else this.updateCellData(header, dateTime(value))
       }
     )
     Object.entries(states).forEach((data) => {

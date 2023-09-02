@@ -7,8 +7,3 @@ export default async function onSave() {
   const key = comment.getTaskKey()
   console.log(key)
 }
-
-// function isNotSuccessRequest(response) {
-//   const { result } = response
-//   return result !== 'success'
-// }
