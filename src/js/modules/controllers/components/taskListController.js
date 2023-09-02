@@ -171,7 +171,7 @@ export default class TaskListController {
     })
   }
 
-  switchParallels(activeKey, state) {
+  setOtherActiveTasks(activeKey, state) {
     const list = document.querySelector(`.${this.listClass}`)
     if (!list) return
 
@@ -179,8 +179,10 @@ export default class TaskListController {
       const controller = new TaskRowController(row)
       const key = controller.getKey()
       const currentState = controller.getActivityState()
+
+      if (key === activeKey)
+        return controller.setActivityState(controller.STATE.ACTIVE)
       if (currentState !== controller.STATE.ACTIVE) return
-      if (key === activeKey) return
       controller.setActivityState(controller.STATE[state])
     })
   }
