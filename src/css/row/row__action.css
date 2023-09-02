@@ -4,12 +4,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  opacity: 0.5;
-  -webkit-tap-highlight-color: transparent;
-  transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.row__action:hover {
-  opacity: 1;
 }
