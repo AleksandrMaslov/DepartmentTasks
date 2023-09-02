@@ -35,9 +35,9 @@ export default class CommentModalController {
   }
 
   areInputsNotValid() {
-    if (this.text.validity.valid) return false
-    if (this.select.validity.valid) return false
-    return true
+    if (!this.text.validity.valid) return true
+    if (!this.select.validity.valid) return true
+    return false
   }
 
   getTaskKey() {
