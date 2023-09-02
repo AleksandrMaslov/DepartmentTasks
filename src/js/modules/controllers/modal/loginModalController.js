@@ -51,6 +51,7 @@ export default class LoginModalController {
       this.form.setAttribute(this.LOADING_ATTRIBUTE, this.LOADING_STATE)
       return
     }
+
     this.form.reset()
     this.button.style.pointerEvents = 'auto'
     this.form.removeAttribute(this.LOADING_ATTRIBUTE)
