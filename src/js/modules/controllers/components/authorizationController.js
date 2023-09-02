@@ -35,9 +35,11 @@ export default class AuthorizationController {
   }
 
   setUserData({ username, name, avatar }) {
-    this.avatar.src = this.convertDriveImgUrl(avatar)
     this.name.innerHTML = name
     this.authorization.setAttribute('key', username)
+    if (!avatar)
+      return (this.avatar.src = './img/authorization/authorization-avatar.png')
+    this.avatar.src = this.convertDriveImgUrl(avatar)
   }
 
   convertDriveImgUrl(url) {
@@ -48,7 +50,7 @@ export default class AuthorizationController {
   }
 
   clearUserData() {
-    this.avatar.src = ''
+    this.avatar.src = './img/authorization/authorization-avatar.png'
     this.name.innerHTML = ''
     this.authorization.removeAttribute('key')
   }
