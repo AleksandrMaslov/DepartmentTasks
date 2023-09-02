@@ -1,4 +1,5 @@
 .modal__window_edit {
   height: 500px;
   width: 400px;
+  z-index: 1;
 }

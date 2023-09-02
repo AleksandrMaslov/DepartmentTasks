@@ -1,3 +1,4 @@
 .modal__window_login {
   width: 400px;
+  z-index: 10;
 }

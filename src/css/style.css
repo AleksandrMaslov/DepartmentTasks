@@ -72,6 +72,8 @@
 @import 'comment-form/comment-form__textarea.css';
 @import 'comment-form/comment-form__controls.css';
 
+@import 'edit/edit__button.css';
+
 @import 'popup/popup.css';
 @import 'popup/popup__container.css';
 @import 'popup/popup__header.css';
