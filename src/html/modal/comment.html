@@ -5,6 +5,7 @@
         <h3 class="title_h3 modal__title">Enter Single Comment:</h3>
         <span class="modal__close">&times</span>
       </div>
+
       <form method="dialog" class="form comment-form">
         <textarea
           class="input comment-form__textarea"
@@ -12,17 +13,24 @@
           placeholder="Text..."
           required
         ></textarea>
+
         <div class="comment-form__controls">
-          <button class="button" type="reset">Clear</button>
+          <button class="button comment-form__button_reset" type="reset">
+            Clear
+          </button>
+
           <select class="input comment-form__select" name="type" required>
             <option value="" disabled selected>-- Please select type --</option>
             <option value="question">Question</option>
             <option value="comment">Comment</option>
             <option value="note">Note</option>
           </select>
+
           <button class="button comment-form__button_save">Save</button>
         </div>
       </form>
+
+      <div class="square-loader"></div>
     </div>
   </div>
 </div>
