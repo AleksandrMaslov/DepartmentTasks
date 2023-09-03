@@ -1,3 +1,4 @@
+import TaskRowController from '../components/taskRowController.js'
 import CommentModalController from './commentModalController.js'
 
 export default class EditModalController {
@@ -11,19 +12,20 @@ export default class EditModalController {
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
     this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    this.comment = this.modal.querySelector(`.${this.editButtonClass}`)
+    this.commentButton = this.modal.querySelector(`.${this.editButtonClass}`)
   }
 
   define() {
     this.defineClose()
   }
 
-  showWithKey(key) {
+  show(event) {
+    const key = new TaskRowController(event.srcElement).getKey()
     this.modal.setAttribute('key', key)
     this.modal.style.display = 'flex'
 
-    this.comment.onclick = () => {
-      new CommentModalController().showWithKey(key)
+    this.commentButton.onclick = () => {
+      new CommentModalController().show(event)
     }
   }
 

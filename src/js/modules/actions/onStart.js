@@ -13,7 +13,8 @@ export default async function onStart(event) {
   const key = row.getKey()
   row.setLoadingActivityState()
 
-  const response = await new DatabaseController().taskActivityClick(key, hash)
+  const data = { key, hash }
+  const response = await new DatabaseController().taskActivityClick(data)
   if (isNotSuccess(response)) {
     row.setPreviousActivityState()
     return popup.showServerError(response.error)

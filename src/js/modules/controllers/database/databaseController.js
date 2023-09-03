@@ -15,21 +15,25 @@ export default class DatabaseController {
     return this.post(this.baseUrl, body)
   }
 
-  async login({ login, password }) {
-    const body = { action: 'login', data: { login, password } }
-    return await this.post(this.baseUrl, body)
+  async login(data) {
+    const body = { action: 'login', data }
+    return this.post(this.baseUrl, body)
   }
 
-  async taskActivityClick(key, hash) {
-    const data = { key, hash }
+  async taskActivityClick(data) {
     const body = { action: 'task', data }
-    return await this.post(this.baseUrl, body)
+    return this.post(this.baseUrl, body)
+  }
+
+  async addComment(data) {
+    const body = { action: 'comment', data }
+    return this.post(this.baseUrl, body)
   }
 
   async post(url, body) {
     const options = this.getPostOptions(body)
     const response = await fetch(url, options)
-    return await response.json()
+    return response.json()
   }
 
   getPostOptions(body) {

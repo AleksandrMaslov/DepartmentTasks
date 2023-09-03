@@ -163,6 +163,12 @@ export default class TaskListController {
   //   // parentElement.insertBefore(newElement, referenceElement);
   // }
 
+  getRow(key) {
+    const list = document.querySelector(`.${this.listClass}`)
+    const className = `.${this.rowClass}[${this.key}='${key}']`
+    return list.querySelector(className)
+  }
+
   setAuthorized(isAuthorized) {
     const list = document.querySelector(`.${this.listClass}`)
     if (!list) return
@@ -283,15 +289,9 @@ export default class TaskListController {
     return content
   }
 
-  onEditClick = (event) => {
-    const key = new TaskRowController(event.srcElement).getKey()
-    new EditModalController().showWithKey(key)
-  }
+  onEditClick = (event) => new EditModalController().show(event)
 
-  onCommentClick = (event) => {
-    const key = new TaskRowController(event.srcElement).getKey()
-    new CommentModalController().showWithKey(key)
-  }
+  onCommentClick = (event) => new CommentModalController().show(event)
 
   onStartClick = onStart
 }
