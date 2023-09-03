@@ -5,12 +5,16 @@ export default class EditModalController {
   constructor() {
     this.modalClass = 'modal'
     this.modalCommentClass = `${this.modalClass}_edit`
+    this.modalDescriptionClass = `${this.modalClass}__description`
     this.modalCloseClass = `${this.modalClass}__close`
 
     this.editClass = 'edit'
     this.editButtonClass = `${this.editClass}__button`
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
+    this.description = this.modal.querySelector(
+      `.${this.modalDescriptionClass}`
+    )
     this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
     this.commentButton = this.modal.querySelector(`.${this.editButtonClass}`)
   }
@@ -20,7 +24,13 @@ export default class EditModalController {
   }
 
   show(event) {
-    const key = new TaskRowController(event.srcElement).getKey()
+    const row = new TaskRowController(event.srcElement)
+    const key = row.getKey()
+    const number = row.getCellData('number')
+    const name = row.getCellData('name')
+
+    this.description.innerHTML = `${number} ${name}`
+
     this.modal.setAttribute('key', key)
     this.modal.style.display = 'flex'
 
