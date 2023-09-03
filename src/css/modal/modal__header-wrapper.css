@@ -1,0 +1,7 @@
+.modal__header-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 5px;
+}

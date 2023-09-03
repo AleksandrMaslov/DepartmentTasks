@@ -4,6 +4,7 @@
 @import 'flat-loader/flat-loader.css';
 @import 'square-loader/square-loader.css';
 @import 'title/title_h3.css';
+@import 'title/title_h4.css';
 @import 'button/button.css';
 @import 'input/input.css';
 @import 'form/form.css';
@@ -68,6 +69,7 @@
 @import 'modal/modal__window_comment.css';
 @import 'modal/modal__window_edit.css';
 @import 'modal/modal__header.css';
+@import 'modal/modal__header-wrapper.css';
 
 @import 'comment-form/comment-form__textarea.css';
 @import 'comment-form/comment-form__controls.css';
