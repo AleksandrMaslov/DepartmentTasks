@@ -12,3 +12,7 @@
 .modal__close:hover {
   opacity: 1;
 }
+
+.modal__close::selection {
+  background-color: transparent;
+}
