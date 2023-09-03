@@ -69,6 +69,7 @@
 @import 'modal/modal__window_comment.css';
 @import 'modal/modal__window_edit.css';
 @import 'modal/modal__header.css';
+@import 'modal/modal__description.css';
 @import 'modal/modal__header-wrapper.css';
 
 @import 'comment-form/comment-form__textarea.css';
