@@ -10,6 +10,7 @@ export default class CommentModalController {
   constructor() {
     this.modalClass = 'modal'
     this.modalCommentClass = `${this.modalClass}_comment`
+    this.modalDescriptionClass = `${this.modalClass}__description`
     this.modalCloseClass = `${this.modalClass}__close`
     this.formClass = 'comment-form'
     this.formTextClass = `${this.formClass}__textarea`
@@ -18,8 +19,11 @@ export default class CommentModalController {
     this.resetButtonClass = `${this.formClass}__button_reset`
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
-    this.form = this.modal.querySelector(`.${this.formClass}`)
     this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
+    this.description = this.modal.querySelector(
+      `.${this.modalDescriptionClass}`
+    )
+    this.form = this.modal.querySelector(`.${this.formClass}`)
     this.text = this.form.querySelector(`.${this.formTextClass}`)
     this.select = this.form.querySelector(`.${this.formSelectClass}`)
     this.saveButton = this.form.querySelector(`.${this.saveButtonClass}`)
@@ -34,9 +38,16 @@ export default class CommentModalController {
   }
 
   show(event) {
-    const key = new TaskRowController(event.srcElement).getKey()
+    const row = new TaskRowController(event.srcElement)
+    const key = row.getKey()
+    const number = row.getCellData('number')
+    const name = row.getCellData('name')
+
+    this.description.innerHTML = `${number} ${name}`
+
     this.form.setAttribute('key', key)
     this.form.reset()
+
     this.modal.style.display = 'flex'
   }
 
