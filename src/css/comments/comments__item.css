@@ -1,11 +1,12 @@
 .comments__item {
-  cursor: pointer;
   user-select: none;
   list-style: none;
   line-height: 1.8em;
+  cursor: auto;
 }
 
 .comments__item:not(:last-child)::before {
+  cursor: pointer;
   color: #fff;
   position: absolute;
   content: '+';
