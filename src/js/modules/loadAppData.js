@@ -29,7 +29,7 @@ export default async function loadAppData() {
 async function setAuthorized(user) {
   const taskList = new TaskListController()
   taskList.setAuthorized(true)
-  taskList.setOtherActiveTasks(user.active, 'BUSY')
+  taskList.setOtherActiveTasksState(user.active, 'BUSY')
 
   const auth = new AuthorizationController()
   auth.setUserData(user)
@@ -39,7 +39,5 @@ async function setAuthorized(user) {
 function createTaskList(tasks) {
   const taskListController = new TaskListController()
   taskListController.addTable()
-  Object.entries(tasks).forEach((keyValue) =>
-    taskListController.addRow(keyValue)
-  )
+  Object.entries(tasks).forEach((rowData) => taskListController.addRow(rowData))
 }

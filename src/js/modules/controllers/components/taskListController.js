@@ -16,6 +16,7 @@ export default class TaskListController {
     this.logoClass = `${this.rowClass}__logo`
     this.cellClass = `${this.rowClass}__cell`
     this.stateClass = `${this.rowClass}__state`
+    this.updatedClass = `${this.rowClass}__updated`
     this.cellContentClass = `${this.cellClass}-content`
 
     this.indicatorsClass = `${this.rowClass}__indicators`
@@ -129,39 +130,20 @@ export default class TaskListController {
     this.list.appendChild(this.header)
   }
 
-  addRow(keyValue) {
-    const [key, properties] = keyValue
+  addRow([key, properties]) {
     const row = this.createRow(key)
-
-    const rowLogo = this.createRowLogo()
-    row.appendChild(rowLogo)
-
-    Object.entries(properties).forEach((property) => {
-      const header = property[0]
-      const definition = this.propertiesDefinition[header]
-      let cell
-      if (definition) cell = definition.call(this, property)
-      else cell = this.createCell(property)
-      row.appendChild(cell)
-    })
-
-    const rowIndicators = this.createIndicators()
-    row.appendChild(rowIndicators)
-
-    const rowActions = this.createRowActions()
-    row.appendChild(rowActions)
+    row.appendChild(this.createRowLogo())
+    const [number, name, responsible, editor, edited, ...states] =
+      Object.entries(properties)
+    ;[number, name, responsible].forEach((property) =>
+      row.appendChild(this.createCell(property))
+    )
+    row.appendChild(this.createUpdated(editor, edited))
+    states.forEach((property) => row.appendChild(this.createState(property)))
+    row.appendChild(this.createIndicators())
+    row.appendChild(this.createRowActions())
     this.list.appendChild(row)
   }
-
-  // removeRowById(id) {
-  //   const elements = this.list.querySelectorAll(`div[${this.key}='${id}']`)
-  //   console.log(elements)
-  //   elements.forEach((element) => element.remove())
-  // }
-
-  // insertRow() {
-  //   // parentElement.insertBefore(newElement, referenceElement);
-  // }
 
   getRow(key) {
     const list = document.querySelector(`.${this.listClass}`)
@@ -177,7 +159,7 @@ export default class TaskListController {
     })
   }
 
-  setOtherActiveTasks(activeKey, state) {
+  setOtherActiveTasksState(activeKey, state) {
     const list = document.querySelector(`.${this.listClass}`)
     if (!list) return
 
@@ -210,9 +192,7 @@ export default class TaskListController {
     return rowLogo
   }
 
-  createCell(property) {
-    let [header, value] = property
-    if (header === 'edited') value = dateTime(value)
+  createCell([header, value]) {
     const cell = document.createElement('div')
     cell.classList.add(this.cellClass)
     cell.classList.add(`${this.cellClass}_${header}`)
@@ -220,19 +200,27 @@ export default class TaskListController {
     cell.setAttribute('key', header)
     const content = document.createElement('div')
     content.classList.add(this.cellContentClass)
+    if (header === 'edited') value = dateTime(value)
     content.innerHTML = value
     cell.appendChild(content)
     return cell
   }
 
-  createState(property) {
-    const [header, value] = property
+  createState([header, value]) {
     const state = document.createElement('div')
     state.classList.add(this.stateClass)
     state.classList.add(`${this.stateClass}_${header}`)
     state.setAttribute('title', value)
     state.setAttribute('key', header)
     return state
+  }
+
+  createUpdated(editor, edited) {
+    const updated = document.createElement('div')
+    updated.classList.add(this.updatedClass)
+    updated.appendChild(this.createCell(edited))
+    updated.appendChild(this.createCell(editor))
+    return updated
   }
 
   createIndicators() {
@@ -294,4 +282,14 @@ export default class TaskListController {
   onCommentClick = (event) => new CommentModalController().show(event)
 
   onStartClick = onStart
+
+  // removeRowById(id) {
+  //   const elements = this.list.querySelectorAll(`div[${this.key}='${id}']`)
+  //   console.log(elements)
+  //   elements.forEach((element) => element.remove())
+  // }
+
+  // insertRow() {
+  //   // parentElement.insertBefore(newElement, referenceElement);
+  // }
 }

@@ -47,6 +47,7 @@
 @import 'row/row__cell_responsible.css';
 @import 'row/row__cell_editor.css';
 @import 'row/row__cell_edited.css';
+@import 'row/row__updated.css';
 @import 'row/row__indicators.css';
 @import 'row/row__indicator.css';
 @import 'row/row__indicator_comments.css';
@@ -75,6 +76,9 @@
 @import 'comment-form/comment-form__textarea.css';
 @import 'comment-form/comment-form__controls.css';
 
+@import 'edit/edit.css';
+@import 'edit/edit__time.css';
+@import 'edit/edit__comments.css';
 @import 'edit/edit__button.css';
 
 @import 'popup/popup.css';

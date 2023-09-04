@@ -23,7 +23,7 @@ export default async function onLogin() {
 
   const taskList = new TaskListController()
   taskList.setAuthorized(true)
-  taskList.setOtherActiveTasks(active, 'BUSY')
+  taskList.setOtherActiveTasksState(active, 'BUSY')
 
   const auth = new AuthorizationController()
   auth.setUserData(user)

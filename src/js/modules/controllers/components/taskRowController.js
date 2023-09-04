@@ -36,19 +36,22 @@ export default class TaskRowController {
     content.innerHTML = value
   }
 
-  updateRowData(rowData) {
-    const { number, name, responsible, editor, edited, ...states } = rowData
+  updateState(header, value) {
+    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
+    cell.setAttribute('title', value)
+  }
+
+  updateRowData({ number, name, responsible, editor, edited, ...states }) {
     Object.entries({ number, name, responsible, editor, edited }).forEach(
-      (data) => {
-        const [header, value] = data
-        if (header !== 'edited') this.updateCellData(header, value)
-        else this.updateCellData(header, dateTime(value))
+      ([header, value]) => {
+        if (header === 'edited') value = dateTime(value)
+        this.updateCellData(header, value)
       }
     )
-    Object.entries(states).forEach((data) => {
-      const [header, value] = data
+
+    Object.entries(states).forEach(([header, value]) =>
       this.updateState(header, value)
-    })
+    )
   }
 
   setAuthorized(isAuthorized) {
@@ -85,10 +88,5 @@ export default class TaskRowController {
   getState(header) {
     const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
     return cell.getAttribute('title')
-  }
-
-  updateState(header, value) {
-    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
-    cell.setAttribute('title', value)
   }
 }

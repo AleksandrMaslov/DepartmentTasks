@@ -1,4 +1,11 @@
 .row__cell_editor {
-  margin-right: 10px;
-  width: 70px;
+  display: flex;
+  text-align: left;
+}
+
+.row__cell_editor::before {
+  content: 'by ';
+  text-align: right;
+  margin-right: 5px;
+  margin-left: 15px;
 }

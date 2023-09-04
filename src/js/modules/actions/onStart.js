@@ -22,6 +22,6 @@ export default async function onStart(event) {
 
   row.updateRowData(response.data)
   if (row.isActive())
-    return new TaskListController().setOtherActiveTasks(key, 'NOT_ACTIVE')
+    return new TaskListController().setOtherActiveTasksState(key, 'NOT_ACTIVE')
   if (row.isBusy()) return popup.showBusy()
 }
