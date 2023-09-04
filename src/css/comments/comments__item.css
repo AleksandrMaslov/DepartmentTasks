@@ -1,0 +1,27 @@
+.comments__item {
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+  line-height: 1.8em;
+}
+
+.comments__item:not(:last-child)::before {
+  color: #fff;
+  position: absolute;
+  content: '+';
+  text-align: center;
+  line-height: calc(0.8em - 1px);
+  font-weight: 600;
+  height: 12px;
+  width: 12px;
+  top: calc(0.9em - 6px + 1px);
+  left: calc(0em - 1em - 6px + 1px);
+  z-index: 1;
+  background-color: #343a40;
+  border-radius: 3px;
+}
+
+.comments__details[open] > .comments__item:not(:last-child)::before {
+  content: '-';
+  line-height: calc(0.8em - 4px);
+}

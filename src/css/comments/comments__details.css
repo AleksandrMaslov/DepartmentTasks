@@ -1,0 +1,35 @@
+.comments__details {
+  margin-left: 2em;
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+}
+
+.comments__details::before {
+  content: '';
+  position: absolute;
+  border-left: 2px solid #aaa;
+  border-bottom: 2px solid #aaa;
+  left: -1em;
+  top: 0px;
+  width: 0.8em;
+  height: 1em;
+}
+
+.comments__details:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  border-left: 2px solid #aaa;
+  left: -1em;
+  bottom: 0px;
+  width: 0.8em;
+  height: 100%;
+}
+
+.comments > .comments__details {
+  margin: 0px;
+}
+
+.comments > .comments__details::before {
+  display: none;
+}

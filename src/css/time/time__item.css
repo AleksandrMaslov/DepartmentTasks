@@ -1,0 +1,9 @@
+.time__item {
+  line-height: 20px;
+  margin: 0px calc(0px - var(--offset));
+  padding: 0px var(--offset);
+}
+
+.time__item:hover {
+  background-color: gainsboro;
+}

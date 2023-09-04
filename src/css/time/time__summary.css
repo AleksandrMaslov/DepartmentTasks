@@ -1,0 +1,12 @@
+.time__summary {
+  font-weight: 600;
+  margin: calc(0px - var(--offset)) calc(0px - var(--offset)) 0;
+  padding: var(--offset);
+  cursor: pointer;
+  user-select: none;
+}
+
+.time[open] .time__summary {
+  border-bottom: 1px solid #aaa;
+  margin-bottom: var(--offset);
+}
