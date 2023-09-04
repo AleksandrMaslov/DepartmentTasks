@@ -1,6 +1,7 @@
 .row__action-content {
   height: 100%;
   cursor: pointer;
+  user-select: none;
   opacity: 0.5;
   -webkit-tap-highlight-color: transparent;
   transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
@@ -8,10 +9,6 @@
 
 .row__action-content:hover {
   opacity: 1;
-}
-
-.row__action-content::selection {
-  background-color: transparent;
 }
 
 .tasks__list:has(.row__state_isActive[title='.']) .row__action-content {
