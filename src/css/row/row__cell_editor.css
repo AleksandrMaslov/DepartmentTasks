@@ -9,3 +9,7 @@
   margin-right: 5px;
   margin-left: 15px;
 }
+
+.row__cell_editor[title='']::before {
+  content: '';
+}
