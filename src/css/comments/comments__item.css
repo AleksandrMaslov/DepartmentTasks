@@ -1,28 +1,34 @@
 .comments__item {
   user-select: none;
   list-style: none;
-  line-height: 1.8em;
+  line-height: var(--line-height);
   cursor: auto;
 }
 
 .comments__item:not(:last-child)::before {
-  cursor: pointer;
-  color: #fff;
   position: absolute;
-  content: '+';
-  text-align: center;
-  line-height: calc(0.8em - 1px);
-  font-weight: 600;
-  height: 12px;
-  width: 12px;
-  top: calc(0.9em - 6px + 1px);
-  left: calc(0em - 1em - 6px + 1px);
+  top: var(--marker-top);
+  left: var(--marker-left);
   z-index: 1;
-  background-color: #343a40;
-  border-radius: 3px;
+  width: var(--marker-size);
+  height: var(--marker-size);
+
+  content: '+';
+  color: #fff;
+  text-align: center;
+  font-weight: 600;
+  line-height: calc(
+    var(--leader-vertical-offset) * 1.2 - var(--leader-thickness) / 2
+  );
+
+  background-color: var(--marker-color);
+  border-radius: var(--marker-radius);
+  cursor: pointer;
 }
 
 .comments__details[open] > .comments__item:not(:last-child)::before {
   content: '-';
-  line-height: calc(0.8em - 4px);
+  line-height: calc(
+    var(--leader-vertical-offset) * 0.9 - var(--leader-thickness) / 2
+  );
 }

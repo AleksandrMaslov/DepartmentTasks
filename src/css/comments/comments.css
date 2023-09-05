@@ -1,3 +1,28 @@
 .comments {
-  margin-left: 1.5em;
+  overflow: auto;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  padding-top: 7px;
+  padding-left: calc(var(--leader-offset) * 2);
+
+  --line-height: 1.1em;
+  --leader-thickness: 2px;
+  --leader-color: #aaa;
+  --leader-offset: 1em;
+  --leader-spacing: 2em;
+  --leader-vertical-offset: calc(var(--line-height) / 1.7);
+
+  --marker-size: 12px;
+  --marker-radius: 3px;
+  --marker-color: #343a40;
+
+  --marker-top: calc(
+    var(--line-height) / 2.1 - var(--marker-size) / 2 + var(--leader-thickness) /
+      2
+  );
+
+  --marker-left: calc(
+    0em - var(--leader-offset) - var(--marker-size) / 2 +
+      var(--leader-thickness) / 2
+  );
 }
