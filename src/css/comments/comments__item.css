@@ -3,6 +3,11 @@
   list-style: none;
   line-height: var(--line-height);
   cursor: auto;
+  padding-bottom: 3px;
+}
+
+.comments__item:hover {
+  background-color: gainsboro;
 }
 
 .comments__item:not(:last-child)::before {
