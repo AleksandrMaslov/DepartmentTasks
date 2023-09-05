@@ -193,6 +193,7 @@ export default class TaskListController {
   }
 
   createCell([header, value]) {
+    if (header === 'edited') value = dateTime(value)
     const cell = document.createElement('div')
     cell.classList.add(this.cellClass)
     cell.classList.add(`${this.cellClass}_${header}`)
@@ -200,7 +201,6 @@ export default class TaskListController {
     cell.setAttribute('key', header)
     const content = document.createElement('div')
     content.classList.add(this.cellContentClass)
-    if (header === 'edited') value = dateTime(value)
     content.innerHTML = value
     cell.appendChild(content)
     return cell
