@@ -84,21 +84,6 @@ export default class TaskListController {
         title: 'Loading',
       },
     }
-
-    this.propertiesDefinition = {
-      number: this.createCell,
-      name: this.createCell,
-      responsible: this.createCell,
-      editor: this.createCell,
-      edited: this.createCell,
-      isActive: this.createState,
-      isFinished: this.createState,
-      isWrong: this.createState,
-      isAccepted: this.createState,
-      isNoted: this.createState,
-      isAsked: this.createState,
-      isCommented: this.createState,
-    }
   }
 
   addTable() {
