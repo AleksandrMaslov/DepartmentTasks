@@ -1,10 +1,9 @@
 .edit__profile {
-  position: absolute;
-  bottom: 0;
+  margin-top: 60px;
   width: 100%;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
-  gap: 5px;
+  gap: 10px;
   z-index: 0;
 }
