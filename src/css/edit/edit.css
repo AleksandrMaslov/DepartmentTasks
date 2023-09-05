@@ -1,0 +1,8 @@
+.edit {
+  flex: 1 1 auto;
+  position: relative;
+  display: grid;
+  grid-template-rows: 155px 265px;
+  grid-template-columns: 300px 1fr;
+  gap: 15px;
+}

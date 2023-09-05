@@ -9,14 +9,14 @@ export default class EditModalController {
     this.modalCloseClass = `${this.modalClass}__close`
 
     this.editClass = 'edit'
-    this.editButtonClass = `${this.editClass}__button`
+    this.commentButtonClass = `${this.editClass}__button_comment`
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
     this.description = this.modal.querySelector(
       `.${this.modalDescriptionClass}`
     )
     this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    this.commentButton = this.modal.querySelector(`.${this.editButtonClass}`)
+    this.commentButton = this.modal.querySelector(`.${this.commentButtonClass}`)
   }
 
   define() {

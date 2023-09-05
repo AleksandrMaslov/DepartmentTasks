@@ -72,7 +72,6 @@
 @import 'modal/modal__header.css';
 @import 'modal/modal__description.css';
 @import 'modal/modal__header-wrapper.css';
-@import 'modal/modal__content.css';
 
 @import 'comment-form/comment-form__textarea.css';
 @import 'comment-form/comment-form__controls.css';
@@ -83,9 +82,18 @@
 @import 'popup/popup__close.css';
 @import 'popup/popup__content.css';
 
+@import 'edit/edit.css';
+@import 'edit/edit__comments.css';
+@import 'edit/edit__controls.css';
+@import 'edit/edit__profile.css';
+@import 'edit/edit__time.css';
+@import 'edit/edit__item.css';
+@import 'edit/edit__profile-wrapper.css';
+
 @import 'time/time.css';
 @import 'time/time__item.css';
 @import 'time/time__summary.css';
+@import 'time/time__grid.css';
 
 @import 'comments/comments.css';
 @import 'comments/comments__item.css';

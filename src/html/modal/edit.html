@@ -7,51 +7,89 @@
         <span class="modal__close">&times</span>
       </div>
 
-      <div class="modal__content">
-        <details class="time">
-          <summary class="time__summary">Total: 8:21</summary>
-          <p class="time__item">3:00 - user1</p>
-          <p class="time__item">3:00 - user2</p>
-          <p class="time__item">2:12 - user3</p>
-          <p class="time__item">1:15 - user4</p>
-          <p class="time__item">1:15 - user5</p>
-        </details>
+      <div class="edit">
+        <div class="edit__profile-wrapper">
+          <details class="time edit__time">
+            <summary class="time__summary">
+              <span>Total :</span>
+              <span class="time__total">8:21</span>
+            </summary>
 
-        <div>
-          <p class="edit__state">Active</p>
-          <p class="edit__responsible">Responsible</p>
-          <p class="edit__editor">Editor</p>
-          <p class="edit__edited">2023-09-03 12:31:51</p>
+            <div class="time__grid">
+              <p>user1user1</p>
+              <p>3:00</p>
+              <p>user2</p>
+              <p>3:00</p>
+              <p>user3</p>
+              <p>2:12</p>
+              <p>user4</p>
+              <p>1:15</p>
+              <p>user5</p>
+              <p>1:15</p>
+            </div>
+          </details>
+
+          <div class="edit__profile">
+            <p class="edit__item">State :</p>
+            <p class="edit__item edit__state">ACTIVE</p>
+            <p class="edit__item">Editor :</p>
+            <p class="edit__item edit__editor">EDITOR</p>
+            <p class="edit__item">Edited :</p>
+            <p class="edit__item edit__edited">2023-09-03 12:31:51</p>
+            <p class="edit__item">Responsible :</p>
+            <p class="edit__item edit__responsible">RESPONSIBLE</p>
+          </div>
         </div>
 
-        <div class="comments">
+        <div class="edit__controls">
+          <button class="button edit__button_comment">Comment</button>
+          <button class="button edit__button_finish">Finish</button>
+          <button class="button edit__button_accept">Accept</button>
+        </div>
+
+        <div class="comments edit__comments">
           <details class="comments__details">
-            <summary class="comments__item">Comments</summary>
+            <summary class="comments__item">
+              Comments Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+              Enim, totam.
+            </summary>
             <details class="comments__details">
-              <summary class="comments__item">Comment1</summary>
+              <summary class="comments__item">
+                Comment1 Lorem ipsum dolor, sit amet consectetur adipisicing
+                elit. Enim, totam.
+              </summary>
               <details class="comments__details">
-                <summary class="comments__item">Comment4</summary>
+                <summary class="comments__item">
+                  Comment4 Lorem ipsum dolor, sit amet consectetur adipisicing
+                  elit. Enim, totam.
+                </summary>
                 <details class="comments__details">
-                  <summary class="comments__item">Comment5</summary>
+                  <summary class="comments__item">
+                    Comment5 Lorem ipsum dolor, sit amet consectetur adipisicing
+                    elit. Enim, totam.
+                  </summary>
                 </details>
                 <details class="comments__details">
-                  <summary class="comments__item">Comment4</summary>
+                  <summary class="comments__item">
+                    Comment4 Lorem ipsum dolor, sit amet consectetur adipisicing
+                    elit. Enim, totam.
+                  </summary>
                 </details>
               </details>
             </details>
             <details class="comments__details">
-              <summary class="comments__item">Comment2</summary>
+              <summary class="comments__item">
+                Comment2 Lorem ipsum dolor, sit amet consectetur adipisicing
+                elit. Enim, totam.
+              </summary>
             </details>
             <details class="comments__details">
-              <summary class="comments__item">Comment3</summary>
+              <summary class="comments__item">
+                Comment3 Lorem ipsum dolor, sit amet consectetur adipisicing
+                elit. Enim, totam.
+              </summary>
             </details>
           </details>
-        </div>
-
-        <div>
-          <button class="button">Finish</button>
-          <button class="button">Accept</button>
-          <button class="button edit__button">Comment</button>
         </div>
       </div>
     </div>
