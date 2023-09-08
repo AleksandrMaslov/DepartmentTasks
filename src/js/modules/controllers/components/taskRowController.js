@@ -29,6 +29,11 @@ export default class TaskRowController {
     return cell.getAttribute('title')
   }
 
+  getStateData(header) {
+    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
+    return cell.getAttribute('title')
+  }
+
   updateCellData(header, value) {
     const cell = this.row.querySelector(`.${this.cellClass}[key=${header}]`)
     cell.setAttribute('title', value)
@@ -61,7 +66,7 @@ export default class TaskRowController {
   }
 
   getActivityState() {
-    return this.getState(this.HEADER_IS_ACTIVE)
+    return this.getStateData(this.HEADER_IS_ACTIVE)
   }
 
   setLoadingActivityState() {
@@ -83,10 +88,5 @@ export default class TaskRowController {
 
   isActive() {
     return this.getActivityState() === this.STATE.ACTIVE
-  }
-
-  getState(header) {
-    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
-    return cell.getAttribute('title')
   }
 }
