@@ -3,7 +3,9 @@
   border: 1px solid #aaa;
   border-radius: 5px;
   padding-top: 7px;
+  padding-bottom: 7px;
   padding-left: calc(var(--leader-offset) * 2);
+  padding-right: 10px;
 
   --line-height: 1.1em;
   --leader-thickness: 2px;
