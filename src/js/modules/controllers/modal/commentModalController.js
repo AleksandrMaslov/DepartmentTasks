@@ -39,16 +39,21 @@ export default class CommentModalController {
 
   show(event) {
     const row = new TaskRowController(event.srcElement)
-    const key = row.getKey()
+    this.setWindowDescriptionByRow(row)
+    this.setWindowKeyByRow(row)
+    this.form.reset()
+    this.modal.style.display = 'flex'
+  }
+
+  setWindowDescriptionByRow(row) {
     const number = row.getCellData('number')
     const name = row.getCellData('name')
-
     this.description.innerHTML = `${number} ${name}`
+  }
 
+  setWindowKeyByRow(row) {
+    const key = row.getKey()
     this.form.setAttribute('key', key)
-    this.form.reset()
-
-    this.modal.style.display = 'flex'
   }
 
   setLoading(isLoading) {
