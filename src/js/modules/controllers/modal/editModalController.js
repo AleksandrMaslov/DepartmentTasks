@@ -25,18 +25,25 @@ export default class EditModalController {
 
   show(event) {
     const row = new TaskRowController(event.srcElement)
-    const key = row.getKey()
+    this.setWindowDescriptionByRow(row)
+    this.setWindowKeyByRow(row)
+    this.defineCommentClick(event)
+    this.modal.style.display = 'flex'
+  }
+
+  setWindowDescriptionByRow(row) {
     const number = row.getCellData('number')
     const name = row.getCellData('name')
-
     this.description.innerHTML = `${number} ${name}`
+  }
 
+  setWindowKeyByRow(row) {
+    const key = row.getKey()
     this.modal.setAttribute('key', key)
-    this.modal.style.display = 'flex'
+  }
 
-    this.commentButton.onclick = () => {
-      new CommentModalController().show(event)
-    }
+  defineCommentClick(event) {
+    this.commentButton.onclick = () => new CommentModalController().show(event)
   }
 
   getTaskKey() {
