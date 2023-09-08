@@ -13,6 +13,7 @@ export default class EditModalController {
     this.responsibleClass = `${this.editClass}__responsible`
     this.editorClass = `${this.editClass}__editor`
     this.editedClass = `${this.editClass}__edited`
+    this.timeClass = `${this.editClass}__time`
     this.commentButtonClass = `${this.editClass}__button_comment`
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
@@ -24,6 +25,7 @@ export default class EditModalController {
     this.responsible = this.modal.querySelector(`.${this.responsibleClass}`)
     this.editor = this.modal.querySelector(`.${this.editorClass}`)
     this.edited = this.modal.querySelector(`.${this.editedClass}`)
+    this.time = this.modal.querySelector(`.${this.timeClass}`)
     this.commentButton = this.modal.querySelector(`.${this.commentButtonClass}`)
   }
 
@@ -36,6 +38,7 @@ export default class EditModalController {
     this.setWindowDescriptionByRow(row)
     this.setWindowKeyByRow(row)
     this.setProfileByRow(row)
+    this.resetAllDetails()
     this.defineCommentClick(event)
     this.modal.style.display = 'flex'
   }
@@ -59,6 +62,11 @@ export default class EditModalController {
   setWindowKeyByRow(row) {
     const key = row.getKey()
     this.modal.setAttribute('key', key)
+  }
+
+  resetAllDetails() {
+    const details = this.modal.getElementsByTagName('details')
+    Array.from(details).forEach((detail) => (detail.open = false))
   }
 
   defineCommentClick(event) {
