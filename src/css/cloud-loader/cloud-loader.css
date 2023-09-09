@@ -1,0 +1,49 @@
+.cloud-loader {
+  width: 100px;
+  height: 75px;
+  margin: 0 auto;
+  background: #f0f0f0;
+  position: relative;
+  border-radius: 100%;
+}
+
+.cloud-loader:before,
+.cloud-loader::after {
+  content: '';
+  position: absolute;
+}
+
+.cloud-loader:before {
+  border: 15px solid transparent;
+  border-top: 25px solid #f0f0f0;
+  transform: rotate(45deg);
+  top: 50px;
+  left: -15px;
+}
+
+.cloud-loader:after {
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: #343a40;
+  box-shadow: 20px 0 #343a40, -20px 0 #343a40;
+  animation: commentsLoaderAnimation 2s ease-out infinite alternate;
+}
+
+@keyframes commentsLoaderAnimation {
+  0% {
+    background-color: rgba(50, 50, 60, 0.25);
+    box-shadow: 20px 0 rgba(50, 50, 60, 0.25), -20px 0 #343a40;
+  }
+  50% {
+    background-color: #343a40;
+    box-shadow: 20px 0 rgba(50, 50, 60, 0.25), -20px 0 rgba(50, 50, 60, 0.25);
+  }
+  100% {
+    background-color: rgba(50, 50, 60, 0.25);
+    box-shadow: 20px 0 #343a40, -20px 0 rgba(50, 50, 60, 0.25);
+  }
+}
