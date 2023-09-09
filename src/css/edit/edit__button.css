@@ -1,0 +1,4 @@
+.edit__button {
+  position: relative;
+  transition: all 0.1s cubic-bezier(0.77, 0, 0.175, 1);
+}

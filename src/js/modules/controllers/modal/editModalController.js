@@ -1,4 +1,5 @@
 import TaskRowController from '../components/taskRowController.js'
+import DatabaseController from '../database/databaseController.js'
 import CommentModalController from './commentModalController.js'
 
 export default class EditModalController {
@@ -22,6 +23,8 @@ export default class EditModalController {
     this.commentButtonClass = `${this.editClass}__button_comment`
     this.finishButtonClass = `${this.editClass}__button_finish`
     this.acceptButtonClass = `${this.editClass}__button_accept`
+    this.loaderFinishClass = `${this.editClass}__loader_finish`
+    this.loaderAcceptClass = `${this.editClass}__loader_accept`
 
     this.modal = document.querySelector(`.${this.modalCommentClass}`)
     this.description = this.modal.querySelector(
@@ -43,7 +46,9 @@ export default class EditModalController {
     )
     this.commentButton = this.modal.querySelector(`.${this.commentButtonClass}`)
     this.finishButton = this.modal.querySelector(`.${this.finishButtonClass}`)
+    this.finishLoader = this.modal.querySelector(`.${this.loaderFinishClass}`)
     this.acceptButton = this.modal.querySelector(`.${this.acceptButtonClass}`)
+    this.acceptLoader = this.modal.querySelector(`.${this.loaderAcceptClass}`)
   }
 
   define() {
@@ -57,6 +62,8 @@ export default class EditModalController {
     this.setProfileByRow(row)
     this.setAllDetailsClosed()
     this.defineCommentClick(event)
+    this.defineFinishClick(event)
+    this.defineAcceptClick(event)
     this.modal.style.display = 'flex'
 
     this.setLoading(true)
@@ -95,35 +102,101 @@ export default class EditModalController {
     this.commentButton.onclick = () => new CommentModalController().show(event)
   }
 
+  defineFinishClick() {
+    const data = this.getKeyHash()
+    this.finishButton.onclick = async () => {
+      this.setFinishLoading(true)
+      const response = await new DatabaseController().setFinished(data)
+      this.setFinishLoading(false)
+      console.log(response)
+    }
+  }
+
+  defineAcceptClick() {
+    const data = this.getKeyHash()
+    this.acceptButton.onclick = async () => {
+      this.setAcceptLoading(true)
+      const response = await new DatabaseController().setAccepted(data)
+      this.setAcceptLoading(false)
+      console.log(response)
+    }
+  }
+
+  setFinishLoading(isLoading) {
+    this.setButtonsNotEnabled(isLoading)
+
+    if (isLoading) {
+      this.finishLoader.style.display = 'block'
+      this.finishButton.style.color = 'transparent'
+      return
+    }
+
+    this.finishLoader.style.display = 'none'
+    this.finishButton.style.color = 'initial'
+  }
+
+  setAcceptLoading(isLoading) {
+    this.setButtonsNotEnabled(isLoading)
+
+    if (isLoading) {
+      this.acceptLoader.style.display = 'block'
+      this.acceptButton.style.color = 'transparent'
+      return
+    }
+
+    this.acceptLoader.style.display = 'none'
+    this.acceptButton.style.color = 'initial'
+  }
+
   setLoading(isLoading) {
+    this.setTimeLoading(isLoading)
+    this.setCommentsLoading(isLoading)
+    this.setButtonsNotEnabled(isLoading)
+  }
+
+  setTimeLoading(isLoading) {
     if (isLoading) {
       this.time.style.pointerEvents = 'none'
       this.timeTotal.style.opacity = '0'
       this.timeLoader.style.display = 'flex'
-      this.commentsDetails.style.pointerEvents = 'none'
-      this.commentsDetails.style.opacity = '0'
-      this.commentsLoader.style.display = 'block'
-
-      this.commentButton.style.pointerEvents = 'none'
-      this.acceptButton.style.pointerEvents = 'none'
-      this.finishButton.style.pointerEvents = 'none'
       return
     }
 
     this.timeTotal.style.opacity = '1'
     this.timeLoader.style.display = 'none'
     this.time.style.pointerEvents = 'auto'
+  }
+
+  setCommentsLoading(isLoading) {
+    if (isLoading) {
+      this.commentsDetails.style.pointerEvents = 'none'
+      this.commentsDetails.style.opacity = '0'
+      this.commentsLoader.style.display = 'block'
+      return
+    }
+
     this.commentsDetails.style.opacity = '1'
     this.commentsLoader.style.display = 'none'
     this.commentsDetails.style.pointerEvents = 'auto'
+  }
+
+  setButtonsNotEnabled(isNotEnabled) {
+    if (isNotEnabled) {
+      this.commentButton.style.pointerEvents = 'none'
+      this.acceptButton.style.pointerEvents = 'none'
+      this.finishButton.style.pointerEvents = 'none'
+      return
+    }
 
     this.commentButton.style.pointerEvents = 'auto'
     this.acceptButton.style.pointerEvents = 'auto'
     this.finishButton.style.pointerEvents = 'auto'
   }
 
-  getTaskKey() {
-    return this.modal.getAttribute('key')
+  getKeyHash() {
+    const key = this.modal.getAttribute('key')
+    const hash = localStorage.getItem('hash')
+    return { key, hash }
   }
 
   defineClose() {

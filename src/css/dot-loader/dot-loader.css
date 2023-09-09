@@ -7,7 +7,6 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  display: block;
   background: #343a40;
   box-sizing: border-box;
   animation: dotLoaderAnimation 2s linear infinite alternate;

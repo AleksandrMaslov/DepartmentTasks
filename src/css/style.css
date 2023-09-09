@@ -90,6 +90,7 @@
 @import 'edit/edit__profile.css';
 @import 'edit/edit__time.css';
 @import 'edit/edit__item.css';
+@import 'edit/edit__button.css';
 @import 'edit/edit__profile-wrapper.css';
 
 @import 'time/time.css';
