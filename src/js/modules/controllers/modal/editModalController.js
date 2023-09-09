@@ -60,7 +60,9 @@ export default class EditModalController {
     this.modal.style.display = 'flex'
 
     this.setLoading(true)
-    this.setLoading(false)
+    setTimeout(() => {
+      this.setLoading(false)
+    }, 2000)
   }
 
   setProfileByRow(row) {
@@ -95,24 +97,26 @@ export default class EditModalController {
 
   setLoading(isLoading) {
     if (isLoading) {
-      this.timeTotal.style.display = 'none'
+      this.time.style.pointerEvents = 'none'
+      this.timeTotal.style.opacity = '0'
       this.timeLoader.style.display = 'flex'
-      this.commentsDetails.style.display = 'none'
+      this.commentsDetails.style.pointerEvents = 'none'
+      this.commentsDetails.style.opacity = '0'
       this.commentsLoader.style.display = 'block'
 
-      this.time.style.pointerEvents = 'none'
       this.commentButton.style.pointerEvents = 'none'
       this.acceptButton.style.pointerEvents = 'none'
       this.finishButton.style.pointerEvents = 'none'
       return
     }
 
-    this.timeTotal.style.display = 'initial'
+    this.timeTotal.style.opacity = '1'
     this.timeLoader.style.display = 'none'
-    this.commentsDetails.style.display = 'initial'
-    this.commentsLoader.style.display = 'none'
-
     this.time.style.pointerEvents = 'auto'
+    this.commentsDetails.style.opacity = '1'
+    this.commentsLoader.style.display = 'none'
+    this.commentsDetails.style.pointerEvents = 'auto'
+
     this.commentButton.style.pointerEvents = 'auto'
     this.acceptButton.style.pointerEvents = 'auto'
     this.finishButton.style.pointerEvents = 'auto'

@@ -1,4 +1,5 @@
 .comments {
+  position: relative;
   display: flex;
   overflow: auto;
   border: 1px solid #aaa;

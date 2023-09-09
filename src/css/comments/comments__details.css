@@ -2,6 +2,8 @@
   margin-left: var(--leader-spacing);
   list-style: none;
   position: relative;
+  opacity: 1;
+  transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .comments__details::before,

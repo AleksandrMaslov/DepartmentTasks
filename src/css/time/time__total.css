@@ -1,3 +1,8 @@
+.time__total {
+  opacity: 1;
+  transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
 .time__total::before {
   content: 'Total: ';
 }
