@@ -1,16 +1,17 @@
 .time {
+  --offset: 10px;
+
   width: 100%;
-  padding: var(--offset) var(--offset) 0;
   height: fit-content;
+  padding: var(--offset) var(--offset) 0;
 
   text-align: center;
   border: 1px solid #aaa;
   border-radius: 4px;
   background-color: #fff;
-  --offset: 10px;
   z-index: 15;
 }
 
 .time[open] {
-  padding: var(--offset);
+  padding-bottom: var(--offset);
 }

@@ -9,5 +9,4 @@
 
 .time[open] .time__summary {
   border-bottom: 1px solid #aaa;
-  margin-bottom: var(--offset);
 }
