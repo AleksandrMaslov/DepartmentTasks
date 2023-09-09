@@ -1,0 +1,3 @@
+.time__total::before {
+  content: 'Total: ';
+}

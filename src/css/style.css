@@ -3,6 +3,9 @@
 
 @import 'flat-loader/flat-loader.css';
 @import 'square-loader/square-loader.css';
+@import 'long-line-loader/long-line-loader.css';
+@import 'dot-loader/dot-loader.css';
+@import 'dot-loader/dot-loader__container.css';
 @import 'title/title_h3.css';
 @import 'title/title_h4.css';
 @import 'button/button.css';
@@ -93,7 +96,10 @@
 @import 'time/time.css';
 @import 'time/time__summary.css';
 @import 'time/time__grid.css';
+@import 'time/time__loader.css';
+@import 'time/time__total.css';
 
 @import 'comments/comments.css';
 @import 'comments/comments__item.css';
 @import 'comments/comments__details.css';
+@import 'comments/comments__loader.css';

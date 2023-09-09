@@ -11,8 +11,11 @@
         <div class="edit__profile-wrapper">
           <details class="time edit__time">
             <summary class="time__summary">
-              <span>Total :</span>
               <span class="time__total">8:21</span>
+
+              <div class="dot-loader__container">
+                <span class="dot-loader time__loader"></span>
+              </div>
             </summary>
 
             <div class="time__grid">
@@ -48,8 +51,10 @@
         </div>
 
         <div class="comments edit__comments">
+          <span class="long-line-loader comments__loader"></span>
+
           <details class="comments__details">
-            <summary class="comments__item">
+            <summary class="comments__item" focus>
               Comments Lorem ipsum dolor, sit amet consectetur adipisicing elit.
               Enim, totam.
             </summary>
@@ -92,6 +97,8 @@
           </details>
         </div>
       </div>
+
+      <div class="square-loader"></div>
     </div>
   </div>
 </div>

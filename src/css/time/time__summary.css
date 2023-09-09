@@ -1,7 +1,7 @@
 .time__summary {
+  list-style: none;
   margin: calc(0px - var(--offset)) calc(0px - var(--offset)) 0;
   padding: var(--offset);
-
   font-weight: 600;
   cursor: pointer;
   user-select: none;
