@@ -1,4 +1,4 @@
 .dot-loader__container {
+  display: none;
   height: 20px;
-  display: flex;
 }
