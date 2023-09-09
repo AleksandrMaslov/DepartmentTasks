@@ -1,5 +1,5 @@
 .comments__item {
-  padding-bottom: 3px;
+  padding: 3px;
   line-height: var(--line-height);
   border: 1px solid transparent;
   border-radius: 3px;
@@ -19,29 +19,34 @@
 }
 
 .comments__item:not(:last-child)::before {
+  --leader-half-thickness: calc(var(--leader-thickness) / 2);
   position: absolute;
-  top: var(--marker-top);
-  left: var(--marker-left);
   z-index: 1;
+  top: var(--leader-vertical-offset);
+  left: calc(0em - var(--leader-horizontal-offset));
   width: var(--marker-size);
   height: var(--marker-size);
+  transform: translate(
+    calc(var(--leader-half-thickness) - 50%),
+    calc(0px - 50% - var(--leader-half-thickness))
+  );
 
   content: '+';
   color: #fff;
   text-align: center;
   font-weight: 600;
-  line-height: calc(
-    var(--leader-vertical-offset) * 1.2 - var(--leader-thickness) / 2
-  );
+  line-height: calc(var(--line-height) * 0.7);
 
   background-color: var(--marker-color);
   border-radius: var(--marker-radius);
   cursor: pointer;
 }
 
+.comments__details:has(.comments__details)[open] > .comments__item {
+  margin-bottom: var(--open-offset);
+}
+
 .comments__details[open] > .comments__item:not(:last-child)::before {
   content: '-';
-  line-height: calc(
-    var(--leader-vertical-offset) * 0.9 - var(--leader-thickness) / 2
-  );
+  line-height: calc(var(--line-height) * 0.55);
 }

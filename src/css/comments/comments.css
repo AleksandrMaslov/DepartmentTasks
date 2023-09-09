@@ -6,27 +6,18 @@
   border-radius: 5px;
   padding-top: 7px;
   padding-bottom: 7px;
-  padding-left: calc(var(--leader-offset) * 2);
+  padding-left: calc(var(--leader-horizontal-offset) * 2);
   padding-right: 10px;
 
-  --line-height: 1.1em;
+  --line-height: 1em;
   --leader-thickness: 2px;
   --leader-color: #aaa;
-  --leader-offset: 1em;
+  --leader-horizontal-offset: 1em;
+  --leader-vertical-offset: calc(var(--line-height) / 2 + var(--open-offset));
   --leader-spacing: 2em;
-  --leader-vertical-offset: calc(var(--line-height) / 1.7);
+  --open-offset: 5px;
 
   --marker-size: 12px;
   --marker-radius: 3px;
   --marker-color: #343a40;
-
-  --marker-top: calc(
-    var(--line-height) / 2.1 - var(--marker-size) / 2 + var(--leader-thickness) /
-      2
-  );
-
-  --marker-left: calc(
-    0em - var(--leader-offset) - var(--marker-size) / 2 +
-      var(--leader-thickness) / 2
-  );
 }

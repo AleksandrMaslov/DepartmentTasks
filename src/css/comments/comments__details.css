@@ -8,17 +8,19 @@
 
 .comments__details::before,
 .comments__details::after {
+  z-index: -1;
   content: '';
   position: absolute;
-  left: calc(0em - var(--leader-offset));
-  border-left: var(--leader-thickness) solid var(--leader-color);
+  left: calc(0em - var(--leader-horizontal-offset));
+  border-left: var(--leader-thickness) var(--leader-color) solid;
 }
 
 .comments__details::before {
-  top: 0;
-  width: calc(var(--leader-offset) * 0.8);
-  height: var(--leader-vertical-offset);
-  border-bottom: var(--leader-thickness) solid var(--leader-color);
+  top: calc(0px - var(--open-offset));
+  width: var(--leader-horizontal-offset);
+  height: calc(var(--leader-vertical-offset) + var(--open-offset));
+  border-bottom: var(--leader-thickness) var(--leader-color) solid;
+  transition: all 0.2s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
 .comments__details:not(:last-child)::after {
