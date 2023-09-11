@@ -1,10 +1,18 @@
 import dateTime from '../../dateTime.js'
 
 export default class TaskRowController {
-  HEADER_IS_ACTIVE = 'isActive'
+  HEADERS = {
+    IS_ACTIVE: 'isActive',
+    IS_FINISHED: 'isFinished',
+    IS_WRONG: 'isWrong',
+    IS_ACCEPTED: 'isAccepted',
+  }
   STATE = {
     ACTIVE: '1',
     NOT_ACTIVE: '0',
+    FINISHED: '1',
+    ACCEPTED: '1',
+    WRONG: '1',
     LOADING: '.',
     BUSY: 'x',
   }
@@ -66,7 +74,7 @@ export default class TaskRowController {
   }
 
   getActivityState() {
-    return this.getStateData(this.HEADER_IS_ACTIVE)
+    return this.getStateData(this.HEADERS.IS_ACTIVE)
   }
 
   setLoadingActivityState() {
@@ -79,7 +87,7 @@ export default class TaskRowController {
   }
 
   setActivityState(value) {
-    this.updateState(this.HEADER_IS_ACTIVE, value)
+    this.updateState(this.HEADERS.IS_ACTIVE, value)
   }
 
   isBusy() {

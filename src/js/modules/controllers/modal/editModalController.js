@@ -76,10 +76,22 @@ export default class EditModalController {
     this.responsible.innerHTML = row.getCellData('responsible')
     this.editor.innerHTML = row.getCellData('editor')
     this.edited.innerHTML = row.getCellData('edited')
-    this.state.innerHTML =
-      row.getStateData(row.HEADER_IS_ACTIVE) === row.STATE.ACTIVE
-        ? 'ACTIVE'
-        : 'NOT ACTIVE'
+
+    const currentWrong = row.getStateData(row.HEADERS.IS_WRONG)
+    const isWrong = currentWrong === row.STATE.WRONG
+    if (isWrong) return (this.state.innerHTML = 'WRONG')
+
+    const currentAccepted = row.getStateData(row.HEADERS.IS_ACCEPTED)
+    const isAccepted = currentAccepted === row.STATE.ACCEPTED
+    if (isAccepted) return (this.state.innerHTML = 'ACCEPTED')
+
+    const currentFinished = row.getStateData(row.HEADERS.IS_FINISHED)
+    const isFinished = currentFinished === row.STATE.FINISHED
+    if (isFinished) return (this.state.innerHTML = 'FINISHED')
+
+    const currentActivity = row.getStateData(row.HEADERS.IS_ACTIVE)
+    const isActive = currentActivity === row.STATE.ACTIVE
+    this.state.innerHTML = isActive ? 'ACTIVE' : 'NOT ACTIVE'
   }
 
   setWindowDescriptionByRow(row) {
