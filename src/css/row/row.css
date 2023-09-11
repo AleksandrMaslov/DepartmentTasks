@@ -9,12 +9,8 @@
   transition: all 0.1s cubic-bezier(0.77, 0, 0.175, 1);
 }
 
-.row:has(.row__state_isActive[title='1']),
-.row:has(.row__state_isActive[title='x']) {
-  background-color: moccasin;
-}
 .row:has(.row__state_isFinished[title='1']) {
-  background-color: cadetblue;
+  background-color: rgb(115, 185, 147);
 }
 .row:has(.row__state_isWrong[title='1']) {
   background-color: darksalmon;
@@ -22,6 +18,10 @@
 .row:has(.row__state_isAccepted[title='1']) {
   background-color: darkgrey;
   text-decoration: line-through;
+}
+.row:has(.row__state_isActive[title='1']),
+.row:has(.row__state_isActive[title='x']) {
+  background-color: moccasin;
 }
 
 .row:hover {

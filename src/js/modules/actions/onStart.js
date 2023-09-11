@@ -2,7 +2,7 @@ import DatabaseController from '../controllers/database/databaseController.js'
 import TaskRowController from '../controllers/components/taskRowController.js'
 import PopupController from '../controllers/components/popupController.js'
 import TaskListController from '../controllers/components/taskListController.js'
-import { isNotSuccess } from '../responseValidation.js'
+import { isNotSuccess } from '../utils/responseValidation.js'
 
 export default async function onStart(event) {
   const popup = new PopupController()

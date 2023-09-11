@@ -1,7 +1,7 @@
 import DatabaseController from './controllers/database/databaseController.js'
 import TaskListController from './controllers/components/taskListController.js'
 import PopupController from './controllers/components/popupController.js'
-import { isNotSuccess, isNotValidUser } from './responseValidation.js'
+import { isNotSuccess, isNotValidUser } from './utils/responseValidation.js'
 import LoginModalController from './controllers/modal/loginModalController.js'
 import AuthorizationController from './controllers/components/authorizationController.js'
 

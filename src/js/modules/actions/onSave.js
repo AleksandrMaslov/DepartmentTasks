@@ -3,7 +3,7 @@ import TaskListController from '../controllers/components/taskListController.js'
 import TaskRowController from '../controllers/components/taskRowController.js'
 import DatabaseController from '../controllers/database/databaseController.js'
 import CommentModalController from '../controllers/modal/commentModalController.js'
-import { isNotSuccess } from '../responseValidation.js'
+import { isNotSuccess } from '../utils/responseValidation.js'
 
 export default async function onSave() {
   const popup = new PopupController()

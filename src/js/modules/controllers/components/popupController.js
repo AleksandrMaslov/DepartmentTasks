@@ -8,6 +8,8 @@ export default class PopupController {
   UNAUTHORIZED_MESSAGE = 'User is not authorized.'
   BUSY_MESSAGE = 'Selected task is Busy with another user.'
   SAVED_MESSAGE = 'Your comments have been saved successfully.'
+  FINISHED_MESSAGE = 'The Task has been marked as Finished.'
+  ACCEPTED_MESSAGE = 'The Task has been marked as Accepted.'
 
   constructor() {
     this.popupClass = 'popup'
@@ -54,6 +56,14 @@ export default class PopupController {
 
   showCommentSaved() {
     this.show('Done!', this.SAVED_MESSAGE)
+  }
+
+  showTaskFinished() {
+    this.show('Finished!', this.FINISHED_MESSAGE)
+  }
+
+  showTaskAccepted() {
+    this.show('Accepted!', this.ACCEPTED_MESSAGE)
   }
 
   showWarning(message) {

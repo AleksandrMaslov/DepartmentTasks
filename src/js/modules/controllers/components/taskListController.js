@@ -3,7 +3,7 @@ import TaskRowController from './taskRowController.js'
 import EditModalController from '../modal/editModalController.js'
 import CommentModalController from '../modal/commentModalController.js'
 import AuthorizationController from './authorizationController.js'
-import dateTime from '../../dateTime.js'
+import dateTime from '../../utils/dateTime.js'
 
 export default class TaskListController {
   constructor() {

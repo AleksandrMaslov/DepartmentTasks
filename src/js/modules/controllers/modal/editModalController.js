@@ -1,3 +1,7 @@
+import dateTime from '../../utils/dateTime.js'
+import { isNotSuccess } from '../../utils/responseValidation.js'
+import PopupController from '../components/popupController.js'
+import TaskListController from '../components/taskListController.js'
 import TaskRowController from '../components/taskRowController.js'
 import DatabaseController from '../database/databaseController.js'
 import CommentModalController from './commentModalController.js'
@@ -61,9 +65,7 @@ export default class EditModalController {
     this.setWindowKeyByRow(row)
     this.setProfileByRow(row)
     this.setAllDetailsClosed()
-    this.defineCommentClick(event)
-    this.defineFinishClick(event)
-    this.defineAcceptClick(event)
+    this.defineClickListeners(event)
     this.modal.style.display = 'flex'
 
     this.setLoading(true)
@@ -73,21 +75,39 @@ export default class EditModalController {
   }
 
   setProfileByRow(row) {
-    this.responsible.innerHTML = row.getCellData('responsible')
-    this.editor.innerHTML = row.getCellData('editor')
-    this.edited.innerHTML = row.getCellData('edited')
+    const data = {
+      responsible: row.getCellData('responsible'),
+      editor: row.getCellData('editor'),
+      edited: row.getCellData('edited'),
+      isActive: row.getStateData(row.HEADERS.IS_ACTIVE),
+      isFinished: row.getStateData(row.HEADERS.IS_FINISHED),
+      isAccepted: row.getStateData(row.HEADERS.IS_ACCEPTED),
+      isWrong: row.getStateData(row.HEADERS.IS_WRONG),
+    }
 
-    const currentWrong = row.getStateData(row.HEADERS.IS_WRONG)
-    if (!!+currentWrong) return (this.state.innerHTML = 'TO BE FIXED')
+    this.setProfileByData(data)
+  }
 
-    const currentAccepted = row.getStateData(row.HEADERS.IS_ACCEPTED)
-    if (!!+currentAccepted) return (this.state.innerHTML = 'ACCEPTED')
+  setProfileByData(data) {
+    const {
+      responsible,
+      editor,
+      edited,
+      isActive,
+      isFinished,
+      isAccepted,
+      isWrong,
+    } = data
 
-    const currentFinished = row.getStateData(row.HEADERS.IS_FINISHED)
-    if (!!+currentFinished) return (this.state.innerHTML = 'FINISHED')
-
-    const currentActivity = row.getStateData(row.HEADERS.IS_ACTIVE)
-    this.state.innerHTML = !!+currentActivity ? 'ACTIVE' : 'NOT ACTIVE'
+    this.editor.innerHTML = editor
+    this.edited.innerHTML = edited.includes('-') ? edited : dateTime(edited)
+    this.responsible.innerHTML = responsible
+    if (isActive === 'x') return (this.state.innerHTML = 'BUSY')
+    if (!!+isAccepted) return (this.state.innerHTML = 'ACCEPTED')
+    if (!!+isWrong) return (this.state.innerHTML = 'TO BE FIXED')
+    if (!!+isFinished) return (this.state.innerHTML = 'FINISHED')
+    if (!!+isActive) return (this.state.innerHTML = 'ACTIVE')
+    this.state.innerHTML = 'NOT ACTIVE'
   }
 
   setWindowDescriptionByRow(row) {
@@ -106,28 +126,50 @@ export default class EditModalController {
     Array.from(details).forEach((detail) => (detail.open = false))
   }
 
-  defineCommentClick(event) {
+  defineClickListeners(event) {
     this.commentButton.onclick = () => new CommentModalController().show(event)
+    this.finishButton.onclick = async () => this.onFinishClick()
+    this.acceptButton.onclick = async () => this.onAcceptClick()
   }
 
-  defineFinishClick() {
+  async onFinishClick() {
     const data = this.getKeyHash()
-    this.finishButton.onclick = async () => {
-      this.setFinishLoading(true)
-      const response = await new DatabaseController().setFinished(data)
-      this.setFinishLoading(false)
-      console.log(response)
-    }
+    const { key, hash } = data
+
+    const popup = new PopupController()
+    if (!hash) return popup.showUnauthorized()
+
+    this.setFinishLoading(true)
+    const response = await new DatabaseController().setFinished(data)
+    this.setFinishLoading(false)
+    if (isNotSuccess(response)) return popup.showServerError(response.error)
+
+    const rowElement = new TaskListController().getRow(key)
+    const row = new TaskRowController(rowElement)
+    row.updateRowData(response.data)
+    this.setProfileByData(response.data)
+    if (response.data.isActive === row.STATE.BUSY) return popup.showBusy()
+    popup.showTaskFinished()
   }
 
-  defineAcceptClick() {
+  async onAcceptClick() {
     const data = this.getKeyHash()
-    this.acceptButton.onclick = async () => {
-      this.setAcceptLoading(true)
-      const response = await new DatabaseController().setAccepted(data)
-      this.setAcceptLoading(false)
-      console.log(response)
-    }
+    const { key, hash } = data
+
+    const popup = new PopupController()
+    if (!hash) return popup.showUnauthorized()
+
+    this.setAcceptLoading(true)
+    const response = await new DatabaseController().setAccepted(data)
+    this.setAcceptLoading(false)
+    if (isNotSuccess(response)) return popup.showServerError(response.error)
+
+    const rowElement = new TaskListController().getRow(key)
+    const row = new TaskRowController(rowElement)
+    row.updateRowData(response.data)
+    this.setProfileByData(response.data)
+    if (response.data.isActive === row.STATE.BUSY) return popup.showBusy()
+    popup.showTaskAccepted()
   }
 
   setFinishLoading(isLoading) {
