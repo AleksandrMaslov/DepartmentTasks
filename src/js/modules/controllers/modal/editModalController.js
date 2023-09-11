@@ -79,7 +79,7 @@ export default class EditModalController {
 
     const currentWrong = row.getStateData(row.HEADERS.IS_WRONG)
     const isWrong = currentWrong === row.STATE.WRONG
-    if (isWrong) return (this.state.innerHTML = 'WRONG')
+    if (isWrong) return (this.state.innerHTML = 'TO BE FIXED')
 
     const currentAccepted = row.getStateData(row.HEADERS.IS_ACCEPTED)
     const isAccepted = currentAccepted === row.STATE.ACCEPTED
