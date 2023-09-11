@@ -10,9 +10,6 @@ export default class TaskRowController {
   STATE = {
     ACTIVE: '1',
     NOT_ACTIVE: '0',
-    FINISHED: '1',
-    ACCEPTED: '1',
-    WRONG: '1',
     LOADING: '.',
     BUSY: 'x',
   }
