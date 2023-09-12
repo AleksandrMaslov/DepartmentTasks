@@ -1,9 +1,7 @@
+import onAccept from '../../actions/onAccept.js'
+import onFinish from '../../actions/onFinish.js'
 import dateTime from '../../utils/dateTime.js'
-import { isNotSuccess } from '../../utils/responseValidation.js'
-import PopupController from '../components/popupController.js'
-import TaskListController from '../components/taskListController.js'
 import TaskRowController from '../components/taskRowController.js'
-import DatabaseController from '../database/databaseController.js'
 import CommentModalController from './commentModalController.js'
 
 export default class EditModalController {
@@ -74,6 +72,10 @@ export default class EditModalController {
     }, 2000)
   }
 
+  isShown() {
+    return this.modal.style.display !== 'none'
+  }
+
   setProfileByRow(row) {
     const data = {
       responsible: row.getCellData('responsible'),
@@ -124,52 +126,6 @@ export default class EditModalController {
   setAllDetailsClosed() {
     const details = this.modal.getElementsByTagName('details')
     Array.from(details).forEach((detail) => (detail.open = false))
-  }
-
-  defineClickListeners(event) {
-    this.commentButton.onclick = () => new CommentModalController().show(event)
-    this.finishButton.onclick = async () => this.onFinishClick()
-    this.acceptButton.onclick = async () => this.onAcceptClick()
-  }
-
-  async onFinishClick() {
-    const data = this.getKeyHash()
-    const { key, hash } = data
-
-    const popup = new PopupController()
-    if (!hash) return popup.showUnauthorized()
-
-    this.setFinishLoading(true)
-    const response = await new DatabaseController().setFinished(data)
-    this.setFinishLoading(false)
-    if (isNotSuccess(response)) return popup.showServerError(response.error)
-
-    const rowElement = new TaskListController().getRow(key)
-    const row = new TaskRowController(rowElement)
-    row.updateRowData(response.data)
-    this.setProfileByData(response.data)
-    if (response.data.isActive === row.STATE.BUSY) return popup.showBusy()
-    popup.showTaskFinished()
-  }
-
-  async onAcceptClick() {
-    const data = this.getKeyHash()
-    const { key, hash } = data
-
-    const popup = new PopupController()
-    if (!hash) return popup.showUnauthorized()
-
-    this.setAcceptLoading(true)
-    const response = await new DatabaseController().setAccepted(data)
-    this.setAcceptLoading(false)
-    if (isNotSuccess(response)) return popup.showServerError(response.error)
-
-    const rowElement = new TaskListController().getRow(key)
-    const row = new TaskRowController(rowElement)
-    row.updateRowData(response.data)
-    this.setProfileByData(response.data)
-    if (response.data.isActive === row.STATE.BUSY) return popup.showBusy()
-    popup.showTaskAccepted()
   }
 
   setFinishLoading(isLoading) {
@@ -251,5 +207,12 @@ export default class EditModalController {
 
   defineClose() {
     this.close.onclick = () => (this.modal.style.display = 'none')
+  }
+
+  defineClickListeners(event) {
+    // reset accept finish on start
+    this.commentButton.onclick = () => new CommentModalController().show(event)
+    this.finishButton.onclick = onFinish
+    this.acceptButton.onclick = onAccept
   }
 }
