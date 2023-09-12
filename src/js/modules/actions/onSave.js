@@ -3,6 +3,7 @@ import TaskListController from '../controllers/components/taskListController.js'
 import TaskRowController from '../controllers/components/taskRowController.js'
 import DatabaseController from '../controllers/database/databaseController.js'
 import CommentModalController from '../controllers/modal/commentModalController.js'
+import EditModalController from '../controllers/modal/editModalController.js'
 import { isNotSuccess } from '../utils/responseValidation.js'
 
 export default async function onSave() {
@@ -27,5 +28,9 @@ export default async function onSave() {
   const rowElement = new TaskListController().getRow(key)
   const row = new TaskRowController(rowElement)
   row.updateRowData(response.data)
+
+  const edit = new EditModalController()
+  if (edit.isShown()) edit.setProfileByData(response.data)
+
   popup.showCommentSaved()
 }
