@@ -8,26 +8,15 @@ export default class CommentModalController {
   LOADING_STATE = '1'
 
   constructor() {
-    this.modalClass = 'modal'
-    this.modalCommentClass = `${this.modalClass}_comment`
-    this.modalDescriptionClass = `${this.modalClass}__description`
-    this.modalCloseClass = `${this.modalClass}__close`
-    this.formClass = 'comment-form'
-    this.formTextClass = `${this.formClass}__textarea`
-    this.formSelectClass = `${this.formClass}__select`
-    this.saveButtonClass = `${this.formClass}__button_save`
-    this.resetButtonClass = `${this.formClass}__button_reset`
+    this.modal = document.querySelector(`.modal_comment`)
+    this.close = this.modal.querySelector(`.modal__close`)
+    this.description = this.modal.querySelector(`.modal__description`)
 
-    this.modal = document.querySelector(`.${this.modalCommentClass}`)
-    this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    this.description = this.modal.querySelector(
-      `.${this.modalDescriptionClass}`
-    )
-    this.form = this.modal.querySelector(`.${this.formClass}`)
-    this.text = this.form.querySelector(`.${this.formTextClass}`)
-    this.select = this.form.querySelector(`.${this.formSelectClass}`)
-    this.saveButton = this.form.querySelector(`.${this.saveButtonClass}`)
-    this.resetButton = this.form.querySelector(`.${this.resetButtonClass}`)
+    this.form = this.modal.querySelector(`.comment-form`)
+    this.text = this.form.querySelector(`.comment-form__textarea`)
+    this.select = this.form.querySelector(`.comment-form__select`)
+    this.saveButton = this.form.querySelector(`.comment-form__button_save`)
+    this.resetButton = this.form.querySelector(`.comment-form__button_reset`)
   }
 
   define() {
