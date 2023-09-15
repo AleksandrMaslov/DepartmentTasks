@@ -7,20 +7,13 @@ export default class LoginModalController {
   LOADING_STATE = '1'
 
   constructor() {
-    this.modalClass = 'modal'
-    this.modalLoginClass = `${this.modalClass}_login`
-    this.modalCloseClass = `${this.modalClass}__close`
-    this.formClass = 'login-form'
-    this.formEmailClass = `${this.formClass}__email`
-    this.formPasswordClass = `${this.formClass}__password`
-    this.buttonClass = `${this.formClass}__button`
+    this.modal = document.querySelector(`.modal_login`)
+    this.close = this.modal.querySelector(`.modal__close`)
 
-    this.modal = document.querySelector(`.${this.modalLoginClass}`)
-    this.form = this.modal.querySelector(`.${this.formClass}`)
-    this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    this.email = this.form.querySelector(`.${this.formEmailClass}`)
-    this.password = this.form.querySelector(`.${this.formPasswordClass}`)
-    this.button = this.form.querySelector(`.${this.buttonClass}`)
+    this.form = this.modal.querySelector(`.login-form`)
+    this.email = this.form.querySelector(`.login-form__email`)
+    this.button = this.form.querySelector(`.login-form__button`)
+    this.password = this.form.querySelector(`.login-form__password`)
   }
 
   define() {
