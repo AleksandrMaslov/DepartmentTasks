@@ -15,13 +15,7 @@ export default class TaskRowController {
   }
 
   constructor(rowChild) {
-    this.rowClass = 'row'
-    this.cellClass = `${this.rowClass}__cell`
-    this.stateClass = `${this.rowClass}__state`
-    this.cellContentClass = `${this.rowClass}__cell-content`
-    this.actionsClass = `${this.rowClass}__actions`
-
-    this.row = rowChild.closest(`.${this.rowClass}`)
+    this.row = rowChild.closest(`.row`)
     this.key = this.row.getAttribute('key')
   }
 
@@ -30,24 +24,24 @@ export default class TaskRowController {
   }
 
   getCellData(header) {
-    const cell = this.row.querySelector(`.${this.cellClass}[key=${header}]`)
+    const cell = this.row.querySelector(`.row__cell[key=${header}]`)
     return cell.getAttribute('title')
   }
 
   getStateData(header) {
-    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
+    const cell = this.row.querySelector(`.row__state[key=${header}]`)
     return cell.getAttribute('title')
   }
 
   updateCellData(header, value) {
-    const cell = this.row.querySelector(`.${this.cellClass}[key=${header}]`)
+    const cell = this.row.querySelector(`.row__cell[key=${header}]`)
     cell.setAttribute('title', value)
-    const content = cell.querySelector(`.${this.cellContentClass}`)
+    const content = cell.querySelector(`.row__cell-content`)
     content.innerHTML = value
   }
 
   updateState(header, value) {
-    const cell = this.row.querySelector(`.${this.stateClass}[key=${header}]`)
+    const cell = this.row.querySelector(`.row__state[key=${header}]`)
     cell.setAttribute('title', value)
   }
 
@@ -65,7 +59,7 @@ export default class TaskRowController {
   }
 
   setAuthorized(isAuthorized) {
-    const actions = this.row.querySelector(`.${this.actionsClass}`)
+    const actions = this.row.querySelector(`.row__actions`)
     if (isAuthorized) return (actions.style.display = 'flex')
     actions.style.display = 'none'
   }
