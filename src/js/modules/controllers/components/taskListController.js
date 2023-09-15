@@ -7,34 +7,11 @@ import dateTime from '../../utils/dateTime.js'
 
 export default class TaskListController {
   constructor() {
-    this.blockClass = 'tasks'
-    this.listClass = `${this.blockClass}__list`
-    this.headerClass = `${this.blockClass}__header`
-    this.hearedRowClass = `${this.headerClass}-row`
-
+    this.listClass = `tasks__list`
     this.rowClass = `row`
-    this.logoClass = `${this.rowClass}__logo`
-    this.cellClass = `${this.rowClass}__cell`
-    this.stateClass = `${this.rowClass}__state`
-    this.updatedClass = `${this.rowClass}__updated`
-    this.cellContentClass = `${this.cellClass}-content`
+    this.actionContentClass = `row__action-content`
 
-    this.indicatorsClass = `${this.rowClass}__indicators`
-    this.indicatorClass = `${this.rowClass}__indicator`
-    this.indicatorNotesClass = `${this.indicatorClass}_notes`
-    this.indicatorCommentsClass = `${this.indicatorClass}_comments`
-    this.indicatorQuestionClass = `${this.indicatorClass}_questions`
-
-    this.actionsClass = `${this.rowClass}__actions`
-    this.actionClass = `${this.rowClass}__action`
-    this.loaderClass = `${this.rowClass}__loader`
-    this.actionContentClass = `${this.actionClass}-content`
-    this.actionContentStartClass = `${this.actionContentClass}_start`
-    this.actionContentPauseClass = `${this.actionContentClass}_pause`
-    this.actionContentLoadingClass = `${this.actionContentClass}_loading`
-    this.actionContentBusyClass = `${this.actionContentClass}_busy`
-    this.block = document.querySelector(`.${this.blockClass}`)
-
+    this.block = document.querySelector(`.tasks`)
     this.isAuthorized = new AuthorizationController().getKey()
 
     this.actions = {
@@ -56,7 +33,7 @@ export default class TaskListController {
       },
       start: {
         class: this.actionContentClass,
-        modifier: this.actionContentStartClass,
+        modifier: 'row__action-content_start',
         title: 'Start',
         alt: 'tasks-start',
         src: 'img/tasks/tasks-start.png',
@@ -64,7 +41,7 @@ export default class TaskListController {
       },
       pause: {
         class: this.actionContentClass,
-        modifier: this.actionContentPauseClass,
+        modifier: 'row__action-content_pause',
         title: 'Pause',
         alt: 'tasks-pause',
         src: 'img/tasks/tasks-pause.png',
@@ -72,14 +49,14 @@ export default class TaskListController {
       },
       busy: {
         class: this.actionContentClass,
-        modifier: this.actionContentBusyClass,
+        modifier: 'row__action-content_busy',
         title: 'Busy',
         alt: 'tasks-busy',
         src: 'img/tasks/tasks-busy.png',
       },
       loader: {
-        class: this.loaderClass,
-        modifier: this.actionContentLoadingClass,
+        class: 'row__loader',
+        modifier: 'row__action-content_loading',
         title: 'Loading',
       },
     }
@@ -89,29 +66,6 @@ export default class TaskListController {
     this.list = document.createElement('div')
     this.list.classList.add(this.listClass)
     this.block.replaceChildren(this.list)
-  }
-
-  addHeader(data) {
-    this.header = document.createElement('div')
-    this.header.classList.add(this.hearedRowClass)
-    const properties = Object.keys(Object.values(data)[0])
-
-    const headerLogo = document.createElement('div')
-    headerLogo.classList.add(this.logoClass)
-    this.header.appendChild(headerLogo)
-
-    properties.forEach((header) => {
-      const headerCell = document.createElement('div')
-      headerCell.classList.add(this.headerClass)
-      headerCell.innerHTML = `${header.toUpperCase()}`
-      this.header.appendChild(headerCell)
-    })
-
-    const headerActions = document.createElement('div')
-    headerActions.classList.add(this.actionsClass)
-    this.header.appendChild(headerActions)
-
-    this.list.appendChild(this.header)
   }
 
   addRow([key, properties]) {
@@ -168,7 +122,7 @@ export default class TaskListController {
 
   createRowLogo() {
     return Object.assign(document.createElement('div'), {
-      className: this.logoClass,
+      className: 'row__logo',
       innerHTML: `<img
       // src="img/tasks/tasks-marker.png"
       // alt="tasks-marker"
@@ -179,12 +133,12 @@ export default class TaskListController {
   createCell([header, value]) {
     if (header === 'edited') value = dateTime(value)
     const cell = document.createElement('div')
-    cell.classList.add(this.cellClass)
-    cell.classList.add(`${this.cellClass}_${header}`)
+    cell.classList.add('row__cell')
+    cell.classList.add(`row__cell_${header}`)
     cell.setAttribute('title', value)
     cell.setAttribute('key', header)
     const content = document.createElement('div')
-    content.classList.add(this.cellContentClass)
+    content.classList.add('row__cell-content')
     content.innerHTML = value
     cell.appendChild(content)
     return cell
@@ -192,8 +146,8 @@ export default class TaskListController {
 
   createState([header, value]) {
     const state = document.createElement('div')
-    state.classList.add(this.stateClass)
-    state.classList.add(`${this.stateClass}_${header}`)
+    state.classList.add('row__state')
+    state.classList.add(`row__state_${header}`)
     state.setAttribute('title', value)
     state.setAttribute('key', header)
     return state
@@ -201,7 +155,7 @@ export default class TaskListController {
 
   createUpdated(editor, edited) {
     const updated = document.createElement('div')
-    updated.classList.add(this.updatedClass)
+    updated.classList.add('row__updated')
     updated.appendChild(this.createCell(edited))
     updated.appendChild(this.createCell(editor))
     return updated
@@ -209,16 +163,16 @@ export default class TaskListController {
 
   createIndicators() {
     const indicators = document.createElement('div')
-    indicators.classList.add(this.indicatorsClass)
+    indicators.classList.add('row__indicators')
     const notesIndicator = document.createElement('div')
-    notesIndicator.classList.add(this.indicatorClass)
-    notesIndicator.classList.add(this.indicatorNotesClass)
+    notesIndicator.classList.add('row__indicator')
+    notesIndicator.classList.add('row__indicator_notes')
     const commentsIndicator = document.createElement('div')
-    commentsIndicator.classList.add(this.indicatorCommentsClass)
-    commentsIndicator.classList.add(this.indicatorClass)
+    commentsIndicator.classList.add('row__indicator')
+    commentsIndicator.classList.add('row__indicator_comments')
     const questionsIndicator = document.createElement('div')
-    questionsIndicator.classList.add(this.indicatorQuestionClass)
-    questionsIndicator.classList.add(this.indicatorClass)
+    questionsIndicator.classList.add('row__indicator')
+    questionsIndicator.classList.add('row__indicator_questions')
 
     indicators.appendChild(notesIndicator)
     indicators.appendChild(commentsIndicator)
@@ -228,7 +182,7 @@ export default class TaskListController {
 
   createRowActions() {
     const rowActions = document.createElement('div')
-    rowActions.classList.add(this.actionsClass)
+    rowActions.classList.add('row__actions')
     if (this.isAuthorized) rowActions.style.display = 'flex'
     rowActions.appendChild(this.createAction('edit'))
     rowActions.appendChild(this.createAction('comment'))
@@ -238,7 +192,7 @@ export default class TaskListController {
 
   createAction(name) {
     const action = document.createElement('div')
-    action.classList.add(this.actionClass)
+    action.classList.add('row__action')
     action.appendChild(this.createActionContent(name))
     if (name !== 'start') return action
     action.appendChild(this.createActionContent('pause'))
