@@ -6,51 +6,26 @@ import CommentModalController from './commentModalController.js'
 
 export default class EditModalController {
   constructor() {
-    this.modalClass = 'modal'
-    this.modalCommentClass = `${this.modalClass}_edit`
-    this.modalDescriptionClass = `${this.modalClass}__description`
-    this.modalCloseClass = `${this.modalClass}__close`
+    this.modal = document.querySelector(`.modal_edit`)
+    this.close = this.modal.querySelector(`.modal__close`)
+    this.description = this.modal.querySelector(`.modal__description`)
 
-    this.editClass = 'edit'
-    this.timeClass = 'time'
-    this.commentsClass = 'comments'
-    this.stateClass = `${this.editClass}__state`
-    this.responsibleClass = `${this.editClass}__responsible`
-    this.editorClass = `${this.editClass}__editor`
-    this.editedClass = `${this.editClass}__edited`
-    this.timeLoaderClass = `${this.timeClass}__loader`
-    this.timeTotalClass = `${this.timeClass}__total`
-    this.commentsLoaderClass = `${this.commentsClass}__loader`
-    this.commentsDetailsClass = `${this.commentsClass}__details`
-    this.commentButtonClass = `${this.editClass}__button_comment`
-    this.finishButtonClass = `${this.editClass}__button_finish`
-    this.acceptButtonClass = `${this.editClass}__button_accept`
-    this.loaderFinishClass = `${this.editClass}__loader_finish`
-    this.loaderAcceptClass = `${this.editClass}__loader_accept`
+    this.state = this.modal.querySelector(`.edit__state`)
+    this.editor = this.modal.querySelector(`.edit__editor`)
+    this.edited = this.modal.querySelector(`.edit__edited`)
+    this.responsible = this.modal.querySelector(`.edit__responsible`)
+    this.finishButton = this.modal.querySelector(`.edit__button_finish`)
+    this.finishLoader = this.modal.querySelector(`.edit__loader_finish`)
+    this.acceptButton = this.modal.querySelector(`.edit__button_accept`)
+    this.acceptLoader = this.modal.querySelector(`.edit__loader_accept`)
+    this.commentButton = this.modal.querySelector(`.edit__button_comment`)
 
-    this.modal = document.querySelector(`.${this.modalCommentClass}`)
-    this.description = this.modal.querySelector(
-      `.${this.modalDescriptionClass}`
-    )
-    this.close = this.modal.querySelector(`.${this.modalCloseClass}`)
-    this.state = this.modal.querySelector(`.${this.stateClass}`)
-    this.responsible = this.modal.querySelector(`.${this.responsibleClass}`)
-    this.editor = this.modal.querySelector(`.${this.editorClass}`)
-    this.edited = this.modal.querySelector(`.${this.editedClass}`)
-    this.time = this.modal.querySelector(`.${this.timeClass}`)
-    this.timeLoader = this.modal.querySelector(`.${this.timeLoaderClass}`)
-    this.timeTotal = this.modal.querySelector(`.${this.timeTotalClass}`)
-    this.commentsLoader = this.modal.querySelector(
-      `.${this.commentsLoaderClass}`
-    )
-    this.commentsDetails = this.modal.querySelector(
-      `.${this.commentsDetailsClass}`
-    )
-    this.commentButton = this.modal.querySelector(`.${this.commentButtonClass}`)
-    this.finishButton = this.modal.querySelector(`.${this.finishButtonClass}`)
-    this.finishLoader = this.modal.querySelector(`.${this.loaderFinishClass}`)
-    this.acceptButton = this.modal.querySelector(`.${this.acceptButtonClass}`)
-    this.acceptLoader = this.modal.querySelector(`.${this.loaderAcceptClass}`)
+    this.time = this.modal.querySelector(`.time`)
+    this.timeTotal = this.modal.querySelector(`.time__total`)
+    this.timeLoader = this.modal.querySelector(`.time__loader`)
+
+    this.commentsLoader = this.modal.querySelector(`.comments__loader`)
+    this.commentsDetails = this.modal.querySelector(`.comments__details`)
   }
 
   define() {
@@ -58,12 +33,16 @@ export default class EditModalController {
   }
 
   show(event) {
+    const times = ['adas', '100', 'asdad', '244']
+
     const row = new TaskRowController(event.srcElement)
+    this.defineClickListeners(event)
     this.setWindowDescriptionByRow(row)
     this.setWindowKeyByRow(row)
     this.setProfileByRow(row)
+    this.setTime(times)
+    this.setComments()
     this.setAllDetailsClosed()
-    this.defineClickListeners(event)
     this.modal.style.display = 'flex'
 
     this.setLoading(true)
@@ -71,6 +50,10 @@ export default class EditModalController {
       this.setLoading(false)
     }, 2000)
   }
+
+  setTime(times) {}
+
+  setComments() {}
 
   isShown() {
     return this.modal.style.display !== 'none'
@@ -210,7 +193,6 @@ export default class EditModalController {
   }
 
   defineClickListeners(event) {
-    // reset accept finish on start
     this.commentButton.onclick = () => new CommentModalController().show(event)
     this.finishButton.onclick = onFinish
     this.acceptButton.onclick = onAccept
