@@ -12,16 +12,10 @@ export default class PopupController {
   ACCEPTED_MESSAGE = 'The Task has been marked as Accepted.'
 
   constructor() {
-    this.popupClass = 'popup'
-    this.popupShowedClass = `${this.popupClass}_showed`
-    this.popupCloseClass = `${this.popupClass}__close`
-    this.popupTitleClass = `${this.popupClass}__title`
-    this.popupContentClass = `${this.popupClass}__content`
-
-    this.popup = document.querySelector(`.${this.popupClass}`)
-    this.close = this.popup.querySelector(`.${this.popupCloseClass}`)
-    this.title = this.popup.querySelector(`.${this.popupTitleClass}`)
-    this.content = this.popup.querySelector(`.${this.popupContentClass}`)
+    this.popup = document.querySelector(`.popup`)
+    this.close = this.popup.querySelector(`.popup__close`)
+    this.title = this.popup.querySelector(`.popup__title`)
+    this.content = this.popup.querySelector(`.popup__content`)
   }
 
   define() {
