@@ -33,7 +33,6 @@ export default class TaskListController {
     this.actionContentPauseClass = `${this.actionContentClass}_pause`
     this.actionContentLoadingClass = `${this.actionContentClass}_loading`
     this.actionContentBusyClass = `${this.actionContentClass}_busy`
-    this.key = 'key'
     this.block = document.querySelector(`.${this.blockClass}`)
 
     this.isAuthorized = new AuthorizationController().getKey()
@@ -132,7 +131,7 @@ export default class TaskListController {
 
   getRow(key) {
     const list = document.querySelector(`.${this.listClass}`)
-    const className = `.${this.rowClass}[${this.key}='${key}']`
+    const className = `.${this.rowClass}[key='${key}']`
     return list.querySelector(className)
   }
 
@@ -163,18 +162,18 @@ export default class TaskListController {
   createRow(key) {
     const row = document.createElement('div')
     row.classList.add(this.rowClass)
-    row.setAttribute(this.key, key)
+    row.setAttribute('key', key)
     return row
   }
 
   createRowLogo() {
-    const rowLogo = document.createElement('div')
-    rowLogo.classList.add(this.logoClass)
-    const logo = document.createElement('img')
-    logo.setAttribute('src', 'img/tasks/tasks-marker.png')
-    logo.setAttribute('alt', 'tasks-marker')
-    rowLogo.appendChild(logo)
-    return rowLogo
+    return Object.assign(document.createElement('div'), {
+      className: this.logoClass,
+      innerHTML: `<img
+      // src="img/tasks/tasks-marker.png"
+      // alt="tasks-marker"
+      // ></img>`,
+    })
   }
 
   createCell([header, value]) {
