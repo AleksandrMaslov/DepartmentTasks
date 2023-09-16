@@ -40,6 +40,11 @@ export default class DatabaseController {
     return this.post(this.baseUrl, body)
   }
 
+  async getTimeCommentsData(data) {
+    const body = { action: 'edit', data }
+    return this.post(this.baseUrl, body)
+  }
+
   async post(url, body) {
     const options = this.getPostOptions(body)
     const response = await fetch(url, options)
