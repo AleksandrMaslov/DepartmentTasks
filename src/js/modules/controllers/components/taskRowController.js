@@ -15,7 +15,7 @@ export default class TaskRowController {
   }
 
   constructor(rowChild) {
-    this.row = rowChild.closest(`.row`)
+    this.row = rowChild.closest('.row')
     this.key = this.row.getAttribute('key')
   }
 

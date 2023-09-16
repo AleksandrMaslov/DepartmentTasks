@@ -8,15 +8,15 @@ export default class CommentModalController {
   LOADING_STATE = '1'
 
   constructor() {
-    this.modal = document.querySelector(`.modal_comment`)
-    this.close = this.modal.querySelector(`.modal__close`)
-    this.description = this.modal.querySelector(`.modal__description`)
+    this.modal = document.querySelector('.modal_comment')
+    this.close = this.modal.querySelector('.modal__close')
+    this.description = this.modal.querySelector('.modal__description')
 
-    this.form = this.modal.querySelector(`.comment-form`)
-    this.text = this.form.querySelector(`.comment-form__textarea`)
-    this.select = this.form.querySelector(`.comment-form__select`)
-    this.saveButton = this.form.querySelector(`.comment-form__button_save`)
-    this.resetButton = this.form.querySelector(`.comment-form__button_reset`)
+    this.form = this.modal.querySelector('.comment-form')
+    this.text = this.form.querySelector('.comment-form__textarea')
+    this.select = this.form.querySelector('.comment-form__select')
+    this.saveButton = this.form.querySelector('.comment-form__button_save')
+    this.resetButton = this.form.querySelector('.comment-form__button_reset')
   }
 
   define() {

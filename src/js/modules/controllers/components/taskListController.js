@@ -7,11 +7,11 @@ import dateTime from '../../utils/dateTime.js'
 
 export default class TaskListController {
   constructor() {
-    this.listClass = `tasks__list`
-    this.rowClass = `row`
-    this.actionContentClass = `row__action-content`
+    this.listClass = 'tasks__list'
+    this.rowClass = 'row'
+    this.actionContentClass = 'row__action-content'
 
-    this.block = document.querySelector(`.tasks`)
+    this.block = document.querySelector('.tasks')
     this.isAuthorized = new AuthorizationController().getKey()
 
     this.actions = {

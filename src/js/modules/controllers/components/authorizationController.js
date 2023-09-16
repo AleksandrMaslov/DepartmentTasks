@@ -3,12 +3,12 @@ import onLogout from '../../actions/onLogout.js'
 
 export default class AuthorizationController {
   constructor() {
-    this.authorization = document.querySelector(`.authorization`)
-    this.name = this.authorization.querySelector(`.authorization__name`)
-    this.avatar = this.authorization.querySelector(`.authorization__avatar`)
-    this.login = this.authorization.querySelector(`.authorization__login`)
-    this.loggedin = this.authorization.querySelector(`.authorization__loggedin`)
-    this.logout = this.authorization.querySelector(`.authorization__logout`)
+    this.authorization = document.querySelector('.authorization')
+    this.name = this.authorization.querySelector('.authorization__name')
+    this.avatar = this.authorization.querySelector('.authorization__avatar')
+    this.login = this.authorization.querySelector('.authorization__login')
+    this.loggedin = this.authorization.querySelector('.authorization__loggedin')
+    this.logout = this.authorization.querySelector('.authorization__logout')
   }
 
   define() {
