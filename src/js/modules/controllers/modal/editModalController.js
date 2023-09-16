@@ -10,27 +10,27 @@ import CommentModalController from './commentModalController.js'
 
 export default class EditModalController {
   constructor() {
-    this.modal = document.querySelector(`.modal_edit`)
-    this.close = this.modal.querySelector(`.modal__close`)
-    this.description = this.modal.querySelector(`.modal__description`)
+    this.modal = document.querySelector('.modal_edit')
+    this.close = this.modal.querySelector('.modal__close')
+    this.description = this.modal.querySelector('.modal__description')
 
-    this.state = this.modal.querySelector(`.edit__state`)
-    this.editor = this.modal.querySelector(`.edit__editor`)
-    this.edited = this.modal.querySelector(`.edit__edited`)
-    this.responsible = this.modal.querySelector(`.edit__responsible`)
-    this.finishButton = this.modal.querySelector(`.edit__button_finish`)
-    this.finishLoader = this.modal.querySelector(`.edit__loader_finish`)
-    this.acceptButton = this.modal.querySelector(`.edit__button_accept`)
-    this.acceptLoader = this.modal.querySelector(`.edit__loader_accept`)
-    this.commentButton = this.modal.querySelector(`.edit__button_comment`)
+    this.state = this.modal.querySelector('.edit__state')
+    this.editor = this.modal.querySelector('.edit__editor')
+    this.edited = this.modal.querySelector('.edit__edited')
+    this.responsible = this.modal.querySelector('.edit__responsible')
+    this.finishButton = this.modal.querySelector('.edit__button_finish')
+    this.finishLoader = this.modal.querySelector('.edit__loader_finish')
+    this.acceptButton = this.modal.querySelector('.edit__button_accept')
+    this.acceptLoader = this.modal.querySelector('.edit__loader_accept')
+    this.commentButton = this.modal.querySelector('.edit__button_comment')
 
-    this.time = this.modal.querySelector(`.time`)
-    this.timeTotal = this.modal.querySelector(`.time__total`)
-    this.timeLoader = this.modal.querySelector(`.time__loader`)
-    this.timeGrid = this.modal.querySelector(`.time__grid`)
+    this.time = this.modal.querySelector('.time')
+    this.timeTotal = this.modal.querySelector('.time__total')
+    this.timeLoader = this.modal.querySelector('.time__loader')
+    this.timeGrid = this.modal.querySelector('.time__grid')
 
-    this.commentsLoader = this.modal.querySelector(`.comments__loader`)
-    this.commentsDetails = this.modal.querySelector(`.comments__details`)
+    this.commentsLoader = this.modal.querySelector('.comments__loader')
+    this.commentsDetails = this.modal.querySelector('.comments__details')
   }
 
   define() {
@@ -46,6 +46,8 @@ export default class EditModalController {
     this.setProfileByRow(row)
     this.setAllDetailsClosed()
     this.getTimeCommentsData()
+
+    new CommentsTreeController().clear()
     this.modal.style.display = 'flex'
   }
 
@@ -63,17 +65,13 @@ export default class EditModalController {
 
       if (isNotSuccess(response))
         return new PopupController().showServerError(response.error)
+
       const { time, comments } = response.data
+      if (!(time && comments)) return
 
-      if (time) {
-        this.setTime(time)
-        this.setTimeLoading(false)
-      }
-
-      if (comments) {
-        this.setComments(comments)
-        this.setCommentsLoading(false)
-      }
+      this.setTime(time)
+      this.setComments(comments)
+      this.setLoading(false)
     })
   }
 
@@ -89,6 +87,7 @@ export default class EditModalController {
 
   setComments(commentsData) {
     const comments = new CommentsTreeController()
+    commentsData.forEach((data) => comments.addComment(data))
   }
 
   isShown() {
