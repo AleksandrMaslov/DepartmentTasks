@@ -25,13 +25,12 @@
 
 .comments__details:not(:last-child)::after {
   bottom: 0;
-  height: 100%;
 }
 
-.comments > .comments__details {
+.comments__content > .comments__details {
   margin: 0;
 }
 
-.comments > .comments__details::before {
+.comments__content > .comments__details::before {
   display: none;
 }

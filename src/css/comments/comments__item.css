@@ -13,6 +13,18 @@
   background-color: rgb(240, 240, 240);
 }
 
+.comments__item[isActive='0'] {
+  text-decoration: line-through;
+}
+
+.comments__item[type='comment'] {
+  color: cornflowerblue;
+}
+
+.comments__item[type='note'] {
+  color: lightcoral;
+}
+
 .comments__item:focus {
   border: 1px solid #aaa;
   background-color: gainsboro;

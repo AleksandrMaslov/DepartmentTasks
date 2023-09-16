@@ -100,5 +100,6 @@
 @import 'time/time__total.css';
 
 @import 'comments/comments.css';
+@import 'comments/comments__content.css';
 @import 'comments/comments__item.css';
 @import 'comments/comments__details.css';
