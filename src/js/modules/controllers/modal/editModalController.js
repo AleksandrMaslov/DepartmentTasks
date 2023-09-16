@@ -1,7 +1,11 @@
 import onAccept from '../../actions/onAccept.js'
 import onFinish from '../../actions/onFinish.js'
 import dateTime from '../../utils/dateTime.js'
+import { isNotSuccess } from '../../utils/responseValidation.js'
+import CommentsTreeController from '../components/commentsTreeController.js'
+import PopupController from '../components/popupController.js'
 import TaskRowController from '../components/taskRowController.js'
+import DatabaseController from '../database/databaseController.js'
 import CommentModalController from './commentModalController.js'
 
 export default class EditModalController {
@@ -23,6 +27,7 @@ export default class EditModalController {
     this.time = this.modal.querySelector(`.time`)
     this.timeTotal = this.modal.querySelector(`.time__total`)
     this.timeLoader = this.modal.querySelector(`.time__loader`)
+    this.timeGrid = this.modal.querySelector(`.time__grid`)
 
     this.commentsLoader = this.modal.querySelector(`.comments__loader`)
     this.commentsDetails = this.modal.querySelector(`.comments__details`)
@@ -33,27 +38,58 @@ export default class EditModalController {
   }
 
   show(event) {
-    const times = ['adas', '100', 'asdad', '244']
-
-    const row = new TaskRowController(event.srcElement)
+    this.setLoading(true)
     this.defineClickListeners(event)
+    const row = new TaskRowController(event.srcElement)
     this.setWindowDescriptionByRow(row)
     this.setWindowKeyByRow(row)
     this.setProfileByRow(row)
-    this.setTime(times)
-    this.setComments()
     this.setAllDetailsClosed()
+    this.getTimeCommentsData()
     this.modal.style.display = 'flex'
-
-    this.setLoading(true)
-    setTimeout(() => {
-      this.setLoading(false)
-    }, 2000)
   }
 
-  setTime(times) {}
+  hide() {
+    this.modal.style.display = 'none'
+  }
 
-  setComments() {}
+  getTimeCommentsData() {
+    const { key } = this.getKeyHash()
+    new DatabaseController().getTimeCommentsData({ key }).then((response) => {
+      if (!this.isShown()) return
+
+      const isTaskStillOpened = key == this.getKeyHash().key
+      if (!isTaskStillOpened) return
+
+      if (isNotSuccess(response))
+        return new PopupController().showServerError(response.error)
+      const { time, comments } = response.data
+
+      if (time) {
+        this.setTime(time)
+        this.setTimeLoading(false)
+      }
+
+      if (comments) {
+        this.setComments(comments)
+        this.setCommentsLoading(false)
+      }
+    })
+  }
+
+  setTime(timeData) {
+    const { total, data } = timeData
+    this.timeTotal.innerHTML = total ? total : 0
+    this.timeGrid.innerHTML = data
+      ? data.map((time) => `<p>${time}</p>`).join('')
+      : ['Current task', 'is not started']
+          .map((text) => `<p>${text}</p>`)
+          .join('')
+  }
+
+  setComments(commentsData) {
+    const comments = new CommentsTreeController()
+  }
 
   isShown() {
     return this.modal.style.display !== 'none'
@@ -158,14 +194,16 @@ export default class EditModalController {
 
   setCommentsLoading(isLoading) {
     if (isLoading) {
+      this.commentsLoader.style.display = 'block'
+      if (!this.commentsDetails) return
       this.commentsDetails.style.pointerEvents = 'none'
       this.commentsDetails.style.opacity = '0'
-      this.commentsLoader.style.display = 'block'
       return
     }
 
-    this.commentsDetails.style.opacity = '1'
     this.commentsLoader.style.display = 'none'
+    if (!this.commentsDetails) return
+    this.commentsDetails.style.opacity = '1'
     this.commentsDetails.style.pointerEvents = 'auto'
   }
 
@@ -189,7 +227,7 @@ export default class EditModalController {
   }
 
   defineClose() {
-    this.close.onclick = () => (this.modal.style.display = 'none')
+    this.close.onclick = () => this.hide()
   }
 
   defineClickListeners(event) {
