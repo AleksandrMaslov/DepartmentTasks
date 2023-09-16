@@ -20,8 +20,18 @@ export default async function onStart(event) {
     return popup.showServerError(response.error)
   }
 
-  row.updateRowData(response.data)
+  const [currentRowData, previousRowData] = response.data
+  row.updateRowData(currentRowData)
+
+  if (previousRowData) {
+    const { key, ...restPreviousData } = previousRowData
+    const previousRowElement = new TaskListController().getRow(key)
+    const previousRow = new TaskRowController(previousRowElement)
+    previousRow.updateRowData(restPreviousData)
+  }
+
   if (row.isActive())
     return new TaskListController().setOtherActiveTasksState(key, 'NOT_ACTIVE')
+
   if (row.isBusy()) return popup.showBusy()
 }
