@@ -40,7 +40,7 @@
   height: var(--marker-size);
   transform: translate(
     calc(var(--leader-half-thickness) - 50%),
-    calc(0px - 50% - var(--leader-half-thickness))
+    calc(1px - 1px - 50% - var(--leader-half-thickness))
   );
 
   content: '+';
