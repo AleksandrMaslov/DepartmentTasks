@@ -30,6 +30,7 @@ export default class CommentsTreeController {
   addCommentToElement(parentElement, data) {
     const { commentKey, type, isActive, text, ...users } = data
     const { responsible, editor, edited } = users
+    const capitalizedType = `${type[0].toUpperCase()}${type.slice(1)}`
 
     const details = document.createElement('details')
     details.className = 'comments__details'
@@ -39,7 +40,7 @@ export default class CommentsTreeController {
         key="${commentKey}"
         type="${type}"
         isActive="${isActive}"
-        title="Created: ${responsible}\nEdited: ${dateTime(
+        title="${capitalizedType}\nCreated by: ${responsible}\nEdited: ${dateTime(
       edited
     )}\nEditor: ${editor}"
       >
