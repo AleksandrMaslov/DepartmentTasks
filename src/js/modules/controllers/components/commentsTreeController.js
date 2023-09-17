@@ -1,4 +1,5 @@
 import dateTime from '../../utils/dateTime.js'
+import ContextMenuController from './contextMenuController.js'
 
 export default class CommentsTreeController {
   constructor() {
@@ -30,8 +31,9 @@ export default class CommentsTreeController {
     const { commentKey, type, isActive, text, ...users } = data
     const { responsible, editor, edited } = users
 
-    parentElement.innerHTML += `
-    <details class="comments__details">
+    const details = document.createElement('details')
+    details.className = 'comments__details'
+    details.innerHTML = `
       <summary 
         class="comments__item"
         key="${commentKey}"
@@ -43,7 +45,15 @@ export default class CommentsTreeController {
       >
         ${text}
       </summary>
-    </details>
     `
+    parentElement.appendChild(details)
+
+    const item = details.querySelector('.comments__item')
+    item.oncontextmenu = (event) => {
+      event.preventDefault()
+      const x = event.clientX
+      const y = event.clientY
+      new ContextMenuController().show(x, y)
+    }
   }
 }
