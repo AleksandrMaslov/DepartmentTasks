@@ -14,7 +14,7 @@ export default async function onFinish() {
   if (!hash) return popup.showUnauthorized()
 
   edit.setFinishLoading(true)
-  const response = await new DatabaseController().setFinished(data)
+  const response = await new DatabaseController().setTaskFinished(data)
   edit.setFinishLoading(false)
   if (isNotSuccess(response)) return popup.showServerError(response.error)
 

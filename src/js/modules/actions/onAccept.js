@@ -14,7 +14,7 @@ export default async function onAccept() {
   if (!hash) return popup.showUnauthorized()
 
   edit.setAcceptLoading(true)
-  const response = await new DatabaseController().setAccepted(data)
+  const response = await new DatabaseController().setTaskAccepted(data)
   edit.setAcceptLoading(false)
   if (isNotSuccess(response)) return popup.showServerError(response.error)
 
