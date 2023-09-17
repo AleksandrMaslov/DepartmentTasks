@@ -10,13 +10,18 @@
 @media (min-width: 1440px) {
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 12px;
   height: 5px;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background: #9b9b9b;
+  transition: all 0.1s cubic-bezier(0.77, 0, 0.175, 1);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b0b0b0;
 }
 ::-webkit-scrollbar-track {
+  border-radius: 4px;
   background: #f6f6f6;
 }
