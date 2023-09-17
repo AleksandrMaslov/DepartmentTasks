@@ -4,11 +4,30 @@ import ContextMenuController from './contextMenuController.js'
 export default class CommentsTreeController {
   constructor() {
     this.comments = document.querySelector('.comments')
-    this.commentsContent = document.querySelector('.comments__content')
+    this.commentsContent = this.comments.querySelector('.comments__content')
   }
 
   clear() {
     this.commentsContent.innerHTML = ''
+  }
+
+  updateCommentData(key, data) {
+    const comment = this.commentsContent.querySelector(
+      `.comments__item[key="${key}"]`
+    )
+
+    const { type, isActive, text, ...users } = data
+    const { responsible, editor, edited } = users
+
+    const capitalizedType = `${type[0].toUpperCase()}${type.slice(1)}`
+    const title = `${capitalizedType}\nCreated by: ${responsible}\nEdited: ${dateTime(
+      edited
+    )}\nEditor: ${editor}`
+
+    comment.setAttribute('type', type)
+    comment.setAttribute('title', title)
+    comment.setAttribute('isActive', isActive)
+    comment.innerHTML = text
   }
 
   addComment(data) {
@@ -31,6 +50,9 @@ export default class CommentsTreeController {
     const { commentKey, type, isActive, text, ...users } = data
     const { responsible, editor, edited } = users
     const capitalizedType = `${type[0].toUpperCase()}${type.slice(1)}`
+    const title = `${capitalizedType}\nCreated by: ${responsible}\nEdited: ${dateTime(
+      edited
+    )}\nEditor: ${editor}`
 
     const details = document.createElement('details')
     details.className = 'comments__details'
@@ -40,9 +62,7 @@ export default class CommentsTreeController {
         key="${commentKey}"
         type="${type}"
         isActive="${isActive}"
-        title="${capitalizedType}\nCreated by: ${responsible}\nEdited: ${dateTime(
-      edited
-    )}\nEditor: ${editor}"
+        title="${title}"
       >
         ${text}
       </summary>
@@ -52,11 +72,10 @@ export default class CommentsTreeController {
     const item = details.querySelector('.comments__item')
     item.oncontextmenu = (event) => {
       event.preventDefault()
-      const comment = event.srcElement
-      const isActive = !!+comment.getAttribute('isActive')
       const x = event.clientX
       const y = event.clientY
-      new ContextMenuController().show(x, y, isActive)
+      const comment = event.srcElement
+      new ContextMenuController(comment).show(x, y, commentKey, isActive)
     }
   }
 }
