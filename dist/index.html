@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/style.min.css?_v=20230917201546" />
+  <title>Department Tasks</title>
+  <meta name="description" content="NO DESCRIPTION" />
+  <meta name="author" content="Maslov Aleksandr" />
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+
+  <!-- FAVICON -->
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="favicon/apple-touch-icon.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="favicon/favicon-32x32.png"
+  />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="favicon/favicon-16x16.png"
+  />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <!-- FAVICON -->
+</head>
+
+  <body class="body">
+    <header class="header">
+  <div class="header__container">
+    <div class="header__logo">HEADER</div>
+
+    <nav class="navigation header__navigation">
+      <div class="navigation__container">
+        <a class="navigation__item">DASHBOARD</a>
+      </div>
+    </nav>
+
+    <div class="authorization header__authorization">
+      <div class="authorization__container">
+        <span class="authorization__login">LOGIN</span>
+        <div class="authorization__loggedin">
+          <span class="authorization__name"></span>
+          <img
+            class="authorization__avatar"
+            src="./img/authorization/authorization-avatar.png"
+            onerror='this.onerror = null; this.src="./img/authorization/authorization-avatar.png"'
+            alt="avatar"
+          />
+          <img
+            class="authorization__logout"
+            src="./img/authorization/authorization-logout.png"
+            alt="authorization-logout"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+    <main class="main">
+      <div class="tasks">
+        <span class="flat-loader tasks__loader"></span>
+      </div>
+    </main>
+
+    <footer class="footer">FOOTER</footer>
+ <section class="modal modal_login">
+  <div class="modal__window modal__window_login">
+    <div class="modal__container">
+      <div class="modal__header">
+        <h3 class="title_h3 modal__title">Welcome, Stranger!</h3>
+        <span class="modal__close">&times</span>
+      </div>
+
+      <form method="dialog" class="form login-form">
+        <input
+          class="input login-form__email"
+          placeholder="Email"
+          autocomplete="email"
+          type="email"
+          name="email"
+          required
+        />
+
+        <input
+          class="input login-form__password"
+          placeholder="Password"
+          autocomplete="on"
+          type="password"
+          name="password"
+          required
+        />
+
+        <button class="button login-form__button">Login</button>
+
+        <p>* You should authorize to unlock task tracking tools.</p>
+      </form>
+
+      <div class="square-loader"></div>
+    </div>
+  </div>
+</section>
+
+    <section class="modal modal_edit">
+  <div class="modal__window modal__window_edit">
+    <div class="modal__container">
+      <div class="modal__header">
+        <h3 class="title_h3 modal__title">Manage Task:</h3>
+        <h4 class="title_h4 modal__description"></h4>
+        <span class="modal__close">&times</span>
+      </div>
+
+      <div class="edit">
+        <div class="edit__profile-wrapper">
+          <details class="time edit__time">
+            <summary class="time__summary">
+              <span class="time__total"></span>
+
+              <span class="dot-loader time__loader"></span>
+            </summary>
+
+            <div class="time__container">
+              <div class="time__grid"></div>
+            </div>
+          </details>
+
+          <div class="edit__profile">
+            <p class="edit__item">State :</p>
+            <p class="edit__item edit__state">ACTIVE</p>
+            <p class="edit__item">Responsible :</p>
+            <p class="edit__item edit__responsible">RESPONSIBLE</p>
+            <p class="edit__item">Last Edited :</p>
+            <p class="edit__item edit__edited">2023-09-03 12:31:51</p>
+            <p class="edit__item">Editor :</p>
+            <p class="edit__item edit__editor">EDITOR</p>
+          </div>
+        </div>
+
+        <div class="edit__controls">
+          <button class="button edit__button edit__button_comment">
+            Comment
+          </button>
+          <button class="button edit__button edit__button_finish">
+            <span class="dot-loader edit__loader_finish"></span>
+            Finish
+          </button>
+          <button class="button edit__button edit__button_accept">
+            <span class="dot-loader edit__loader_accept"></span>
+            Accept
+          </button>
+        </div>
+
+        <div class="comments edit__comments">
+          <span class="cloud-loader comments__loader"></span>
+          <div class="comments__content"></div>
+        </div>
+      </div>
+
+      <div class="square-loader"></div>
+    </div>
+  </div>
+</section>
+ <section class="modal modal_comment">
+  <div class="modal__window modal__window_comment">
+    <div class="modal__container">
+      <div class="modal__header">
+        <div class="modal__header-wrapper">
+          <h4 class="title_h4 modal__description"></h4>
+        </div>
+        <span class="modal__close">&times</span>
+      </div>
+
+      <form method="dialog" class="form comment-form">
+        <textarea
+          class="input comment-form__textarea"
+          name="text"
+          placeholder="Text..."
+          required
+        ></textarea>
+
+        <div class="comment-form__controls">
+          <button class="button comment-form__button_reset" type="reset">
+            Clear
+          </button>
+
+          <select class="input comment-form__select" name="type" required>
+            <option value="" disabled selected>-- Please select type --</option>
+            <option value="question">Question</option>
+            <option value="comment">Comment</option>
+            <option value="note">Note</option>
+          </select>
+
+          <button class="button comment-form__button_save">Save</button>
+        </div>
+      </form>
+
+      <div class="square-loader"></div>
+    </div>
+  </div>
+</section>
+
+    <section class="popup">
+  <div class="popup__container">
+    <div class="popup__header">
+      <h3 class="title_h3 popup__title"></h3>
+      <span class="popup__close">↠</span>
+    </div>
+    <p class="popup__content"></p>
+  </div>
+</section>
+ <div class="context">
+  <ul class="context__list">
+    <li class="context__item context__item_reply">Reply</li>
+    <li class="context__item context__item_edit">Edit</li>
+    <li class="context__item context__item_close">Close</li>
+    <li class="context__item context__item_open">Open</li>
+  </ul>
+</div>
+
+
+    <script src="js/app.min.js?_v=20230917201546"></script>
+  </body>
+</html>
