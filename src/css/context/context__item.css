@@ -14,3 +14,8 @@
   left: 7px;
   content: '•';
 }
+
+.context__item[disabled] {
+  color: #aaa;
+  pointer-events: none;
+}

@@ -51,9 +51,11 @@ export default class CommentsTreeController {
     const item = details.querySelector('.comments__item')
     item.oncontextmenu = (event) => {
       event.preventDefault()
+      const comment = event.srcElement
+      const isActive = !!+comment.getAttribute('isActive')
       const x = event.clientX
       const y = event.clientY
-      new ContextMenuController().show(x, y)
+      new ContextMenuController().show(x, y, isActive)
     }
   }
 }
