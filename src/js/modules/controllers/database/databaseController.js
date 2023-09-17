@@ -25,18 +25,23 @@ export default class DatabaseController {
     return this.post(this.baseUrl, body)
   }
 
-  async setFinished(data) {
+  async setTaskFinished(data) {
     const body = { action: 'finished', data }
     return this.post(this.baseUrl, body)
   }
 
-  async setAccepted(data) {
+  async setTaskAccepted(data) {
     const body = { action: 'accepted', data }
     return this.post(this.baseUrl, body)
   }
 
   async addComment(data) {
     const body = { action: 'comment', data }
+    return this.post(this.baseUrl, body)
+  }
+
+  async swithCommentState(data) {
+    const body = { action: 'commentState', data }
     return this.post(this.baseUrl, body)
   }
 
