@@ -30,7 +30,7 @@ export default class EditModalController {
     this.timeGrid = this.modal.querySelector('.time__grid')
 
     this.commentsLoader = this.modal.querySelector('.comments__loader')
-    this.commentsDetails = this.modal.querySelector('.comments__details')
+    this.commentsContent = this.modal.querySelector('.comments__content')
   }
 
   define() {
@@ -194,16 +194,14 @@ export default class EditModalController {
   setCommentsLoading(isLoading) {
     if (isLoading) {
       this.commentsLoader.style.display = 'block'
-      if (!this.commentsDetails) return
-      this.commentsDetails.style.pointerEvents = 'none'
-      this.commentsDetails.style.opacity = '0'
+      this.commentsContent.style.pointerEvents = 'none'
+      this.commentsContent.style.opacity = '0'
       return
     }
 
     this.commentsLoader.style.display = 'none'
-    if (!this.commentsDetails) return
-    this.commentsDetails.style.opacity = '1'
-    this.commentsDetails.style.pointerEvents = 'auto'
+    this.commentsContent.style.opacity = '1'
+    this.commentsContent.style.pointerEvents = 'auto'
   }
 
   setButtonsNotEnabled(isNotEnabled) {
